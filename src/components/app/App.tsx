@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <div className="container">
+        <div className="content">
           <div className="HEADER">HEADER</div>
           <div className="CONTENT">
             <Switch>
