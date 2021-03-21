@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v81/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   font-family: 'Poiret One', cursive;
   font-size: 20px;
@@ -18,7 +41,7 @@ a {
 .app {
   height: 100vh;
   display: flex;
-  background: url(../../assets/img/bg.jpg) no-repeat 200px center;
+  background: url(../../assets/img/bg.jpg) no-repeat 180px center;
   background-size: 51%;
 }
 
@@ -31,16 +54,25 @@ a {
   background-color: #333470;
 
   ul {
-    padding: 20px;
     padding-top: 100px;
   }
 
   li {
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
 
   a {
+    display: flex;
     color: #FFF;
+    text-align: center;
+
+    span {
+        
+    }
+
+    .icon {
+      font-size: 40px;
+    }
   }
 
   a:hover {
@@ -74,6 +106,7 @@ a {
     .description {
       padding: 50px 0;
       font-size: 30px;
+      line-height: 1.3;
       text-align: right;
     }
 
