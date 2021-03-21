@@ -40,54 +40,18 @@ a {
 
 .app {
   height: 100vh;
+  padding-left: 100px;
   display: flex;
-  background: url(../../assets/img/bg.jpg) no-repeat 180px center;
-  background-size: 51%;
-}
-
-.navigation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 100vh;
-  background-color: #333470;
-
-  ul {
-    padding-top: 100px;
-  }
-
-  li {
-    margin-bottom: 14px;
-  }
-
-  a {
-    display: flex;
-    color: #FFF;
-    text-align: center;
-
-    span {
-        
-    }
-
-    .icon {
-      font-size: 40px;
-    }
-  }
-
-  a:hover {
-    color: #d4217c;
-  }
+  background: url(../../assets/img/bg-1.jpg) no-repeat left center;
+  background-size: 54%;
 }
 
 .container {
   width: 100%;
-  // display: flex;
 }
 
 .content {
-  padding: 100px 20px;
-  // width: 100%;
+  padding: 100px 20px 0 0;
 }
 
 .wrap-home {
@@ -142,11 +106,20 @@ a {
     button:focus {
       outline: none;
     }
-
-
   }
 }
 
+@media screen and (max-width: 1360px) {
+  .app {
+    background-size: 65%;
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .wrap-home .col-right .description {
+    font-size: 24px;
+  }
+}
 
 // <a href='https://ru.freepik.com/vectors/certificate'>Certificate вектор создан(а) freepik - ru.freepik.com</a>
 // <a href='https://ru.freepik.com/vectors/school'>School вектор создан(а) pch.vector - ru.freepik.com</a>
