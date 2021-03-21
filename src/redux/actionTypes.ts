@@ -1,0 +1,3 @@
+//Setting
+export const SETTING_PLUS = "SETTING/SETTING_PLUS";
+export const SETTING_MINUS = "SETTING/SETTING_MINUS";

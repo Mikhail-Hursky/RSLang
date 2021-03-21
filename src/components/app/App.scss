@@ -1,0 +1,28 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.NAVIGATION {
+  width: 25%;
+  height: 100vh;
+  background-color: blue;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+
+  .HEADER {
+    width: 100%;
+    height: 10%;
+    background-color: #fff;
+  }
+  .CONTENT {
+    height: 90%;
+    width: 100%;
+    background-color: red;
+  }
+}
