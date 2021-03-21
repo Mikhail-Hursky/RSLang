@@ -7,6 +7,7 @@ import { compose, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { rootReducer } from "./redux/reducer/rootReducer";
 import createLogger from "redux-logger";
+import "antd/dist/antd.css";
 
 declare global {
   interface Window {

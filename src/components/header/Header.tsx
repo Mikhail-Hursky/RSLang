@@ -1,12 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
-import "./Header.scss";
+import { Layout } from "antd";
 
 export default function Header() {
   return (
-    <header>
-      <div className="wrap-header">
+    <>
+      <Layout.Header></Layout.Header>
+    </>
+  );
+}
+
+/* <div className="wrap-header">
         <h1>RS Lang</h1>
         <div className="header-buttons">
           <div>
@@ -16,7 +18,4 @@ export default function Header() {
             <button>регистрация</button>
           </div>
         </div>
-      </div>
-    </header>
-  );
-}
+      </div> */
