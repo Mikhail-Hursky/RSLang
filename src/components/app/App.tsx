@@ -1,4 +1,6 @@
 import Navbar from "../navigation/Navbar";
+import Header from "../header/Header";
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,11 +10,11 @@ import { State } from "../../redux/reducer/rootReducer";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         <Navbar />
         <div className="container">
-          <div className="HEADER">HEADER</div>
-          <div className="CONTENT">
+          <Header />
+          <div className="content">
             <Switch>
               <Route path="/game" component={About} />
               <Route path="/statistic" component={Users} />
@@ -28,11 +30,21 @@ function App() {
 function Home() {
   const dispatch = useDispatch();
   return (
-    <>
-      <h2>Home</h2>
-      <button onClick={() => dispatch(counterPlus())}>+++</button>
-      <button onClick={() => dispatch(counterMinus())}>---</button>
-    </>
+    <div className="wrap-home">
+      <div className="col-left">
+        <h2>Home</h2>
+        <button onClick={() => dispatch(counterPlus())}>+++</button>
+        <button onClick={() => dispatch(counterMinus())}>---</button>
+      </div>
+      <div className="col-right">
+        <div className="description">
+          <p>Приложение для изучения иностранных слов, включающее электронный учебник с базой слов для изучения, игры для их повторения и возможности отслеживания индивидуального прогресса</p>
+        </div>
+        <div className="button">
+          <button>узнать о приложении</button>
+        </div>
+      </div>
+    </div>
   );
 }
 

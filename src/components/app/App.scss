@@ -1,28 +1,120 @@
-.App {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: space-between;
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+body {
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
 }
 
-.NAVIGATION {
-  width: 25%;
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.app {
   height: 100vh;
-  background-color: blue;
+  display: flex;
+  background: url(../../assets/img/bg.jpg) no-repeat 200px center;
+  background-size: 51%;
+}
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #333470;
+
+  ul {
+    padding: 20px;
+    padding-top: 100px;
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: #FFF;
+  }
+
+  a:hover {
+    color: #d4217c;
+  }
 }
 
 .container {
   width: 100%;
-  height: 100vh;
+  // display: flex;
+}
 
-  .HEADER {
-    width: 100%;
-    height: 10%;
-    background-color: #fff;
+.content {
+  padding: 100px 20px;
+  // width: 100%;
+}
+
+.wrap-home {
+  display: flex;
+
+  .col-left {
+    width: 60%;
   }
-  .CONTENT {
-    height: 90%;
-    width: 100%;
-    background-color: red;
+
+  .col-right {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .description {
+      padding: 50px 0;
+      font-size: 30px;
+      text-align: right;
+    }
+
+    .button {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    button {
+      display: block;
+      padding: 10px 20px;
+      margin-left: 20px;
+      background-color: #FFF;
+      background-color: #333470;
+      border: none;
+      border: 1px solid #333470;
+      border-radius: 10px;
+      font-size: 24px;
+      color: #333470;
+      color: #FFF;
+      letter-spacing: 2px;
+      transition: background-color .3s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #333470;
+      background-color: #FFF;
+      color: #FFF;
+      color: #333470;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+
   }
 }
+
+
+// <a href='https://ru.freepik.com/vectors/certificate'>Certificate вектор создан(а) freepik - ru.freepik.com</a>
+// <a href='https://ru.freepik.com/vectors/school'>School вектор создан(а) pch.vector - ru.freepik.com</a>
+// <a href='https://ru.freepik.com/vectors/business'>Business вектор создан(а) pikisuperstar - ru.freepik.com</a>
