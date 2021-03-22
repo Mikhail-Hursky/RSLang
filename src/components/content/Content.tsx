@@ -4,15 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { counterMinus, counterPlus } from "../../redux/action/settingAction";
 import { State } from "../../redux/reducer/rootReducer";
+import Settings from "../settings/Settings";
 
 export default function Content() {
   return (
     <>
       <Layout.Content style={{ margin: "0 16px" }}>
         <Switch>
-          <Route path="/game" component={About} />
+          <Route path="/games" component={About} />
           <Route path="/statistic" component={Users} />
-          <Route path="/" component={Home} />
+          <Route path="/learning" component={Home} />
+          <Route path="/dictionary" component={Home} />
+          <Route path="/setting" component={Settings} />
+          <Route path="/team" component={Home} />
+          <Route path="/info" component={Home} />
         </Switch>
       </Layout.Content>
     </>

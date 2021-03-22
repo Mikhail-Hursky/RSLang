@@ -1,10 +1,13 @@
 import { Layout, Menu } from "antd";
 import {
-  DesktopOutlined,
+  HomeOutlined,
+  PlayCircleOutlined,
+  SettingOutlined,
   PieChartOutlined,
-  FileOutlined,
+  InfoCircleOutlined,
   TeamOutlined,
-  UserOutlined,
+  LineChartOutlined,
+  BookOutlined,
 } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,29 +17,36 @@ export default function Navbar() {
   return (
     <>
       <Layout.Sider
-        theme="light"
+        theme="dark"
         collapsible
         collapsed={collapsed}
         onCollapse={() => setCollapsed(!collapsed)}
       >
-        <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<PieChartOutlined />}>
-            Option 1
+        <Menu mode="inline" defaultSelectedKeys={["1"]} theme="dark">
+          <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Link to="/">Главная</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />}>
-            Option 2
+          <Menu.Item key="2" icon={<PieChartOutlined />}>
+            <Link to="/learning">Изучение</Link>
           </Menu.Item>
-          <Menu.SubMenu key="sub1" icon={<UserOutlined />} title="User">
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
-          </Menu.SubMenu>
-          <Menu.SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
-          </Menu.SubMenu>
-          <Menu.Item key="9" icon={<FileOutlined />}>
-            Files
+          <Menu.Item key="3" icon={<BookOutlined />}>
+            <Link to="/dictionary">Словарь</Link>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<PlayCircleOutlined />}>
+            <Link to="/games">Игры</Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<LineChartOutlined />}>
+            <Link to="/statistic">Статистика</Link>
+          </Menu.Item>
+
+          <Menu.Item key="6" icon={<SettingOutlined />}>
+            <Link to="/setting">Настройки</Link>
+          </Menu.Item>
+          <Menu.Item key="7" icon={<TeamOutlined />}>
+            <Link to="/team">Команда</Link>
+          </Menu.Item>
+          <Menu.Item key="8" icon={<InfoCircleOutlined />}>
+            <Link to="/info">Информация</Link>
           </Menu.Item>
         </Menu>
       </Layout.Sider>
@@ -60,6 +70,27 @@ function toggleMenu(e: any): any {
     }
   }
 }
+
+/* <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
+          <Menu.Item key="1" icon={<PieChartOutlined />}>
+            Option 1
+          </Menu.Item>
+          <Menu.Item key="2" icon={<DesktopOutlined />}>
+            Option 2
+          </Menu.Item>
+          <Menu.SubMenu key="sub1" icon={<UserOutlined />} title="User">
+            <Menu.Item key="3">Tom</Menu.Item>
+            <Menu.Item key="4">Bill</Menu.Item>
+            <Menu.Item key="5">Alex</Menu.Item>
+          </Menu.SubMenu>
+          <Menu.SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
+            <Menu.Item key="6">Team 1</Menu.Item>
+            <Menu.Item key="8">Team 2</Menu.Item>
+          </Menu.SubMenu>
+          <Menu.Item key="9" icon={<FileOutlined />}>
+            Files
+          </Menu.Item>
+        </Menu> */
 
 /* 
 <div className="wrap-nav hidden" onClick={toggleMenu}>

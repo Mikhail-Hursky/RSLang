@@ -3,7 +3,6 @@ import Header from "../header/Header";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.scss";
 import { Layout } from "antd";
-import React from "react";
 import Footer from "../footer/Footer";
 import Content from "../content/Content";
 
