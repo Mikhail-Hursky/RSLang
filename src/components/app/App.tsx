@@ -6,6 +6,8 @@ import "./App.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { counterPlus, counterMinus } from "../../redux/action/settingAction";
 import { State } from "../../redux/reducer/rootReducer";
+import Learning from "../learning/Learning";
+import Games from "../games/Games";
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
           <Header />
           <div className="content">
             <Switch>
-              <Route path="/game" component={About} />
+              <Route path="/learning" component={Learning} />
+              <Route path="/game" component={Games} />
               <Route path="/statistic" component={Users} />
               <Route path="/" component={Home} />
             </Switch>
