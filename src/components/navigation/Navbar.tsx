@@ -27,7 +27,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/vocabluary">
               <span className="material-icons icon" title="Словарь">auto_stories</span>
               <span className="item">Словарь</span>
             </Link>
@@ -45,19 +45,19 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/statistic">
+            <Link to="/settings">
               <span className="material-icons icon" title="Настройки">settings_suggest</span>
               <span className="item">Настройки</span>
             </Link>
           </li>
           <li>
-            <Link to="/statistic">
+            <Link to="/team">
               <span className="material-icons icon" title="Команда">groups</span>
               <span className="item">Команда</span>
             </Link>
           </li>
           <li>
-            <Link to="/statistic">
+            <Link to="/info">
               <span className="material-icons icon" title="Информация">info</span>
               <span className="item">Информация</span>
             </Link>
