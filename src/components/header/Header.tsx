@@ -3,7 +3,8 @@ import { Layout } from "antd";
 export default function Header() {
   return (
     <>
-      <Layout.Header></Layout.Header>
+      <Layout.Header>
+      </Layout.Header>
     </>
   );
 }

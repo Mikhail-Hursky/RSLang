@@ -14,6 +14,7 @@ export default function Navbar() {
   return (
     <>
       <Layout.Sider
+        theme="light"
         collapsible
         collapsed={collapsed}
         onCollapse={() => setCollapsed(!collapsed)}
