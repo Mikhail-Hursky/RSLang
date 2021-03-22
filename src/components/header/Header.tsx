@@ -8,29 +8,21 @@ export default function Header() {
   return (
     <>
       <Layout.Header className="">
-        <Row>
-          <Col span={3}>
+        <Row justify="space-between">
+          <Col>
             <Title type="secondary">
               <Link to="/">RS-Lang</Link>
             </Title>
           </Col>
-          <Col span={4} offset={17}>
+          <Col>
             <Space>
               <Button
                 type="primary"
                 shape="round"
                 icon={<LoginOutlined />}
-                size="large"
+                size="middle"
               >
                 Войти
-              </Button>
-              <Button
-                type="primary"
-                shape="round"
-                icon={<EditFilled />}
-                size="large"
-              >
-                Регистрация
               </Button>
             </Space>
           </Col>
