@@ -9,7 +9,7 @@ import { State } from "../../redux/reducer/rootReducer";
 
 function App() {
   return (
-    <Router>
+   <Router>
       <div className="app">
         <Navbar />
         <div className="container">
