@@ -8,6 +8,7 @@ import { counterPlus, counterMinus } from "../../redux/action/settingAction";
 import { State } from "../../redux/reducer/rootReducer";
 import Learning from "../learning/Learning";
 import Games from "../games/Games";
+import Settings from "../settings/Settings";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
               <Route path="/learning" component={Learning} />
               <Route path="/game" component={Games} />
               <Route path="/statistic" component={Users} />
+              <Route path="/settings" component={Settings} />
+              <Route path="/vocabluary" component={About} />
+              <Route path="/info" component={About} />
+              <Route path="/team" component={Games} />
               <Route path="/" component={Home} />
             </Switch>
           </div>
