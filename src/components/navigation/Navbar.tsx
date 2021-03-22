@@ -21,7 +21,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/learning">
               <span className="material-icons icon" title="Изучение">spellcheck</span>
               <span className="item">Изучение</span>
             </Link>
