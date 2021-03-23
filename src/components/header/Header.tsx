@@ -1,10 +1,24 @@
 import { DownloadOutlined, EditFilled, LoginOutlined } from "@ant-design/icons";
-import { Button, Layout, Row, Col, Space } from "antd";
+import { Button, Layout, Row, Col, Space, Modal } from "antd";
 import Title from "antd/lib/typography/Title";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Header() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
       <Layout.Header className="">
@@ -15,31 +29,24 @@ export default function Header() {
             </Title>
           </Col>
           <Col>
-            <Space>
-              <Button
-                type="primary"
-                shape="round"
-                icon={<LoginOutlined />}
-                size="middle"
-              >
-                Войти
-              </Button>
-            </Space>
+            <Button
+              type="primary"
+              shape="round"
+              icon={<LoginOutlined />}
+              size="middle"
+              onClick={showModal}
+            >
+              Войти
+            </Button>
           </Col>
         </Row>
       </Layout.Header>
+      <Modal
+        title="Basic Modal"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      ></Modal>
     </>
   );
 }
-
-/* <div className="wrap-header">
-        <h1>RS Lang</h1>
-        <div className="header-buttons">
-          <div>
-            <button>войти</button>
-          </div>
-          <div>
-            <button>регистрация</button>
-          </div>
-        </div>
-      </div> */
