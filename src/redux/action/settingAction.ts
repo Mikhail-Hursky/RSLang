@@ -15,7 +15,7 @@ export const wordMinus = () => ({
   type: WORD_MINUS,
 });
 
-export const settingSound = () => ({
+export const setSound = () => ({
   type: SOUND_CHANGE,
 });
 

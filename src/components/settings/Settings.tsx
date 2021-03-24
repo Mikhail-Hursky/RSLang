@@ -4,27 +4,14 @@ import { Switch, Checkbox } from 'antd';
 
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
-import { wordPlus, wordMinus, settingSound, cardMinus, cardPlus, buttonAnswer,buttonDelete,buttonEasy,buttonExample,buttonGood,buttonHard,buttonMeaning,buttonPicture,buttonRepeate,buttonTranscription,buttonTranslate } from "../../redux/action/settingAction";
+import { wordPlus, wordMinus, setSound, cardMinus, cardPlus, buttonAnswer,buttonDelete,buttonEasy,buttonExample,buttonGood,buttonHard,buttonMeaning,buttonPicture,buttonRepeate,buttonTranscription,buttonTranslate } from "../../redux/action/settingAction";
 
 import "./Settings.scss";
 
 export default function Settings() {
 
 const dispatch = useDispatch();
-const countWords:number = useSelector((state: State) => state.setting.settingWords);
-const countCards:number = useSelector((state: State) => state.setting.settingCards);
-const soundBtn:boolean = useSelector((state: State) => state.setting.settingSound);
-const btnAnswer:boolean = useSelector((state: State) => state.setting.btnAnswer);
-const btnRepeate:boolean = useSelector((state: State) => state.setting.btnRepeate);
-const btnHard:boolean = useSelector((state: State) => state.setting.btnHard);
-const btnGood:boolean = useSelector((state: State) => state.setting.btnGood);
-const btnEasy:boolean = useSelector((state: State) => state.setting.btnEasy);
-const btnDelete:boolean = useSelector((state: State) => state.setting.btnDelete);
-const btnTranslate:boolean = useSelector((state: State) => state.setting.btnTranslate);
-const btnMeaning:boolean = useSelector((state: State) => state.setting.btnMeaning);
-const btnExample:boolean = useSelector((state: State) => state.setting.btnExample);
-const btnTranscription:boolean = useSelector((state: State) => state.setting.btnTranscription);
-const btnPicture:boolean = useSelector((state: State) => state.setting.btnPicture);
+const {settingWords, settingCards, settingSound, btnAnswer,btnDelete,btnEasy,btnExample,btnGood,btnHard,btnMeaning,btnPicture,btnRepeate,btnTranscription,btnTranslate} = useSelector((state: State) => state.setting);
 
  return (
   <div className="settings">
@@ -32,7 +19,7 @@ const btnPicture:boolean = useSelector((state: State) => state.setting.btnPictur
     <h2>Основные параметры</h2>
     <h3>Настройки звука</h3>
    <div className="sound_switch">
-   <Switch checked={soundBtn} onChange={() => dispatch(settingSound())}/>
+   <Switch checked={settingSound} onChange={() => dispatch(setSound())}/>
   <p>Автоматическая озвучка</p>
   </div>
   <div className="words_set">
@@ -40,13 +27,13 @@ const btnPicture:boolean = useSelector((state: State) => state.setting.btnPictur
    <p>Количество новых слов в день для изучения</p>
    <div className="count_words">
     <button onClick={() => dispatch(wordMinus())}>-</button>
-    <span>{countWords}</span>
+    <span>{settingWords}</span>
     <button onClick={() => dispatch(wordPlus())}>+</button>
    </div>
    <p>Максимальное количество карточек для изучения в день</p>
    <div className="count_cards">
     <button onClick={() => dispatch(cardMinus())}>-</button>
-    <span>{countCards}</span>
+    <span>{settingCards}</span>
     <button onClick={() => dispatch(cardPlus())}>+</button>
    </div>
   </div>
