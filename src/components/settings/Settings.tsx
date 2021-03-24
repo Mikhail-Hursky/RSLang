@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import { Switch, Checkbox } from 'antd';
 
 import "./Settings.scss";
 
@@ -12,11 +13,8 @@ const [cardCount, setCardCount] = useState(20);
    <div className="settings_main">
     <h2>Основные параметры</h2>
     <h3>Настройки звука</h3>
-   <div id="btn">
-   <div className="cek3">
-  <input type="checkbox" id="s5" />
-  <label className="sliderce" htmlFor="s5"></label>
-  </div>
+   <div className="sound_switch">
+   <Switch defaultChecked />
   <p>Автоматическая озвучка</p>
   </div>
   <div className="words_set">
@@ -39,17 +37,23 @@ const [cardCount, setCardCount] = useState(20);
    <h2>Настройки изучения слов</h2>
    <div className="set_btns">
     <h3>Настройка отображения кнопок</h3>
-    <div className="settings_checkbox">
-    <input type="checkbox" id="todo" name="todo" value="todo" />
-    <label htmlFor="todo" data-content="Кнопка «Повторить»" />
-    </div>
-    <div className="settings_checkbox">
-    <input type="checkbox" id="todo" name="todo" value="todo" />
-    <label htmlFor="todo" data-content="Кнопка «Сложно»" />
-    </div>
+    <div className="checkbox_btns">
+    <Checkbox defaultChecked>Кнопка «Повторить»</Checkbox>
+    <Checkbox defaultChecked>Кнопка «Сложно»</Checkbox>
+    <Checkbox defaultChecked>Кнопка «Хорошо»</Checkbox>
+    <Checkbox defaultChecked>Кнопка «Легко»</Checkbox>
+    <Checkbox defaultChecked>Кнопка «Удалить»</Checkbox></div>
    </div>
    <div className="set_cards">
    <h3>Настройка отображения карточки</h3>
+   <div className="checkbox_btns">
+    <Checkbox defaultChecked>Перевод слова</Checkbox>
+    <Checkbox defaultChecked>Смысл слова</Checkbox>
+    <Checkbox defaultChecked>Пример использования слова</Checkbox>
+    <Checkbox defaultChecked>Транскрипция слова</Checkbox>
+    <Checkbox defaultChecked>Картинка-ассоциация</Checkbox>
+    <Checkbox defaultChecked>Кнопка «Показать ответ»</Checkbox>
+   </div>
    </div>
    </div>
   </div>
