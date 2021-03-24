@@ -21,6 +21,7 @@ export default function Navbar() {
         collapsible
         collapsed={collapsed}
         onCollapse={() => setCollapsed(!collapsed)}
+        style={{zIndex:1}}
       >
         <Menu mode="inline" defaultSelectedKeys={["1"]} theme="dark">
           <Menu.Item key="1" icon={<HomeOutlined />}>

@@ -1,56 +1,27 @@
 .games {
- display: flex;
- flex-wrap: wrap;
- justify-content: center;
- margin: 0 auto;
- width: 80%;
- height: 100%;
- padding: 1rem;
- background: rgba(255,255,255,0.9);
- border-radius: 15px;
- box-shadow: 0px 0px 10px 0px #000;
-   h2 {
-     margin: 1rem;
-   }
-   span {
-    margin: 1rem;
-   }
-   div {
-    margin: 1rem;
-    width: 15rem;
-    height: 15rem;
-    background: rgb(0, 165, 241);
-    border-radius: 20px;
+  margin-top: 1rem;
+    background: #fff;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-   }
-   
-   button {
-    display: block;
-    padding: 10px 20px;
-    margin: 1rem 5rem;
-    background-color: #FFF;
-    background-color: #333470;
-    border: none;
-    border: 1px solid #333470;
-    border-radius: 10px;
-    font-size: 24px;
-    color: #333470;
-    color: #FFF;
-    letter-spacing: 2px;
-    transition: background-color .3s;
-    cursor: pointer;
-}
-button:hover {
-background-color: #333470;
-background-color: #FFF;
-color: #FFF;
-color: #333470;
 }
 
-button:focus {
-outline: none;
+.games > div {
+  margin: 1rem 3rem;
+  width: 25%;
+  border-radius: 15px;
+    box-shadow: 0px 0px 10px 0px #000;
+        h2 {
+          line-height: 100px;
+        }
+        img {
+          margin: 0 auto 1rem;
+          width:100px;
+        }
+        button {    float: right;}
 }
+
+.game_card {
+  width:auto;
 }
