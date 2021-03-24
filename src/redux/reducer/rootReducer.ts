@@ -6,5 +6,5 @@ export interface State {
 }
 
 export const rootReducer = combineReducers({
-  setting: settingReducer,
+  setting: settingReducer
 });
