@@ -3,22 +3,10 @@ import { Button, Layout, Row, Col, Space, Modal } from "antd";
 import Title from "antd/lib/typography/Title";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Auth from "../authentication_modal/Auth";
 
 export default function Header() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
   return (
     <>
       <Layout.Header className="">
@@ -34,19 +22,17 @@ export default function Header() {
               shape="round"
               icon={<LoginOutlined />}
               size="middle"
-              onClick={showModal}
+              onClick={() => setIsModalVisible(!isModalVisible)}
             >
               Войти
             </Button>
           </Col>
         </Row>
+        <Auth
+          visible={isModalVisible}
+          setVisible={setIsModalVisible}
+        />
       </Layout.Header>
-      <Modal
-        title="Basic Modal"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      ></Modal>
     </>
   );
 }

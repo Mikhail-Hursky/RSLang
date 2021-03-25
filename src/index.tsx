@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import "normalize.css";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 import App from "./components/app/App";
 import { Provider } from "react-redux";
 import { compose, createStore, applyMiddleware } from "redux";
@@ -26,10 +26,8 @@ const store = createStore(
 );
 
 render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
