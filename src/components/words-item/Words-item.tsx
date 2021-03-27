@@ -1,14 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+// import React, { useEffect, useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { Route, Switch } from "react-router-dom";
+
+import { checkedCategory } from "../../redux/action/categoryAction";
 
 import { Link } from "react-router-dom";
 import { Card  } from 'antd';
 
+// import { Category } from "../../interfaces/Category";
+
 import "./Words-item.scss";
 
 export default function WordsItem(props: any) {
-  let categories = props.categories;
+  const dispatch = useDispatch();
 
+  let wordsItems = props.categories;
+
+
+  // const [categories, setCategories] = useState<Category[]>(props.categories);
   async function getQuote(e: any) {
 
     const baseUrl = 'https://afternoon-falls-25894.herokuapp.com/words';
@@ -34,7 +44,7 @@ export default function WordsItem(props: any) {
     console.log(index);
   }
 
-  let wordsItems = categories.map((item: any, i: any) => {
+  wordsItems = wordsItems.map((item: any, i: any) => {
 
     const divStyle = {
       backgroundColor: `${item.color}`
@@ -46,9 +56,17 @@ export default function WordsItem(props: any) {
           className={`item-${item.id} item`}
           style={divStyle}
           data-id={item.id}
-          onClick={getQuote}
+          // onClick={getQuote}
         >
-          <p>{item.title}</p>
+          <Link to="/categories">
+            <div
+              onClick={() => {
+                dispatch(checkedCategory(item.id));
+              }}
+            >
+              <p>{item.title}</p>
+            </div>
+          </Link>
         </Card>
       );
     });
