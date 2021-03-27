@@ -1,5 +1,5 @@
-import { DownloadOutlined, EditFilled, LoginOutlined } from "@ant-design/icons";
-import { Button, Layout, Row, Col, Space, Modal } from "antd";
+import { LoginOutlined } from "@ant-design/icons";
+import { Button, Layout, Row, Col } from "antd";
 import Title from "antd/lib/typography/Title";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";

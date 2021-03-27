@@ -1,15 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Carousel, Button, Card  } from 'antd';
+import { Button, Card  } from 'antd';
 
 import "./Games.scss";
-
-const contentStyle:any = {
- height: '80%',
- lineHeight: '160px',
- textAlign: 'center',
- background: 'rgb(99,180,255)',
-};
 
 export default function Games() {
   /*

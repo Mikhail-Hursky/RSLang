@@ -55,23 +55,6 @@ export default function Navbar() {
   );
 }
 
-function toggleMenu(e: any): any {
-  const parentMenu = document.querySelector(".wrap-nav");
-  const menu = document.querySelector(".navigation");
-  const icon = document.querySelector(".icon-menu span");
-  if (parentMenu && menu && icon) {
-    if (parentMenu.classList.contains("hidden")) {
-      parentMenu.classList.remove("hidden");
-      icon.textContent = "close";
-      menu.classList.remove("menu-nofull");
-    } else if (!parentMenu.classList.contains("hidden")) {
-      parentMenu.classList.add("hidden");
-      icon.textContent = "menu";
-      menu.classList.add("menu-nofull");
-    }
-  }
-}
-
 /* <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="1" icon={<PieChartOutlined />}>
             Option 1

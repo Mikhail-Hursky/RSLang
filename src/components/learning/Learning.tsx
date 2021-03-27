@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
 import Words from "../words/Words"
-
 import "./Learning.scss";
 
 export default function Learning() {

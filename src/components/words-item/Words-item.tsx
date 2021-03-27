@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
-
-import { Link } from "react-router-dom";
+import React from "react";
 import { Card  } from 'antd';
-
 import "./Words-item.scss";
 
 export default function WordsItem(props: any) {
@@ -24,8 +20,7 @@ export default function WordsItem(props: any) {
     const index = target.getAttribute('data-id');
     const groupToken = index;
     //---
-
-    const number = 2;
+    
     // const url = `https://afternoon-falls-25894.herokuapp.com/words?page=0&group=${number}`;
     const url = `${baseUrl}?page=${pageToken}&group=${groupToken}`;
     const res = await fetch(url);

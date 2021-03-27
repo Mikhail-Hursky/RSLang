@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import React from "react";
 import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
 import WordsItem from "../words-item/Words-item";
 
