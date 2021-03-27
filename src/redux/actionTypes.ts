@@ -17,3 +17,5 @@ export const btnExample = "SETTING/BTN_EXAMPLE";
 export const btnTranscription = "SETTING/BTN_TRANSCRIPTION";
 export const btnPicture = "SETTING/BTN_PICTURE";
 export const btnAnswer = "SETTING/BTN_ANSWER";
+
+export const CATEGORY_CHANGE = "CATEGORY/CATEGORY_CHANGE";
