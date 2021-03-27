@@ -13,7 +13,7 @@ export default function Header() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <>
-      <Layout.Header className="">
+      <Layout.Header>
         <Row justify="space-between">
           <Col>
             <Title type="secondary">

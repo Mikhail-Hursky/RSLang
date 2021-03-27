@@ -12,6 +12,7 @@ interface Props {
 export default function Authorization({ setVisible }: Props) {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+  const [isLoading, setLoading] = useState(false);
   const [, forceUpdate] = useState({});
 
   // To disable submit button at the beginning.
@@ -20,14 +21,18 @@ export default function Authorization({ setVisible }: Props) {
   }, []);
 
   const onFinish = async function (values: any) {
+    setLoading(true);
     const { email, password } = values;
     const res: any = await Api.auth(email, password);
     if (res.status === 200) {
       const { message, name, token, userId } = res;
       dispatch(authorization({ message, name, token, userId }));
       setVisible(false);
+      setLoading(false);
+      form.resetFields()
     } else {
       message.error(res.message);
+      setLoading(false);
     }
   };
 
@@ -61,6 +66,7 @@ export default function Authorization({ setVisible }: Props) {
       <Form.Item shouldUpdate>
         {() => (
           <Button
+            loading={isLoading}
             type="primary"
             htmlType="submit"
             disabled={

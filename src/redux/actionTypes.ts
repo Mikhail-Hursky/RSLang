@@ -20,3 +20,4 @@ export const btnAnswer = "SETTING/BTN_ANSWER";
 
 //User
 export const USER_AUTHORIZATION = "USER/USER_AUTHORIZATION";
+export const USER_LOG_OUT = "USER/USER_LOG_OUT";

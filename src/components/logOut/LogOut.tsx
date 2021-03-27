@@ -1,7 +1,9 @@
 import { AntDesignOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Layout, Space } from "antd";
+import { Layout, Popconfirm, Space } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../redux/action/userAction";
 import "./LogOut.scss";
 
 interface Props {
@@ -10,13 +12,21 @@ interface Props {
 }
 
 export default function LogOut({ name }: Props) {
+  const dispatch = useDispatch();
   return (
-    <Layout className="LogOut" onClick={() => console.log("CLICK")}>
-      <Space>
-        <Avatar>icon={<AntDesignOutlined />}</Avatar>
-        {name}
-        <LogoutOutlined />
-      </Space>
-    </Layout>
+    <Popconfirm
+      title="Вы действительно хотите выйти?"
+      onConfirm={() => dispatch(logOut())}
+      okText="Да"
+      cancelText="Нет"
+    >
+      <Layout className="LogOut" onClick={() => console.log("CLICK")}>
+        <Space>
+          <Avatar>icon={<AntDesignOutlined />}</Avatar>
+          {name}
+          <LogoutOutlined />
+        </Space>
+      </Layout>
+    </Popconfirm>
   );
 }

@@ -17,6 +17,7 @@ const dummyRequest = ({ onSuccess }) => {
 
 export default function Registration() {
   const [form] = Form.useForm();
+  const [isLoading, setLoading] = useState(false);
   const [, forceUpdate] = useState({});
 
   useEffect(() => {
@@ -24,13 +25,17 @@ export default function Registration() {
   }, []);
 
   const onFinish = async function (values: any) {
+    setLoading(true);
     const { name, email, password } = values;
     const res: any = await Api.registration(name, email, password);
     if (res.status === 200) {
       message.success("Регистрация прошла успешна!");
       form.resetFields();
+      setLoading(false);
     } else {
       message.error(res.message);
+      form.resetFields();
+      setLoading(false);
     }
   };
 
@@ -88,6 +93,7 @@ export default function Registration() {
       <Form.Item shouldUpdate>
         {() => (
           <Button
+            loading={isLoading}
             type="primary"
             htmlType="submit"
             disabled={

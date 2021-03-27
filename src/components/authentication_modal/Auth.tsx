@@ -26,7 +26,11 @@ export default function Auth({ visible, setVisible }: Props) {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <Button key="auth" type="primary" onClick={() => setLogin(!isLogin)}>
+          <Button
+            key="auth"
+            type="primary"
+            onClick={() => setLogin(!isLogin)}
+          >
             {isLogin ? "Зарегистрироваться" : "Уже есть аккаунт"}
           </Button>,
           <Button key="closeg" type="primary" danger onClick={handleCancel}>

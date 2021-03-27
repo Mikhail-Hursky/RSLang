@@ -1,4 +1,4 @@
-import { USER_AUTHORIZATION } from "../actionTypes";
+import { USER_AUTHORIZATION, USER_LOG_OUT } from "../actionTypes";
 
 export interface userState {
   message: string | "Authenticated";
@@ -17,9 +17,10 @@ const initialState: userState = {
 export const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case USER_AUTHORIZATION:
-      console.log(action.payload);
       state = { ...state, ...action.payload };
-      console.log(state);
+      break;
+    case USER_LOG_OUT:
+      state = { ...initialState };
       break;
   }
   return state;
