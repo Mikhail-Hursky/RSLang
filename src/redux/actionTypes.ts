@@ -17,3 +17,6 @@ export const btnExample = "SETTING/BTN_EXAMPLE";
 export const btnTranscription = "SETTING/BTN_TRANSCRIPTION";
 export const btnPicture = "SETTING/BTN_PICTURE";
 export const btnAnswer = "SETTING/BTN_ANSWER";
+
+//User
+export const USER_AUTHORIZATION = "USER/USER_AUTHORIZATION";

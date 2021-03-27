@@ -4,11 +4,12 @@ import {
   UploadOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Form, Input, Upload } from "antd";
+import { Button, Form, Input, message, Upload } from "antd";
 import React, { useEffect, useState } from "react";
+import { Api } from "../../api/Api";
 
 //@ts-ignore
-const dummyRequest = ({ file, onSuccess }) => {
+const dummyRequest = ({ onSuccess }) => {
   setTimeout(() => {
     onSuccess("ok");
   }, 0);
@@ -22,14 +23,21 @@ export default function Registration() {
     forceUpdate({});
   }, []);
 
-  const onFinish = (values: any) => {
-    console.log("Finish:", values);
+  const onFinish = async function (values: any) {
+    const { name, email, password } = values;
+    const res: any = await Api.registration(name, email, password);
+    if (res.status === 200) {
+      message.success("Регистрация прошла успешна!");
+      form.resetFields();
+    } else {
+      message.error(res.message);
+    }
   };
 
   return (
     <Form form={form} name="horizontal_login" onFinish={onFinish}>
       <Form.Item
-        name="username"
+        name="name"
         rules={[{ required: true, message: "Пожалуйста введите ваше имя!" }]}
       >
         <Input
@@ -38,6 +46,7 @@ export default function Registration() {
         />
       </Form.Item>
       <Form.Item
+        shouldUpdate={true}
         name="email"
         rules={[
           {
@@ -69,6 +78,7 @@ export default function Registration() {
           name="logo"
           listType="picture"
           maxCount={1}
+          rules={[{ required: false }]}
         >
           <Button icon={<UploadOutlined />}>
             Щелкните чтобы загрузить ваш аватар
@@ -81,7 +91,6 @@ export default function Registration() {
             type="primary"
             htmlType="submit"
             disabled={
-              !form.isFieldsTouched(true) ||
               !!form.getFieldsError().filter(({ errors }) => errors.length)
                 .length
             }

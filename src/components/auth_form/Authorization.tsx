@@ -1,8 +1,16 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Api } from "../../api/Api";
+import { authorization } from "../../redux/action/userAction";
 
-export default function Authorization() {
+interface Props {
+  setVisible(v: boolean): void;
+}
+
+export default function Authorization({ setVisible }: Props) {
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [, forceUpdate] = useState({});
 
@@ -11,15 +19,29 @@ export default function Authorization() {
     forceUpdate({});
   }, []);
 
-  const onFinish = (values: any) => {
-    console.log("Finish:", values);
+  const onFinish = async function (values: any) {
+    const { email, password } = values;
+    const res: any = await Api.auth(email, password);
+    if (res.status === 200) {
+      const { message, name, token, userId } = res;
+      dispatch(authorization({ message, name, token, userId }));
+      setVisible(false);
+    } else {
+      message.error(res.message);
+    }
   };
 
   return (
     <Form form={form} name="horizontal_login" onFinish={onFinish}>
       <Form.Item
-        name="username"
-        rules={[{ required: true, message: "Пожалуйста введите ващ email!" }]}
+        name="email"
+        rules={[
+          {
+            type: "email",
+            required: true,
+            message: "Пожалуйста введите ващ email!",
+          },
+        ]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}

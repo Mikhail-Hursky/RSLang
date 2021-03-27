@@ -34,7 +34,7 @@ export default function Auth({ visible, setVisible }: Props) {
           </Button>,
         ]}
       >
-        {isLogin ? <Authorization /> : <Registration />}
+        {isLogin ? <Authorization setVisible={setVisible} /> : <Registration />}
       </Modal>
     </>
   );
