@@ -16,7 +16,9 @@ export default function Category(props: any) {
   let [response, setResponse] = useState<any | null>(null);
 
   const baseCardURL = 'https://raw.githubusercontent.com/mig-marina/rslang-data/master/';
-  const base = 'https://team-rslang-app.herokuapp.com/';
+  // const base = 'https://team-rslang-app.herokuapp.com/';
+  const base = 'https://raw.githubusercontent.com/mig-marina/rslang-data/master/';
+
 
   // const baseUrl = "https://lang-en.herokuapp.com/words";
   const baseUrl = "https://team-rslang-app.herokuapp.com/words";
@@ -30,6 +32,11 @@ export default function Category(props: any) {
       });
     }, [setResponse]);
 
+  function startPlay(urlSound: any) {
+    let audio = new Audio();
+    audio.src = urlSound;
+    audio.autoplay = true;
+  }
 
   if(response) {
     response = response.map((item: any, i: any) => {
@@ -45,7 +52,14 @@ export default function Category(props: any) {
             <p className="word-translate">{item.wordTranslate}</p>
             <p className="word-transcription">{item.transcription}</p>
             <div className="button">
-              <button>прослушать</button>
+              <button onClick={() => {
+                let urlSound=`${base}${item.audio}`;
+                startPlay(urlSound)}}>
+                прослушать
+                <audio>
+                  <source src={ base + item.audio } type="audio/mp3" />
+                </audio>
+              </button>
             </div>
             <p>{item.textExample}</p>
             <p>{item.textExampleTranslate}</p>
