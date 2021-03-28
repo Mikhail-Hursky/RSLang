@@ -3,3 +3,42 @@
   flex-direction: column;
   align-items: center;
 }
+
+.wrap-list-word {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .item {
+    width: 300px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #333470;
+  }
+
+  button {
+    display: block;
+    padding: 5px;
+    background-color: #333470;
+    border: none;
+    border: 1px solid #333470;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #FFF;
+    letter-spacing: 2px;
+    transition: background-color .3s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #FFF;
+    color: #333470;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+}
