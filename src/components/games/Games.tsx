@@ -1,62 +1,68 @@
 import React from "react";
-import { Button, Card  } from 'antd';
+import { Button, Card, Row } from "antd";
+import { Link } from "react-router-dom";
+import Meta from "antd/lib/card/Meta";
+import speaker from "../../assets/img/speaker.png";
+import sprint from "../../assets/img/sprint.png";
+import savannah from "../../assets/img/savannah.png";
+import card from "../../assets/img/card.png";
 
-import "./Games.scss";
+const cardStyle = {
+  margin: "15px",
+  width: "300px",
+};
+
+const metaStyle = {
+  display: "flex",
+  justifyContent: "center",
+};
 
 export default function Games() {
-  /*
-return(
- <div className="games">
-  <Carousel autoplay>
-    <div className="game_card">
-      <div style={contentStyle}>
-       <h2>Аудиовызов</h2>
-       <img src="./img/loudspeaker.png" width="150px" alt=""/>
-       <Button>Начать!</Button>
-      </div>
-    </div>
-    <div className="game_card">
-    <div style={contentStyle}>
-       <h2>Спринт</h2>
-       <img src="./img/sprint.png" width="150px" alt=""/>
-       <Button>Начать!</Button>
-      </div>
-    </div>
-    <div className="game_card">
-    <div style={contentStyle}>
-       <h2>Саванна</h2>
-       <img src="./img/savannah.png" width="150px" alt=""/>
-       <Button>Начать!</Button>
-      </div>
-    </div>
-    <div className="game_card">
-    <div style={contentStyle}>
-       <h2>Наша игра</h2>
-       <img src="./img/game.png" width="150px" alt=""/>
-       <Button>Начать!</Button>
-      </div>
-    </div>
-  </Carousel>
- </div>
-) */
-return (
-  <div className="games">
-<Card title="Аудиовызов" bordered={true} >
-<img src="./img/loudspeaker.png" alt=""/>
-       <Button type="primary">Начать!</Button>
-    </Card>
-    <Card title="Спринт" bordered={true} >
-       <img src="./img/sprint.png" alt=""/>
-       <Button type="primary">Начать!</Button>
-    </Card>
-    <Card title="Саванна" bordered={true} >
-       <img src="./img/savannah.png" alt=""/>
-       <Button type="primary">Начать!</Button>
-    </Card>
-    <Card title="Наша игра" bordered={true} >
-       <img src="./img/game.png" alt=""/>
-       <Button type="primary">Начать!</Button>
-    </Card>
-  </div>
-)
+  return (
+    <>
+      <Row justify="space-around" align="middle">
+        <Link to="/games/audiocall">
+          <Card
+            hoverable={true}
+            style={cardStyle}
+            bordered={true}
+            title="Аудиовызов"
+            actions={[<Button type="primary">Играть!</Button>]}
+          >
+            <Meta style={metaStyle} avatar={<img src={speaker} />} />
+          </Card>
+        </Link>
+
+        <Card
+          hoverable={true}
+          style={cardStyle}
+          bordered={true}
+          title="Спринт"
+          actions={[<Button type="primary">Играть!</Button>]}
+        >
+          <Meta style={metaStyle} avatar={<img src={sprint} />} />
+        </Card>
+
+        <Card
+          hoverable={true}
+          style={cardStyle}
+          bordered={true}
+          title="Саванна"
+          actions={[<Button type="primary">Играть!</Button>]}
+        >
+          <Meta style={metaStyle} avatar={<img src={savannah} />} />
+        </Card>
+
+        <Card
+          hoverable={true}
+          style={cardStyle}
+          bordered={true}
+          title="Наша игра"
+          actions={[<Button type="primary">Играть!</Button>]}
+        >
+          <Meta style={metaStyle} avatar={<img src={card} />} />
+        </Card>
+      </Row>
+    </>
+  );
 }

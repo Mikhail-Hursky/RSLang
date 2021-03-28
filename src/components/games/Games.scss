@@ -1,27 +1,29 @@
 .games {
   margin-top: 1rem;
-    background: #fff;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  background: #fff;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .games > div {
   margin: 1rem 3rem;
   width: 25%;
   border-radius: 15px;
-    box-shadow: 0px 0px 10px 0px #000;
-        h2 {
-          line-height: 100px;
-        }
-        img {
-          margin: 0 auto 1rem;
-          width:100px;
-        }
-        button {    float: right;}
+  box-shadow: 0px 0px 10px 0px #000;
+  h2 {
+    line-height: 100px;
+  }
+  img {
+    margin: 0 auto 1rem;
+    width: 100px;
+  }
+  button {
+    float: right;
+  }
 }
 
 .game_card {
-  width:auto;
+  width: auto;
 }

@@ -4,8 +4,14 @@ import logo from "../../assets/img/logo.svg";
 import "./Footer.scss";
 import Link from "antd/lib/typography/Link";
 import { GithubFilled } from "@ant-design/icons";
+import { useLocation } from "react-router-dom";
 
 export default function Footer() {
+  const location = useLocation();
+  let regexp = new RegExp("/games/[a-z.]+");
+
+  if (location.pathname.match(regexp)) return <></>;
+  
   return (
     <>
       <Layout.Footer style={{ textAlign: "center" }}>
