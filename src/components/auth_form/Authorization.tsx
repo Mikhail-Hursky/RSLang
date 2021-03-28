@@ -29,7 +29,7 @@ export default function Authorization({ setVisible }: Props) {
       dispatch(authorization({ message, name, token, userId }));
       setVisible(false);
       setLoading(false);
-      form.resetFields()
+      form.resetFields();
     } else {
       message.error(res.message);
       setLoading(false);
@@ -55,7 +55,12 @@ export default function Authorization({ setVisible }: Props) {
       </Form.Item>
       <Form.Item
         name="password"
-        rules={[{ required: true, message: "Пожалуйста введите ваш пароль!" }]}
+        rules={[
+          {
+            required: true,
+            message: "Пожалуйста введите ваш пароль!",
+          },
+        ]}
       >
         <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}

@@ -1,6 +1,6 @@
 const axios = require("axios").default;
 
-const URL = "https://lang-en.herokuapp.com/";
+export const URL = "https://lang-en.herokuapp.com/";
 
 export const Api = {
   auth: (email: string, password: string) => {
@@ -22,6 +22,14 @@ export const Api = {
       })
       .catch(() => {
         return { status: 400, message: "Ошибка при регистрации" };
+      });
+    return res;
+  },
+  getWords: (group: number, page: number) => {
+    const res = axios
+      .get(URL + `words?group=${group}&page=${page}`)
+      .then((response: any) => {
+        return { ...response.data, status: 200 };
       });
     return res;
   },

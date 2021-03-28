@@ -1,0 +1,13 @@
+.volume_btn {
+  height: 200px;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.volume_btn:hover{
+    background-color: rgba(182, 182, 182, 0.637);
+  }

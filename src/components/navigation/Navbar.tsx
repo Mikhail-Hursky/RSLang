@@ -10,10 +10,12 @@ import {
   BookOutlined,
 } from "@ant-design/icons";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [collapsed, setCollapsed] = useState(true);
+  const location = useLocation();
+
   return (
     <>
       <Layout.Sider
@@ -21,116 +23,35 @@ export default function Navbar() {
         collapsible
         collapsed={collapsed}
         onCollapse={() => setCollapsed(!collapsed)}
-        style={{zIndex:1}}
+        style={{ zIndex: 1 }}
       >
-        <Menu mode="inline" defaultSelectedKeys={["1"]} theme="dark">
-          <Menu.Item key="1" icon={<HomeOutlined />}>
-            <Link to="/">Главная</Link>
+        <Menu mode="inline" selectedKeys={[location.pathname]} theme="dark">
+          <Menu.Item key="/" icon={<HomeOutlined />}>
+            <NavLink to="/">Главная</NavLink>
           </Menu.Item>
-          <Menu.Item key="2" icon={<PieChartOutlined />}>
-            <Link to="/learning">Изучение</Link>
+          <Menu.Item key="/learning" icon={<PieChartOutlined />}>
+            <NavLink to="/learning">Изучение</NavLink>
           </Menu.Item>
-          <Menu.Item key="3" icon={<BookOutlined />}>
-            <Link to="/dictionary">Словарь</Link>
+          <Menu.Item key="/dictionary" icon={<BookOutlined />}>
+            <NavLink to="/dictionary">Словарь</NavLink>
           </Menu.Item>
-          <Menu.Item key="4" icon={<PlayCircleOutlined />}>
-            <Link to="/games">Игры</Link>
+          <Menu.Item key="/games" icon={<PlayCircleOutlined />}>
+            <NavLink to="/games">Игры</NavLink>
           </Menu.Item>
-          <Menu.Item key="5" icon={<LineChartOutlined />}>
-            <Link to="/statistic">Статистика</Link>
+          <Menu.Item key="/statistic" icon={<LineChartOutlined />}>
+            <NavLink to="/statistic">Статистика</NavLink>
           </Menu.Item>
-
-          <Menu.Item key="6" icon={<SettingOutlined />}>
-            <Link to="/setting">Настройки</Link>
+          <Menu.Item key="/setting" icon={<SettingOutlined />}>
+            <NavLink to="/setting">Настройки</NavLink>
           </Menu.Item>
-          <Menu.Item key="7" icon={<TeamOutlined />}>
-            <Link to="/team">Команда</Link>
+          <Menu.Item key="/team" icon={<TeamOutlined />}>
+            <NavLink to="/team">Команда</NavLink>
           </Menu.Item>
-          <Menu.Item key="8" icon={<InfoCircleOutlined />}>
-            <Link to="/info">Информация</Link>
+          <Menu.Item key="/info" icon={<InfoCircleOutlined />}>
+            <NavLink to="/info">Информация</NavLink>
           </Menu.Item>
         </Menu>
       </Layout.Sider>
     </>
   );
 }
-
-/* <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<PieChartOutlined />}>
-            Option 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />}>
-            Option 2
-          </Menu.Item>
-          <Menu.SubMenu key="sub1" icon={<UserOutlined />} title="User">
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
-          </Menu.SubMenu>
-          <Menu.SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
-          </Menu.SubMenu>
-          <Menu.Item key="9" icon={<FileOutlined />}>
-            Files
-          </Menu.Item>
-        </Menu> */
-
-/* 
-<div className="wrap-nav hidden" onClick={toggleMenu}>
-</div>
-<nav className="navigation menu-nofull">
-  <ul>
-    <li className="icon-menu">
-      <span className="material-icons icon" onClick={toggleMenu}>close</span>
-    </li>
-    <li>
-      <Link to="/">
-        <span className="material-icons icon" title="Главная">home</span>
-        <span className="item">Главная</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/">
-        <span className="material-icons icon" title="Изучение">spellcheck</span>
-        <span className="item">Изучение</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/">
-        <span className="material-icons icon" title="Словарь">auto_stories</span>
-        <span className="item">Словарь</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/game">
-        <span className="material-icons icon" title="Игры">sports_esports</span>
-        <span className="item">Игры</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/statistic">
-        <span className="material-icons icon" title="Статистика">leaderboard</span>
-        <span className="item">Статистика</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/statistic">
-        <span className="material-icons icon" title="Настройки">settings_suggest</span>
-        <span className="item">Настройки</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/statistic">
-        <span className="material-icons icon" title="Команда">groups</span>
-        <span className="item">Команда</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/statistic">
-        <span className="material-icons icon" title="Информация">info</span>
-        <span className="item">Информация</span>
-      </Link>
-    </li>
-  </ul>
-</nav> */
