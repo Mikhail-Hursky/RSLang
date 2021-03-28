@@ -1,6 +1,8 @@
 import React from "react";
 import { Layout } from "antd";
 import { Route, Switch } from "react-router-dom";
+import { State } from "../../redux/reducer/rootReducer";
+import Category from "../category/Category";
 import Games from "../games/Games";
 import Learning from "../learning/Learning";
 import Settings from "../settings/Settings";
@@ -18,6 +20,7 @@ export default function Content() {
           <Route path="/setting" component={Settings} />
           <Route path="/team" component={Home} />
           <Route path="/info" component={Home} />
+          <Route path="/categories" component={Category} />
           <Route path="/" component={Home} />
         </Switch>
       </Layout.Content>

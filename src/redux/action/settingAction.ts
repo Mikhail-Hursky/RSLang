@@ -1,4 +1,11 @@
-import { SETTING_MINUS, SETTING_PLUS, WORD_PLUS, WORD_MINUS, SOUND_CHANGE, CARD_PLUS, CARD_MINUS, btnAnswer,btnDelete,btnEasy,btnExample,btnGood,btnHard,btnMeaning,btnPicture,btnRepeate,btnTranscription,btnTranslate } from "../actionTypes";
+import { SETTING_MINUS, SETTING_PLUS, WORD_PLUS, WORD_MINUS, SOUND_CHANGE, CARD_PLUS, CARD_MINUS, btnAnswer,btnDelete,btnEasy,btnExample,btnGood,btnHard,btnMeaning,btnPicture,btnRepeate,btnTranscription,btnTranslate, CATEGORY_CHANGE } from "../actionTypes";
+
+export const checkedCategory = (
+  id: number
+) => ({
+  type: CATEGORY_CHANGE,
+  payload:  id,
+});
 
 export const counterPlus = () => ({
   type: SETTING_PLUS,

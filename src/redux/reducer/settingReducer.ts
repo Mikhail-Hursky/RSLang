@@ -17,6 +17,7 @@ import {
   btnRepeate,
   btnTranscription,
   btnTranslate,
+  CATEGORY_CHANGE
 } from "../actionTypes";
 
 export interface settingState {
@@ -35,6 +36,7 @@ export interface settingState {
   btnTranscription: boolean;
   btnPicture: boolean;
   btnAnswer: boolean;
+  group: number;
 }
 
 const initialState: settingState = {
@@ -53,10 +55,14 @@ const initialState: settingState = {
   btnTranscription: true,
   btnPicture: true,
   btnAnswer: true,
+  group: 0
 };
 
 export const settingReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case CATEGORY_CHANGE:
+      state = { ...state, group: action.payload };
+      break;
     case SETTING_PLUS:
       state = { ...state, word: state.word + 1 };
       break;
