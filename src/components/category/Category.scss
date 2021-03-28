@@ -1,26 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 .list-word {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h2 {
+    padding: 20px 0;
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+    font-weight: bold;
+    color:  #333470;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
 }
 
 .wrap-list-word {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 
   .item {
-    width: 300px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    border-radius: 20px;
+    width: 350px;
+    margin-right: 40px;
+    margin-bottom: 80px;
+    border-radius: 20px 20px 0 0;
     border: 1px solid #333470;
+    position: relative;
+
+  }
+
+  .word-title,
+  .word-translate,
+  .word-transcription {
+    text-align: center;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    font-family: 'Poiret One', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  p.word-title {
+    font-size: 24px;
+    color:  #333470;
+    letter-spacing: 3px;
+  }
+
+  .word-transcription  {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #DDD;
+  }
+
+  .button {
+
   }
 
   button {
     display: block;
     padding: 5px;
+    margin: auto;
     background-color: #333470;
     border: none;
     border: 1px solid #333470;
@@ -41,4 +83,22 @@
     outline: none;
   }
 
+  .wrap-img {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  }
+
+  .add-to {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+  }
 }
