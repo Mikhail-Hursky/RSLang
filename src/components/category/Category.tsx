@@ -15,14 +15,17 @@ export default function Category(props: any) {
   const group = useSelector((state: State) => state.setting.group);
   let [response, setResponse] = useState<any | null>(null);
 
-  const baseUrl = 'https://afternoon-falls-25894.herokuapp.com/words';
+  const baseCardURL = 'https://raw.githubusercontent.com/mig-marina/rslang-data/master/';
+  const base = 'https://team-rslang-app.herokuapp.com/';
+
+  // const baseUrl = "https://lang-en.herokuapp.com/words";
+  const baseUrl = "https://team-rslang-app.herokuapp.com/words";
   let pageToken = '0';
   const groupToken = group;
   let url = `${baseUrl}?page=${pageToken}&group=${groupToken}`;
 
   useEffect(() => {
       axios.get(url).then(function (response) {
-        console.log(response.data);
         setResponse(response.data);
       });
     }, [setResponse]);
@@ -35,14 +38,18 @@ export default function Category(props: any) {
             key={i.toString()}
             className={`item-${i} item`}
           >
-            <p>{item.word}</p>
-            <p>{item.wordTranslate}</p>
-            <p>{item.transcription}</p>
+            <div className="wrap-img">
+              <img src={base + item.image} alt="" />
+            </div>
+            <p className="word-title">{item.word}</p>
+            <p className="word-translate">{item.wordTranslate}</p>
+            <p className="word-transcription">{item.transcription}</p>
             <div className="button">
               <button>прослушать</button>
             </div>
             <p>{item.textExample}</p>
             <p>{item.textExampleTranslate}</p>
+            <button className="add-to">добавить в словарь</button>
           </Card>
         );
       });
