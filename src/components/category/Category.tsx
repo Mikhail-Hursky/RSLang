@@ -69,7 +69,7 @@ export default function Category(props: any) {
         </div>
         <Pagination
           onChange={onChange}
-          total={600}
+          total={580}
           defaultPageSize={20}
           defaultCurrent={1}
           showSizeChanger={false}
