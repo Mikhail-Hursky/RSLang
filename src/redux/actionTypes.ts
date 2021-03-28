@@ -19,3 +19,8 @@ export const btnPicture = "SETTING/BTN_PICTURE";
 export const btnAnswer = "SETTING/BTN_ANSWER";
 
 export const CATEGORY_CHANGE = "CATEGORY/CATEGORY_CHANGE";
+
+//User
+export const USER_AUTHORIZATION = "USER/USER_AUTHORIZATION";
+export const USER_LOG_OUT = "USER/USER_LOG_OUT";
+

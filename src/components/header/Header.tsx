@@ -1,13 +1,19 @@
-import { DownloadOutlined, EditFilled, LoginOutlined } from "@ant-design/icons";
-import { Button, Layout, Row, Col, Space } from "antd";
+import { LoginOutlined } from "@ant-design/icons";
+import { Button, Layout, Row, Col } from "antd";
 import Title from "antd/lib/typography/Title";
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { State } from "../../redux/reducer/rootReducer";
+import Auth from "../authentication_modal/Auth";
+import LogOut from "../logOut/LogOut";
 
 export default function Header() {
+  const authorization = useSelector((state: State) => state.user);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <>
-      <Layout.Header className="">
+      <Layout.Header>
         <Row justify="space-between">
           <Col>
             <Title type="secondary">
@@ -15,31 +21,23 @@ export default function Header() {
             </Title>
           </Col>
           <Col>
-            <Space>
+            {authorization.message === "Authenticated" ? (
+              <LogOut name={authorization.name} />
+            ) : (
               <Button
                 type="primary"
                 shape="round"
                 icon={<LoginOutlined />}
                 size="middle"
+                onClick={() => setIsModalVisible(!isModalVisible)}
               >
                 Войти
               </Button>
-            </Space>
+            )}
           </Col>
         </Row>
+        <Auth visible={isModalVisible} setVisible={setIsModalVisible} />
       </Layout.Header>
     </>
   );
 }
-
-/* <div className="wrap-header">
-        <h1>RS Lang</h1>
-        <div className="header-buttons">
-          <div>
-            <button>войти</button>
-          </div>
-          <div>
-            <button>регистрация</button>
-          </div>
-        </div>
-      </div> */

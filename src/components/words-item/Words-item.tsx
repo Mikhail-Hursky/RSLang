@@ -6,12 +6,13 @@ import { checkedCategory } from "../../redux/action/settingAction";
 
 import { Link } from "react-router-dom";
 import { Card  } from 'antd';
-
 import "./Words-item.scss";
 
 export default function WordsItem(props: any) {
+
   const dispatch = useDispatch();
   let wordsItems = props.categories;
+
 
   wordsItems = wordsItems.map((item: any, i: any) => {
     const divStyle = {
