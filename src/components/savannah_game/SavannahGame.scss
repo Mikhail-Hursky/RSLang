@@ -1,0 +1,26 @@
+.savannah_word { 
+ position: absolute;
+ top: 4rem;
+ transition: 5s ease all;
+     h2 {
+      color: #fff;
+     }
+}
+
+.savannah_word_fall {
+ top: 30rem;
+}
+
+.savannah_progress {
+ position: absolute;
+ top: 33rem;
+ width:60%;
+}
+
+.choose_word_btn {
+ position: absolute;
+ top: 30rem;
+ display: flex;
+ justify-content: space-evenly;
+ width: 30%;
+}

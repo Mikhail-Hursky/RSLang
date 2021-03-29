@@ -7,6 +7,7 @@ import Settings from "../settings/Settings";
 import Home from "../home/Home";
 import AudioCall from "../audiocall/AudioCall";
 import Category from "../category/Category";
+import Savannah from "../savannah_game/Savannah";
 
 export default function Content() {
   return (
@@ -22,6 +23,7 @@ export default function Content() {
           <Route path="/info" component={Home} />
           <Route exact path="/" component={Home} />
           <Route path="/games/audiocall" component={AudioCall} />
+          <Route path="/games/savannah" component={Savannah} />
           <Route path="/categories" component={Category} />
         </Switch>
       </Layout.Content>
