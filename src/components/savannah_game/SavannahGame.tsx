@@ -3,17 +3,7 @@ import "./SavannahGame.scss";
 import { Tooltip, Progress, Button } from 'antd';
 import {Word, Props} from "../../interfaces/Words"
 import { soundSuccess, soundFail, soundWord } from "../../sound/sound";
-
-function shuffle(arr: Array<number>){
-	let j, temp;
-	for(let i = arr.length - 1; i > 0; i--){
-		j = Math.floor(Math.random()*(i + 1));
-		temp = arr[j];
-		arr[j] = arr[i];
-		arr[i] = temp;
-	}
-	return arr;
-}
+import shuffle from "../../shuffle";
 
 function randomInteger(min:number, max:number) {
  let rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -29,8 +19,8 @@ export default function SavannahGame({ words }: Props) {
  wordsNums.push(randomInteger(0,19));
  wordsNums.push(randomInteger(0,19));
  wordsNums.push(randomInteger(0,19));
- if(words !== null) {
-  console.log(words);
+ if(words) {
+  console.log(shuffle(words));
  }
 
  function handlerClick(event: {target: EventTarget}) {
