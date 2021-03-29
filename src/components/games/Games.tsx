@@ -43,6 +43,7 @@ export default function Games() {
           <Meta style={metaStyle} avatar={<img src={sprint} />} />
         </Card>
 
+        <Link to="/games/savannah">
         <Card
           hoverable={true}
           style={cardStyle}
@@ -52,6 +53,7 @@ export default function Games() {
         >
           <Meta style={metaStyle} avatar={<img src={savannah} />} />
         </Card>
+        </Link>
 
         <Card
           hoverable={true}
