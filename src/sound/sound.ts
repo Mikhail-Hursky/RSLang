@@ -4,7 +4,7 @@ export function soundSuccess() {
 }
 
 export function soundFail() {
- const sound = new Audio('../../success.mp3');
+ const sound = new Audio('../../fail.mp3');
  sound.play();
 }
 export function soundWord(path:string) {
