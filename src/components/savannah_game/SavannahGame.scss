@@ -1,19 +1,15 @@
 .savannah_word { 
  position: absolute;
- top: 4rem;
- transition: 5s ease all;
-     h2 {
-      color: #fff;
-     }
-}
-
-.savannah_word_fall {
- top: 30rem;
+ left: 50%;
+ transition: 8s ease all;
+ color: #fff;
+ font-size: 2.5rem;
+ -webkit-text-stroke: 1px black;
 }
 
 .savannah_progress {
  position: absolute;
- top: 33rem;
+ top: 35rem;
  width:60%;
 }
 
@@ -21,6 +17,9 @@
  position: absolute;
  top: 30rem;
  display: flex;
- justify-content: space-evenly;
+ justify-content: center;
  width: 30%;
+      button {
+       margin: 0 1rem;
+      }
 }

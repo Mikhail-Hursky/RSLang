@@ -1,60 +1,108 @@
 import React, {useEffect, useState} from "react";
 import "./SavannahGame.scss";
-import { Tooltip, Progress, Button } from 'antd';
-import {Word, Props} from "../../interfaces/Words"
-import { soundSuccess, soundFail, soundWord } from "../../sound/sound";
-import shuffle from "../../shuffle";
+import {  Button, Spin } from "antd";
+import {Props} from "../../interfaces/Words"
+import { soundSuccess, soundFail } from "../../sound/sound";
+import SavannahWord from "./SavannahWord";
+import ProgressBar from "./SavannahProgress";
+import { useDispatch } from "react-redux";
+import { topBg } from "../../redux/action/gameAction";
 
 function randomInteger(min:number, max:number) {
  let rand = min - 0.5 + Math.random() * (max - min + 1);
  return Math.round(rand);
 }
 
+function setRandomIndexWords(min:number, max:number) {
+ const wordsNums:Array<number> = [];
+ for (let i=0; i<=3; i++) {
+  const random = Math.abs(randomInteger(min,max));
+  if (!wordsNums.includes(random)) {
+   wordsNums.push(random);
+  } else {
+   i--;
+  }
+ }
+ return wordsNums;
+}
+
 export default function SavannahGame({ words }: Props) {
- 
- const [wordClass, setWordClass] = useState('savannah_word');
- 
- const wordsNums = [];
- wordsNums.push(randomInteger(0,19));
- wordsNums.push(randomInteger(0,19));
- wordsNums.push(randomInteger(0,19));
- wordsNums.push(randomInteger(0,19));
- if(words) {
-  console.log(shuffle(words));
+ const dispatch = useDispatch();
+ const [state, setState] = useState<any>({
+  wordsBtns: [{'wordTranslate': 'undefined'}],
+  word: {'word': 'undefined'},
+  SuccessWords: [],
+  FailWords: [],
+  click: true
+ });
+
+ let timer:any;
+
+ function handlerClick(event: any) {
+  console.log(timer);
+  if (words) {
+   if (event.target.innerText === state.word['wordTranslate']) {
+    soundSuccess();
+      setState({ ...state,
+       SuccessWords: [...state.SuccessWords, state.word],
+       click: true
+      });
+      dispatch(topBg());
+   } else {
+    soundFail();
+     setState({ ...state,
+      FailWords: [...state.FailWords, state.word],
+      click: true
+     });
+   }
+  }
  }
 
- function handlerClick(event: {target: EventTarget}) {
-  console.log(event.target);
-  soundSuccess();
+ function fail() {
+  if (words) {
+     soundFail();
+     setState({ ...state,
+      FailWords: [...state.FailWords, state.word],
+      click: true
+     });
+    }
  }
 
   useEffect(()=>{
-   
-   
-     setTimeout(()=> {
-      setWordClass("savannah_word savannah_word_fall");
-     }, 500);
-     
-  }, []);
+    if (state.click && words) {
+     let wordsArr = words.filter(e=> {
+      if (!state.SuccessWords.concat(state.FailWords).includes(e)) {return e}
+     })
+     let array = setRandomIndexWords(0, wordsArr.length-1);
+     let random = Math.abs(randomInteger(0,3));
+     setTimeout(()=> setState({...state, 
+       wordsBtns: array.map(e=> wordsArr[e]),
+       word: wordsArr[array[random]],
+      click:false
+     }), 1000);
+     //timer = setTimeout(fail, 5000); 
+    }
+  }, [state]);
 
+  useEffect(() => {
+   console.log('useee')
+  }, [state]);
+  console.log(state);
 
   return (
     <>
-      <div className={wordClass}>
-        <h2>{words ? words[wordsNums[0]]["word"] : ''}</h2>
+      <div>
+        {state.wordsBtns.length !== 0 && words && !state.click ? <SavannahWord word={state.word['word']} click={state.click}/> : <Spin size="large" />}
       </div>
       <div className="savannah_progress">
-      <Tooltip title="3 done / 3 in progress / 4 to do">
-      <Progress strokeColor={{'0%': '#f61c1c',
-        '100%': '#f61c1c',}} percent={60} success={{ percent: 30 }} />
-      </Tooltip>
+      <ProgressBar data={[state.SuccessWords.length, state.FailWords.length]} />
       </div>
       <div className="choose_word_btn">
-       {wordsNums.map((e,i)=> {
+       {state.wordsBtns.length !== 0 && words ? state.wordsBtns.map((e:any, i:any)=> {
         return (
-          <Button key={i} onClick={handlerClick}>{words ? words[e]["wordTranslate"] : ''}</Button>  
+          <Button disabled={state.click} key={i} onClick={handlerClick} >{e["wordTranslate"]}</Button>  
         )
-       })}
+       }) : <Spin size="large" />}
       </div>
     </>
   );
