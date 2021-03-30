@@ -1,6 +1,9 @@
 import React from "react";
 import "./AudioCallGame.scss";
-import volume from "../../assets/img/volume.png";
+
+import { soundFail, soundSuccess, soundWord } from "../../../sound/sound";
+import SoundBtn from "../sound_button/SoundBtn";
+import shuffle from "../../../shuffle";
 
 interface Word {
   id: string;
@@ -23,15 +26,19 @@ interface Props {
 }
 
 export default function AudioCallGame({ words }: Props) {
+  let arr;
   if (words) {
-    console.log(words[1]);
+    arr = shuffle(words);
+    console.log(arr);
+    arr = arr.map((obj: Word) => {
+      const { audio, wordTranslate } = obj;
+    });
+    console.log(arr);
   }
 
   return (
     <>
-      <div className="volume_btn">
-        <img src={volume} alt="" />
-      </div>
+      <SoundBtn />
     </>
   );
 }
