@@ -1,11 +1,13 @@
-import { SAVANNAH_BG, SAVANNAH_BG_START } from "../actionTypes";
+import { SAVANNAH_BG, SAVANNAH_BG_START, SAVANNAH_SOUND } from "../actionTypes";
 
 export interface savannahState {
-  position: number
+  position: number;
+  sound: boolean
 }
 
 const initialState: savannahState = {
- position: 100
+ position: 100,
+ sound: true
 };
 
 export const savannahReducer = (state = initialState, action: any) => {
@@ -15,6 +17,9 @@ export const savannahReducer = (state = initialState, action: any) => {
       break;
     case SAVANNAH_BG_START:
         state = { ...state, position:  100};
+      break;
+    case SAVANNAH_SOUND:
+        state = { ...state, sound: !state.sound};
       break;
   }
   return state;
