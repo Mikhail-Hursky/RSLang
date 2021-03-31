@@ -7,6 +7,7 @@ import SavannahWord from "./SavannahWord";
 import ProgressBar from "./SavannahProgress";
 import { useDispatch } from "react-redux";
 import { topBg } from "../../redux/action/gameAction";
+import StatisticModal from "../statisticModal/StatisticModal";
 
 function randomInteger(min:number, max:number) {
  let rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -26,20 +27,17 @@ function setRandomIndexWords(min:number, max:number) {
  return wordsNums;
 }
 
-export default function SavannahGame({ words }: Props) {
+export default function SavannahGame({ words, setStart }: Props) {
  const dispatch = useDispatch();
  const [state, setState] = useState<any>({
-  wordsBtns: [{'wordTranslate': 'undefined'}],
+  wordsBtns: [{'wordTranslate': ' '}, {'wordTranslate': ' '}, {'wordTranslate': ' '}, {'wordTranslate': ' '}],
   word: {'word': 'undefined'},
   SuccessWords: [],
   FailWords: [],
   click: true
  });
 
- let timer:any;
-
  function handlerClick(event: any) {
-  console.log(timer);
   if (words) {
    if (event.target.innerText === state.word['wordTranslate']) {
     soundSuccess();
@@ -58,6 +56,10 @@ export default function SavannahGame({ words }: Props) {
   }
  }
 
+ function handlerKey(event: any) {
+   console.log(event);
+ }
+
  function fail() {
   if (words) {
      soundFail();
@@ -69,7 +71,7 @@ export default function SavannahGame({ words }: Props) {
  }
 
   useEffect(()=>{
-    if (state.click && words) {
+    if (state.click && words && (state.SuccessWords.length + state.FailWords.length !== 10)) {
      let wordsArr = words.filter(e=> {
       if (!state.SuccessWords.concat(state.FailWords).includes(e)) {return e}
      })
@@ -79,20 +81,14 @@ export default function SavannahGame({ words }: Props) {
        wordsBtns: array.map(e=> wordsArr[e]),
        word: wordsArr[array[random]],
       click:false
-     }), 1000);
-     //timer = setTimeout(fail, 5000); 
+     }), 1500);
     }
   }, [state]);
 
-  useEffect(() => {
-   console.log('useee')
-  }, [state]);
-  console.log(state);
-
   return (
     <>
-      <div>
-        {state.wordsBtns.length !== 0 && words && !state.click ? <SavannahWord word={state.word['word']} click={state.click}/> : <Spin size="large" />}
+      <div>  
+        {state.wordsBtns.length !== 0 && words && !state.click ? <SavannahWord timer={fail} word={state.word['word']} click={state.click}/> : <Spin size="large" />}
       </div>
       <div className="savannah_progress">
       <ProgressBar data={[state.SuccessWords.length, state.FailWords.length]} />
@@ -100,10 +96,12 @@ export default function SavannahGame({ words }: Props) {
       <div className="choose_word_btn">
        {state.wordsBtns.length !== 0 && words ? state.wordsBtns.map((e:any, i:any)=> {
         return (
-          <Button disabled={state.click} key={i} onClick={handlerClick} >{e["wordTranslate"]}</Button>  
+          <Button style={state.click ? (e["wordTranslate"] === state.word['wordTranslate'] ? {background: "#52c41a"}: {background: "#f61c1c"}) : {background: "#fff"}} autoFocus={!state.click} onKeyPress={handlerKey} disabled={state.click} key={i} onClick={handlerClick} >{`${e["wordTranslate"]}`}</Button>  
         )
        }) : <Spin size="large" />}
-      </div>
+      </div> 
+      {state.SuccessWords.length + state.FailWords.length === 10 ? 
+      <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords]} /> : ''}
     </>
   );
 }

@@ -4,7 +4,11 @@ import { Api } from "../../api/Api";
 import shuffle from "../../shuffle";
 import SavannahGame from "./SavannahGame";
 
-export default function SavannahPreload() {
+interface Props {
+  setStart(isStart: boolean): void;
+}
+
+export default function SavannahPreload({ setStart }: Props) {
   const [words, setWords] = useState<any>(null);
 
   useEffect(() => {
@@ -18,7 +22,7 @@ export default function SavannahPreload() {
   return (
     <>
       {words ? (
-        <SavannahGame words={words} />
+        <SavannahGame setStart={setStart} words={words} />
       ) : (
         <Spin tip="Загрузка..." size="large" />
       )}
