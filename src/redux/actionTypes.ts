@@ -27,3 +27,4 @@ export const USER_LOG_OUT = "USER/USER_LOG_OUT";
 //Savannah
 
 export const SAVANNAH_BG = "GAME/SAVANNAH_BG";
+export const SAVANNAH_BG_START = "GAME/SAVANNAH_BG_START";

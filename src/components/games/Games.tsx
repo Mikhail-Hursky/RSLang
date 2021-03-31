@@ -29,7 +29,7 @@ export default function Games() {
             title="Аудиовызов"
             actions={[<Button type="primary">Играть!</Button>]}
           >
-            <Meta style={metaStyle} avatar={<img src={speaker} />} />
+            <Meta style={metaStyle} avatar={<img src={speaker} alt="speaker"/>} />
           </Card>
         </Link>
 
@@ -40,7 +40,7 @@ export default function Games() {
           title="Спринт"
           actions={[<Button type="primary">Играть!</Button>]}
         >
-          <Meta style={metaStyle} avatar={<img src={sprint} />} />
+          <Meta style={metaStyle} avatar={<img src={sprint} alt="sprint" />} />
         </Card>
 
         <Link to="/games/savannah">
@@ -51,7 +51,7 @@ export default function Games() {
           title="Саванна"
           actions={[<Button type="primary">Играть!</Button>]}
         >
-          <Meta style={metaStyle} avatar={<img src={savannah} />} />
+          <Meta style={metaStyle} avatar={<img src={savannah}  alt="savannah"/>} />
         </Card>
         </Link>
 
@@ -62,7 +62,7 @@ export default function Games() {
           title="Наша игра"
           actions={[<Button type="primary">Играть!</Button>]}
         >
-          <Meta style={metaStyle} avatar={<img src={card} />} />
+          <Meta style={metaStyle} avatar={<img src={card} alt="card" />} />
         </Card>
       </Row>
     </>

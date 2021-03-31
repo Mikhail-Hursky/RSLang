@@ -16,4 +16,5 @@ export interface Word {
 }
 export interface Props {
  words: Word[] | null;
+ setStart(isStart: boolean): void;
 }
