@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
+import { URL } from "../../../api/Api";
 import volume from "../../../assets/img/volume.png";
-import { soundFail } from "../../../sound/sound";
+import { soundFail, soundWord } from "../../../sound/sound";
 
-export default function SoundBtn() {
+interface Props {
+  audio: string[];
+  index: number;
+}
+
+export default function SoundBtn({ audio, index }: Props) {
   useEffect(() => {
-    setTimeout(() => soundFail(), 500);
-  });
+    soundWord(URL + audio[index]);
+  },[]);
   return (
-    <div className="volume_btn" onClick={() => soundFail()}>
+    <div className="volume_btn" onClick={() => soundWord(URL + audio[index])}>
       <img src={volume} alt="" />
     </div>
   );

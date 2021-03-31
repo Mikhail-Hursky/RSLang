@@ -1,0 +1,12 @@
+.AnswerBtn {
+  margin: 2rem 0;
+  .Success {
+    outline: none;
+    border-color: green;
+    background-color: green;
+  }
+  .Success:focus {
+    border-color: green;
+    background-color: green;
+  }
+}
