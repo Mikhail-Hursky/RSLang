@@ -1,6 +1,7 @@
 import { Spin } from "antd";
 import React, { useEffect, useState } from "react";
-import { Api } from "../../api/Api";
+import { Api } from "../../../api/Api";
+import shuffle from "../../../shuffle";
 import AudioCallGame from "../audiocall_game/AudioCallGame";
 
 export default function AudioCallPreload() {
@@ -17,7 +18,7 @@ export default function AudioCallPreload() {
   return (
     <>
       {words ? (
-        <AudioCallGame words={words} />
+        <AudioCallGame words={shuffle(words)} />
       ) : (
         <Spin tip="Загрузка..." size="large" />
       )}
