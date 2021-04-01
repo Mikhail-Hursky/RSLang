@@ -8,7 +8,16 @@ export default function Learning() {
   <div className="learning">
   <div className="learning_title">
     <h2>Приступим к обучению!</h2>
-    <p>На этой странице вы можете следить за своим прогрессом и выбирать желаемый набор слов для изучения, например, <strong>“Новые слова”</strong>, <strong>“Повторить слова”</strong> или <strong>“Сложные слова”</strong>. Удачи!</p>
+    <p>На этой странице вы можете изучать новые слова, повторять уже изученные, определять, какие слова для вас сложные и формировать свой словарь. Удачи!</p>
+  </div>
+
+   <div className="learning-categories">
+     <Words />
+   </div>
+
+   <div className="learning_title">
+     <h2>Приступим к обучению!</h2>
+     <p>На этой странице вы можете следить за своим прогрессом и выбирать желаемый набор слов для изучения, например, <strong>“Новые слова”</strong>, <strong>“Повторить слова”</strong> или <strong>“Сложные слова”</strong>. Удачи!</p>
    </div>
   <div className="learning_stat">
    <h2>Сегодня изучено</h2>
@@ -34,7 +43,6 @@ export default function Learning() {
    <button>Начать!</button>
    </div>
   </div>
-  <Words />
   </div>
 
  )

@@ -4,12 +4,46 @@
   flex-direction: column;
   align-items: center;
 
+  .navigation-categories {
+
+    .navigation-categories-title {
+      margin-bottom: 0;
+      border-bottom: 1px solid #DDD;
+      font-family: 'Poiret One', cursive;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .wrap-words-item > div:last-child {
+      margin-right: 0;
+    }
+
+    .item {
+      border-radius: 0 0 20px 20px;
+    }
+
+    .item:hover p {
+      letter-spacing: 2px;
+    }
+
+    .wrap-words-item > div {
+      width: auto;
+    }
+
+    .ant-card-body {
+      padding: 10px;
+    }
+  }
+
   h2 {
-    padding: 20px 0;
+    width: 80%;
+    padding: 20px;
+    border-radius: 20px;
     font-family: 'Poiret One', cursive;
     font-size: 30px;
     font-weight: bold;
-    color:  #333470;
+    color:  #FFF;
+    text-align: center;
     letter-spacing: 3px;
     text-transform: uppercase;
   }
@@ -22,13 +56,40 @@
   align-items: stretch;
 
   .item {
-    width: 350px;
-    margin-right: 40px;
+    width: 45%;
+    margin-left: 40px;
     margin-bottom: 80px;
-    border-radius: 20px 20px 0 0;
+    padding-bottom: 40px;
+    border-radius: 20px 20px 0 20px;
     border: 1px solid #333470;
     position: relative;
 
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  .word-header {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #DDD;
+    position: relative;
+
+    .col-left,
+    .col-right {
+      width: 50%;
+    }
+
+    .col-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+  }
+
+  .word-body {
+    font-size: 20px;
   }
 
   .word-title,
@@ -49,14 +110,10 @@
     letter-spacing: 3px;
   }
 
-  .word-transcription  {
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #DDD;
-  }
-
-  .button {
-
+  .button-word {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
   }
 
   button {
@@ -84,21 +141,52 @@
   }
 
   .wrap-img {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 20px;
-
     img {
       max-width: 100%;
       border-radius: 10px;
     }
   }
 
-  .add-to {
+  .word-meaning,
+  .word-example {
+    display: flex;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #DDD;
+  }
+
+  .word-meaning {
+    padding-top: 20px;
+    border-bottom: none;
+  }
+
+  .word-meaning-text,
+  .word-example-text {
+    width: 90%;
+  }
+
+  .button-sound {
+    width: 10%;
+    position: relative;
+
+    button {
+      position: absolute;
+      right: 0;
+      bottom: 5px;
+    }
+  }
+
+  .buttons-vocabulary {
     position: absolute;
-    top: 100%;
+    bottom: 0;
     right: 0;
-    border-radius: 0 0 10px 10px;
-    padding: 10px;
+    border-radius: 10px 0 0 0;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    background-color: #333470;
+
+    button {
+      margin-right: 5px;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState, useLayoutEffect }  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { State } from "../../redux/reducer/rootReducer";
@@ -8,22 +8,31 @@ import { Link } from "react-router-dom";
 import { Card  } from 'antd';
 import { Pagination } from 'antd';
 
+import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
+import WordsItem from "../words-item/Words-item";
+
 import "./Category.scss";
 
 export default function Category(props: any) {
 
+  const categories = CATEGORIES_WORDS;
+
   const group = useSelector((state: State) => state.setting.group);
+  let indexCategory = group;
+  let colorPage = categories.filter((item) => item.id === indexCategory);
+  let colorPageValue = colorPage[0].color;
+  const bgStyle = {
+    backgroundColor: `${colorPageValue}`
+  };
   let [response, setResponse] = useState<any | null>(null);
 
   const baseCardURL = 'https://raw.githubusercontent.com/mig-marina/rslang-data/master/';
-  // const base = 'https://team-rslang-app.herokuapp.com/';
-  const base = 'https://raw.githubusercontent.com/mig-marina/rslang-data/master/';
-
-
+  const base = 'https://team-rslang-app.herokuapp.com/';
+  // const base = 'https://raw.githubusercontent.com/mig-marina/rslang-data/master/';
   // const baseUrl = "https://lang-en.herokuapp.com/words";
   const baseUrl = "https://team-rslang-app.herokuapp.com/words";
   let pageToken = '0';
-  const groupToken = group;
+  let groupToken = group;
   let url = `${baseUrl}?page=${pageToken}&group=${groupToken}`;
 
   useEffect(() => {
@@ -31,6 +40,10 @@ export default function Category(props: any) {
         setResponse(response.data);
       });
     }, [setResponse]);
+
+  useLayoutEffect(() => {
+      otherCategory(group);
+    });
 
   function startPlay(urlSound: any) {
     let audio = new Audio();
@@ -45,30 +58,79 @@ export default function Category(props: any) {
             key={i.toString()}
             className={`item-${i} item`}
           >
-            <div className="wrap-img">
-              <img src={base + item.image} alt="" />
+            <div className="word-header">
+              <div className="col-left">
+                <div className="wrap-img">
+                  <img src={base + item.image} alt="" />
+                </div>
+              </div>
+              <div className="col-right">
+                <p className="word-title">{item.word}</p>
+                <p className="word-translate">{item.wordTranslate}</p>
+                <p className="word-transcription">{item.transcription}</p>
+              </div>
+              <div className="button button-word">
+                <button style={bgStyle} onClick={() => {
+                  let urlSound=`${base}${item.audio}`;
+                  startPlay(urlSound)}}>
+                  <span className="material-icons">headphones</span>
+                  <audio>
+                    <source src={ base + item.audio } type="audio/mp3" />
+                  </audio>
+                </button>
+              </div>
             </div>
-            <p className="word-title">{item.word}</p>
-            <p className="word-translate">{item.wordTranslate}</p>
-            <p className="word-transcription">{item.transcription}</p>
-            <div className="button">
-              <button onClick={() => {
-                let urlSound=`${base}${item.audio}`;
-                startPlay(urlSound)}}>
-                прослушать
-                <audio>
-                  <source src={ base + item.audio } type="audio/mp3" />
-                </audio>
+
+            <div className="word-body">
+              <div className="word-example">
+                <div className="word-example-text">
+                  <p dangerouslySetInnerHTML={{__html: item.textExample}}></p>
+                  <p>{item.textExampleTranslate}</p>
+                </div>
+                <div className="button button-sound">
+                  <button style={bgStyle} onClick={() => {
+                    let urlSound=`${base}${item.audioExample}`;
+                    startPlay(urlSound)}}>
+                    <span className="material-icons">headphones</span>
+                    <audio>
+                      <source src={ base + item.audioExample } type="audio/mp3" />
+                    </audio>
+                  </button>
+                </div>
+              </div>
+              <div className="word-meaning">
+                <div className="word-meaning-text">
+                  <p dangerouslySetInnerHTML={{__html: item.textMeaning}}></p>
+                  <p>{item.textMeaningTranslate}</p>
+                </div>
+                <div className="button button-sound">
+                  <button style={bgStyle} onClick={() => {
+                    let urlSound=`${base}${item.audioMeaning}`;
+                    startPlay(urlSound)}}>
+                    <span className="material-icons">headphones</span>
+                    <audio>
+                      <source src={ base + item.audioMeaning } type="audio/mp3" />
+                    </audio>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="buttons-vocabulary">
+              <button className="add-to-add" title="добавить в словарь">
+                <span className="material-icons">add_task</span>
+              </button>
+              <button className="add-to-hard" title="отметить как сложное">
+                <span className="material-icons">star</span>
+              </button>
+              <button className="add-to-delete" title="удалить из изучаемых">
+                <span className="material-icons">delete_outline</span>
               </button>
             </div>
-            <p>{item.textExample}</p>
-            <p>{item.textExampleTranslate}</p>
-            <button className="add-to">добавить в словарь</button>
           </Card>
         );
       });
   }
-
 
     function onChange(e: any) {
       window.scrollTo(0, 0);
@@ -82,9 +144,26 @@ export default function Category(props: any) {
       return e;
     }
 
+    function otherCategory(e: any) {
+      window.scrollTo(0, 0);
+      pageToken = '0';
+      groupToken = e;
+      indexCategory = e;
+      url = `${baseUrl}?page=${pageToken}&group=${groupToken}`;
+      axios.get(url).then(function (response) {
+        setResponse(response.data);
+      });
+    }
+
     return(
       <div className="list-word">
-        <h2>category {group + 1}</h2>
+        <div className="navigation-categories">
+          <p className="navigation-categories-title">Можете изменить уровень выбранной категории:</p>
+          <WordsItem categories={categories} />
+        </div>
+
+        <h2 style={bgStyle}>Слова из раздела "Уровень {group + 1}"</h2>
+
         <div className="wrap-list-word">
           {response}
         </div>

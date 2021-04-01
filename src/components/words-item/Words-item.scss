@@ -1,8 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 .wrap-words-item {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
+  .item:hover {
+    cursor: default;
+  }
+
+  .item:hover p {
+    letter-spacing: 4px;
+  }
+
+  p {
+    font-family: 'Poiret One', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: letter-spacing .2s;
+  }
+
+  p:hover {
+    cursor: pointer;
+  }
 }
 
 .wrap-words-item > div {
