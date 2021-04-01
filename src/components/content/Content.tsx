@@ -8,6 +8,7 @@ import Home from "../home/Home";
 import AudioCall from "../audiocall/AudioCall";
 import Category from "../category/Category";
 import Savannah from "../savannah_game/Savannah";
+import Ourgame from "../our_game/Ourgame";
 
 export default function Content() {
   return (
@@ -24,6 +25,7 @@ export default function Content() {
           <Route exact path="/" component={Home} />
           <Route path="/games/audiocall" component={AudioCall} />
           <Route path="/games/savannah" component={Savannah} />
+          <Route path="/games/ourgame" component={Ourgame} />
           <Route path="/categories" component={Category} />
         </Switch>
       </Layout.Content>

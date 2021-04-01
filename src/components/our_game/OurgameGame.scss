@@ -1,0 +1,76 @@
+.ourgame_word_contain {
+ position: absolute;
+    top: 26%;
+    left: calc((100% - 370px) / 2);
+  width: 450px;
+   p {
+    color: #fff;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px black;
+   }
+}
+
+.ourgame_word { 
+ color: #fff;
+ font-size: 2.5rem;
+ -webkit-text-stroke: 1px black;
+ text-align: center;
+ margin: 0;
+}
+
+.ourgame_progress {
+ position: absolute;
+ top: 45%;
+ width:40%;
+ .ant-progress-show-info .ant-progress-outer {
+      padding-right: 0; 
+  }
+  .ant-progress-text {
+      display: none;
+  }
+}
+
+.choose_image_btn {
+ position: absolute;
+ top: 50%;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+}
+
+.choose_image_btn_img {
+ margin: 1rem;
+ width: 250px;
+ height: 200px;
+ object-fit: cover;
+ cursor: pointer;
+ border: 5px solid transparent;
+ border-radius: 10px;
+ box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+
+.ourgame_sound_switch {
+      position: absolute;
+      top: 5rem;
+      left: 12rem;
+      display: flex;
+            button {
+                  margin-left: 1rem;
+                  align-self: center;
+            }
+}
+
+.ourgame_lifes { 
+position: absolute;
+top: 5rem;
+right: 2rem;
+      img {
+            width:32px;
+            margin: 3px;
+      }
+}
+
+#Capa_1:hover {
+      cursor: pointer;
+      fill: #1890ff;
+}

@@ -1,22 +1,22 @@
 import React, {useEffect, useState} from "react";
-import "./SavannahGame.scss";
-import {  Button, Spin, Switch } from "antd";
+import "./OurgameGame.scss";
+import { Spin, Switch } from "antd";
 import {Props} from "../../interfaces/Words"
 import { soundSuccess, soundFail } from "../../sound/sound";
-import SavannahWord from "./SavannahWord";
-import ProgressBar from "./SavannahProgress";
+import OurgameWord from "./OurgameWord";
 import { useDispatch, useSelector } from "react-redux";
 import { topBg, sound } from "../../redux/action/gameAction";
 import StatisticModal from "../statisticModal/StatisticModal";
-import SavannahLifes from "./SavannahLifes";
+import OurgameLifes from "./OurgameLifes";
 import { State } from "../../redux/reducer/rootReducer";
+import ProgressBar from "./OurgameProgress";
 
 const preloaderStyle:React.CSSProperties = {
-  position: 'absolute',
-     top: '26%',
-     left: 'calc((100% - 370px) / 2)',
-   width: '450px'
- }
+ position: 'absolute',
+    top: '26%',
+    left: 'calc((100% - 370px) / 2)',
+  width: '450px'
+}
 
 function randomInteger(min:number, max:number) {
  let rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -36,7 +36,7 @@ function setRandomIndexWords(min:number, max:number) {
  return wordsNums;
 }
 
-export default function SavannahGame({ words, setStart }: Props) {
+export default function OurgameGame({ words, setStart }: Props) {
  const dispatch = useDispatch();
  const soundState = useSelector((state: State) => state.savannah.sound);
  const [state, setState] = useState<any>({
@@ -49,8 +49,10 @@ export default function SavannahGame({ words, setStart }: Props) {
  });
 
  function handlerClick(event: any) {
+  if (state.click) {return}
+  console.log(event);
   if (words) {
-   if (event.target.innerText === state.word['wordTranslate']) {
+   if (event.target.currentSrc.replace('https://lang-en.herokuapp.com/', '') === state.word['image']) {
       if(soundState) {soundSuccess();}
       setState({ ...state,
        SuccessWords: [...state.SuccessWords, state.word],
@@ -99,30 +101,26 @@ export default function SavannahGame({ words, setStart }: Props) {
   return (
     <>
       <div> 
-        <SavannahLifes data={state.FailWords.length}/> 
-        <div className="savannah_sound_switch">
-        <SvgSound className="savannah_sound_svg" soundState={soundState} />
+        <OurgameLifes data={state.FailWords.length}/> 
+        <div className="ourgame_sound_switch">
+        <SvgSound className="ourgame_sound_svg" soundState={soundState} />
           <Switch
             checked={soundState}
             onChange={() => dispatch(sound())}
           />
         </div>
-        {state.wordsBtns.length !== 0 && words && !state.click ? <SavannahWord timer={fail} word={state.word['word']} click={state.click}/> : <Spin size="large" />}
+        {state.wordsBtns.length !== 0 && words && !state.click ? <OurgameWord timer={fail} word={[state.word['word'], state.word['textExample']]} click={state.click}/> : <Spin style={preloaderStyle} size="large" />}
       </div>
-      <div className="savannah_progress">
+      <div className="ourgame_progress">
       <ProgressBar data={[state.SuccessWords.length, state.FailWords.length]} />
       </div>
-      <div className="choose_word_btn">
+      <div className="choose_image_btn">
        {state.wordsBtns.length !== 0 && words ? state.wordsBtns.map((e:any, i:any)=> {
         return (
-          <Button style={state.click ? (e["wordTranslate"] === state.word['wordTranslate'] ? {background: "#52c41a"}: {background: "#f61c1c"}) : {background: "rgba(255,255,255,0.75)"}} autoFocus={!state.click} onKeyPress={handlerKey} disabled={state.click} key={i} onClick={handlerClick} >{`${e["wordTranslate"]}`}</Button>  
-        )
-       }) : <Spin style={preloaderStyle} size="large" />}
+          <img className="choose_image_btn_img" draggable={false} src={`https://lang-en.herokuapp.com/${e['image']}`} style={state.click ? (e["wordTranslate"] === state.word['wordTranslate'] ? {background: "#52c41a"}: {background: "#f61c1c"}) : {background: "rgba(255,255,255,0.75)"}} key={i} onClick={handlerClick} />
+          )
+       }) : <Spin size="large" />}
       </div> 
-      <div className="savannah_icon">
-        <img className="savannah_icon_tree" style={state.click ? {animation: 'tree 0.8s infinite linear'} : {}} src="../../img/tree.svg" alt="tree"/>
-        <img className="savannah_icon_sun" src="../../img/sun.svg" alt="sun"/>
-      </div>
       {state.SuccessWords.length + state.FailWords.length === 10 || state.FailWords.length === 5 ? 
       <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords]} /> : ''}
     </>
