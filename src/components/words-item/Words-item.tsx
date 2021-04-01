@@ -13,7 +13,6 @@ export default function WordsItem(props: any) {
   const dispatch = useDispatch();
   let wordsItems = props.categories;
 
-
   wordsItems = wordsItems.map((item: any, i: any) => {
     const divStyle = {
       backgroundColor: `${item.color}`
