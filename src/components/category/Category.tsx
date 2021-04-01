@@ -39,11 +39,11 @@ export default function Category(props: any) {
       axios.get(url).then(function (response) {
         setResponse(response.data);
       });
-    }, [setResponse]);
+    }, [group]);
 
   useLayoutEffect(() => {
       otherCategory(group);
-    });
+    }, []);
 
   function startPlay(urlSound: any) {
     let audio = new Audio();
