@@ -1,0 +1,26 @@
+.ant-carousel .slick-dots li,
+.ant-carousel .slick-dots li button {
+  width: 100px;
+  height: 10px;
+}
+
+.ant-carousel .slick-dots li button {
+  display: block;
+  width: 95%;
+  margin: auto;
+  background: #001529;
+  opacity: 1;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  background: #df168b;
+  opacity: 1;
+}
+
+.slide h3{
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+  font-weight: bold;
+  color: #df168b;
+  text-align: center;
+}
