@@ -1,49 +1,25 @@
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10003;
-  width: 100%;
-  background: rgba(51,52,112, 0.9);
-  .wrap-header {
-    display: flex;
-    padding: 10px 20px 10px 36px;
-  }
+header .ant-col {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
 
-  h1 {
-    flex: 1;
-    color: #FFF;
-  }
+h1.ant-typography {
+  margin-bottom: 0;
+  font-size: 30px;
+}
 
-  .header-buttons {
-    flex: 4;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
+.item-logo {
+  display: block;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #f4af4a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  button {
-    display: block;
-    padding: 10px 20px;
-    margin-left: 20px;
-    background-color: #FFF;
-    border: none;
-    border: 1px solid #333470;
-    border-radius: 10px;
-    font-size: 24px;
-    color: #333470;
-    letter-spacing: 2px;
-    transition: background-color .3s;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #333470;
-    color: #FFF;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
+.logo {
+  display: flex;
+  align-items: center;
 }

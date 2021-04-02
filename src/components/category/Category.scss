@@ -8,18 +8,35 @@
 
     .navigation-categories-title {
       margin-bottom: 0;
-      border-bottom: 1px solid #DDD;
       font-family: 'Poiret One', cursive;
-      font-size: 30px;
+      font-size: 26px;
       font-weight: bold;
+      text-align: center;
+    }
+
+    .wrap-words-item {
+        align-items: flex-end;
+
+        p {
+          font-size: 16px;
+        }
     }
 
     .wrap-words-item > div:last-child {
       margin-right: 0;
+      margin-bottom: 0;
     }
 
     .item {
-      border-radius: 0 0 20px 20px;
+      margin-bottom: 0;
+      border-radius: 20px 20px 0 0;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform .3s;
+
+      &:hover {
+        transform: translateY(20px);
+      }
     }
 
     .item:hover p {
@@ -38,14 +55,17 @@
   h2 {
     width: 80%;
     padding: 20px;
+    margin-bottom: 20px;
     border-radius: 20px;
     font-family: 'Poiret One', cursive;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     color:  #FFF;
     text-align: center;
     letter-spacing: 3px;
     text-transform: uppercase;
+    position: relative;
+    z-index: 2;
   }
 }
 
@@ -56,12 +76,14 @@
   align-items: stretch;
 
   .item {
-    width: 45%;
+    width: 40%;
     margin-left: 40px;
+    margin-right: 40px;
     margin-bottom: 80px;
     padding-bottom: 40px;
     border-radius: 20px 20px 0 20px;
-    border: 1px solid #333470;
+    border: 1px solid #001529;
+    box-shadow: 0 0 5px #001529;
     position: relative;
 
     p {
@@ -120,9 +142,11 @@
     display: block;
     padding: 5px;
     margin: auto;
-    background-color: #333470;
+    // background-color: #333470;
+    background-color: #001529;
     border: none;
-    border: 1px solid #333470;
+    // border: 1px solid #333470;
+    border: 1px solid #001529;
     border-radius: 10px;
     font-size: 14px;
     color: #FFF;
@@ -133,7 +157,8 @@
 
   button:hover {
     background-color: #FFF;
-    color: #333470;
+    // color: #333470;
+    color: #000;
   }
 
   button:focus {
@@ -150,7 +175,7 @@
   .word-meaning,
   .word-example {
     display: flex;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #DDD;
   }
 
@@ -162,6 +187,7 @@
   .word-meaning-text,
   .word-example-text {
     width: 90%;
+    font-size: 18px;
   }
 
   .button-sound {
@@ -183,7 +209,8 @@
     padding: 5px;
     display: flex;
     flex-direction: row;
-    background-color: #333470;
+    // background-color: #333470;
+    background-color: #001529;
 
     button {
       margin-right: 5px;

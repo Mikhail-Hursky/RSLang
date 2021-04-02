@@ -8,6 +8,8 @@ import { State } from "../../redux/reducer/rootReducer";
 import Auth from "../authentication_modal/Auth";
 import LogOut from "../logOut/LogOut";
 
+import "./Header.scss";
+
 export default function Header() {
   const authorization = useSelector((state: State) => state.user);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -17,7 +19,7 @@ export default function Header() {
         <Row justify="space-between">
           <Col>
             <Title type="secondary">
-              <Link to="/">RS-Lang</Link>
+              <Link to="/"><span className="logo"><span className="item-logo">RS</span>-Lang</span></Link>
             </Title>
           </Col>
           <Col>

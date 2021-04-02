@@ -35,6 +35,8 @@ export default function Team() {
             </p>
             <p className="position">{item.position}</p>
             <p className="description">{item.description}</p>
+            <p className="title-description-work"><span>Вклад в проект:</span></p>
+            <p className="description-work">{item.descriptionWork}</p>
           </div>
         );
   });

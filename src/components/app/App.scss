@@ -22,6 +22,10 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+a span.logo {
+  color: #FFF;
+}
 /*
 body {
   font-family: 'Poiret One', cursive;
@@ -126,7 +130,12 @@ a {
 // <a href='https://ru.freepik.com/vectors/business'>Business вектор создан(а) pikisuperstar - ru.freepik.com</a> */
 // <a href='https://ru.freepik.com/vectors/business'>Business вектор создан(а) stories - ru.freepik.com</a>
 // <a href='https://ru.freepik.com/vectors/background'>Background вектор создан(а) freepik - ru.freepik.com</a>
-aside,
+
+
+.ant-menu-inline {
+  width: 200px;
+}
+
 .ant-layout-sider-children,
 .ant-layout-sider-children ul {
   position: fixed;

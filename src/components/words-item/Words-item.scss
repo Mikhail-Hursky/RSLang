@@ -5,6 +5,10 @@
   justify-content: center;
   align-items: center;
 
+  .item {
+    margin-bottom: 20px;
+  }
+
   .item:hover {
     cursor: default;
   }
