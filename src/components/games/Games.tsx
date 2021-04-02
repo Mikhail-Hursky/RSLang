@@ -17,11 +17,15 @@ const metaStyle = {
   justifyContent: "center",
 };
 
-export default function Games() {
+export default function Games(props:any) {
   return (
     <>
       <Row justify="space-around" align="middle">
-        <Link to="/games/audiocall">
+        <Link to={{
+            pathname: "/games/audiocall",
+            //@ts-ignore
+            words: props.location.words
+        }}>
           <Card
             hoverable={true}
             style={cardStyle}
@@ -43,7 +47,11 @@ export default function Games() {
           <Meta style={metaStyle} avatar={<img src={sprint} alt="sprint" />} />
         </Card>
 
-        <Link to="/games/savannah">
+        <Link to={{
+            pathname: "/games/savannah",
+            //@ts-ignore
+            words: props.location.words
+        }}>
         <Card
           hoverable={true}
           style={cardStyle}
@@ -54,7 +62,11 @@ export default function Games() {
           <Meta style={metaStyle} avatar={<img src={savannah}  alt="savannah"/>} />
         </Card>
         </Link>
-        <Link to="/games/ourgame">
+        <Link to={{
+            pathname: "/games/ourgame",
+            //@ts-ignore
+            words: props.location.words
+        }}>
         <Card
           hoverable={true}
           style={cardStyle}

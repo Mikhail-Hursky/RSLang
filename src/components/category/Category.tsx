@@ -5,7 +5,7 @@ import { State } from "../../redux/reducer/rootReducer";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
-import { Card  } from 'antd';
+import { Button, Card  } from 'antd';
 import { Pagination } from 'antd';
 
 import LinkTop from "../link-top/Link-top";
@@ -26,7 +26,9 @@ export default function Category(props: any) {
   const bgStyle = {
     backgroundColor: `${colorPageValue}`
   };
+  const btnGameStyle:React.CSSProperties = {float: 'right', margin: '7px', filter: 'invert(100%)', background: `${colorPageValue}`, borderColor: `${colorPageValue}`};
   let [response, setResponse] = useState<any | null>(null);
+  let [words, setWords] = useState<any | null>(null);
 
   const baseCardURL = 'https://raw.githubusercontent.com/mig-marina/rslang-data/master/';
   const base = 'https://team-rslang-app.herokuapp.com/';
@@ -40,6 +42,7 @@ export default function Category(props: any) {
   useEffect(() => {
       axios.get(url).then(function (response) {
         setResponse(response.data);
+        setWords(response.data);
       });
     }, [group]);
 
@@ -140,8 +143,8 @@ export default function Category(props: any) {
       pageToken = e;
       url = `${baseUrl}?page=${pageToken}&group=${groupToken}`;
       axios.get(url).then(function (response) {
-        console.log(response.data);
         setResponse(response.data);
+        setWords(response.data);
       });
       return e;
     }
@@ -154,6 +157,7 @@ export default function Category(props: any) {
       url = `${baseUrl}?page=${pageToken}&group=${groupToken}`;
       axios.get(url).then(function (response) {
         setResponse(response.data);
+        setWords(response.data);
       });
     }
 
@@ -163,7 +167,6 @@ export default function Category(props: any) {
       }
       return originalElement;
     }
-
     return(
       <div className="list-word">
         <div className="navigation-categories">
@@ -171,7 +174,14 @@ export default function Category(props: any) {
           <WordsItem categories={categories} />
         </div>
 
-        <h2 style={bgStyle}>Слова из раздела "Уровень {group + 1}"</h2>
+        <h2 style={bgStyle}>Слова из раздела "Уровень {group + 1}" 
+        <Link to={{
+            pathname: "/games",
+            //@ts-ignore
+            words: words
+        }}><Button type="primary" style={btnGameStyle}>Играть!</Button></Link>
+        </h2>
+        
 
         <div className="wrap-list-word">
           {response}
