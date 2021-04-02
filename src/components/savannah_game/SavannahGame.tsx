@@ -10,6 +10,8 @@ import { topBg, sound } from "../../redux/action/gameAction";
 import StatisticModal from "../statisticModal/StatisticModal";
 import SavannahLifes from "./SavannahLifes";
 import { State } from "../../redux/reducer/rootReducer";
+import { FullscreenOutlined } from "@ant-design/icons";
+import FullscreenGame from "../fullscreen_game/FullscreenGame";
 
 const preloaderStyle:React.CSSProperties = {
   position: 'absolute',
@@ -48,9 +50,9 @@ export default function SavannahGame({ words, setStart }: Props) {
   sound: true
  });
 
- function handlerClick(event: any) {
+ function handlerClick(target: any) {
   if (words) {
-   if (event.target.innerText === state.word['wordTranslate']) {
+   if (target === state.word['wordTranslate']) {
       if(soundState) {soundSuccess();}
       setState({ ...state,
        SuccessWords: [...state.SuccessWords, state.word],
@@ -68,7 +70,24 @@ export default function SavannahGame({ words, setStart }: Props) {
  }
 
  function handlerKey(event: any) {
-   console.log(event);
+  if (!state.click) {
+  switch( event.key) {
+    case '1':
+      handlerClick(state.wordsBtns[0]['wordTranslate']);
+         break;
+    case '2':
+      handlerClick(state.wordsBtns[1]['wordTranslate']);
+         break;
+     case '3':
+      handlerClick(state.wordsBtns[2]['wordTranslate']);
+         break;
+    case '4':
+      handlerClick(state.wordsBtns[3]['wordTranslate']);
+         break;
+     default:
+         break;
+ }
+}
  }
 
  function fail() {
@@ -94,6 +113,8 @@ export default function SavannahGame({ words, setStart }: Props) {
       click:false
      }), 1500);
     }
+    document.addEventListener("keypress", handlerKey);
+    return () => document.removeEventListener("keypress", handlerKey);
   }, [state]);
 
   return (
@@ -115,7 +136,7 @@ export default function SavannahGame({ words, setStart }: Props) {
       <div className="choose_word_btn">
        {state.wordsBtns.length !== 0 && words ? state.wordsBtns.map((e:any, i:any)=> {
         return (
-          <Button style={state.click ? (e["wordTranslate"] === state.word['wordTranslate'] ? {background: "#52c41a"}: {background: "#f61c1c"}) : {background: "rgba(255,255,255,0.75)"}} autoFocus={!state.click} onKeyPress={handlerKey} disabled={state.click} key={i} onClick={handlerClick} >{`${e["wordTranslate"]}`}</Button>  
+          <Button style={state.click ? (e["wordTranslate"] === state.word['wordTranslate'] ? {background: "#52c41a"}: {background: "#f61c1c"}) : {background: "rgba(255,255,255,0.75)"}} autoFocus={!state.click} disabled={state.click} key={i} onClick={() => handlerClick(e["wordTranslate"])} >{`${i+1}.${e["wordTranslate"]}`}</Button>  
         )
        }) : <Spin style={preloaderStyle} size="large" />}
       </div> 
@@ -123,6 +144,7 @@ export default function SavannahGame({ words, setStart }: Props) {
         <img className="savannah_icon_tree" style={state.click ? {animation: 'tree 0.8s infinite linear'} : {}} src="../../img/tree.svg" alt="tree"/>
         <img className="savannah_icon_sun" src="../../img/sun.svg" alt="sun"/>
       </div>
+      <FullscreenGame />
       {state.SuccessWords.length + state.FailWords.length === 10 || state.FailWords.length === 5 ? 
       <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords]} /> : ''}
     </>

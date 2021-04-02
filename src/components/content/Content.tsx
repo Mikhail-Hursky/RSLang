@@ -14,7 +14,7 @@ import Ourgame from "../our_game/Ourgame";
 export default function Content() {
   return (
     <>
-      <Layout.Content>
+      <Layout.Content id="game_fullscreen">
         <Switch>
           <Route exact path="/games" component={Games} />
           <Route path="/statistic" component={Users} />

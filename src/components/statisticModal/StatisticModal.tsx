@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Modal, Progress } from 'antd';
 import { soundWord } from "../../sound/sound";
 import './StatisticModal.scss';
+import { exitFullscreen } from "../../fullscreen";
 
 function StatisticModal({words, setStart}:any) {
 
  const handleOk = (e:any) => {
   setStart(false);
 };
+
+useEffect(()=> {
+  exitFullscreen('game_fullscreen');
+}, []);
  
 return (
   <> 
