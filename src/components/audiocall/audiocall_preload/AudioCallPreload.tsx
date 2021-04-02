@@ -4,14 +4,20 @@ import { Api } from "../../../api/Api";
 import shuffle from "../../../shuffle";
 import AudioCallGame from "../audiocall_game/AudioCallGame";
 
-export default function AudioCallPreload() {
-  const [words, setWords] = useState(null);
+interface Props {
+  wordsArr: Array<any>;
+}
+
+export default function AudioCallPreload({wordsArr}: Props) {
+  const [words, setWords] = useState<any>(null);
 
   useEffect(() => {
-    if (!words) {
+    if (!words && !wordsArr) {
       Api.getWords(1, 1).then((res: any) => {
         setWords(res);
       });
+    } else if (!words){
+      setWords(wordsArr);
     }
   }, [words]);
 

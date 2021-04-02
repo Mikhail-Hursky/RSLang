@@ -7,7 +7,8 @@ import SavannahInstruction from "./SavannahInstruction";
 import "./Savannah.scss";
 
 
-export default function Savannah() {
+export default function Savannah(props:any) {
+  
   const dispatch = useDispatch();
   const [isStart, setStart] = useState(false);
   const { position } = useSelector((state: State) => state.savannah);
@@ -19,7 +20,7 @@ export default function Savannah() {
   return (
     <div className={isStart ? "SavannahGame" : "Savannah"} style={isStart ? {backgroundPositionY: `${position}%`} : {}}>
       {isStart ? (
-        <SavannahPreload setStart={setStart} />
+        <SavannahPreload setStart={setStart} wordsArr={props.location.words} />
       ) : (
         <SavannahInstruction setStart={setStart} />
       )}
