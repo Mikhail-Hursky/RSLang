@@ -1,0 +1,24 @@
+.link-top {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 10000;
+  background-color: #333470;
+  box-shadow: 4px 4px 4px #000;
+  cursor: pointer;
+
+  .btn-link {
+    font-size: 40px;
+    color: #FFF;
+  }
+
+  &:hover .btn-link {
+    color: orange;
+  }
+}

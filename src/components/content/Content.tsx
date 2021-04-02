@@ -7,6 +7,7 @@ import Settings from "../settings/Settings";
 import Home from "../home/Home";
 import AudioCall from "../audiocall/AudioCall";
 import Category from "../category/Category";
+import Vocabulary from "../vocabulary/Vocabulary";
 import Savannah from "../savannah_game/Savannah";
 import Ourgame from "../our_game/Ourgame";
 
@@ -18,7 +19,7 @@ export default function Content() {
           <Route exact path="/games" component={Games} />
           <Route path="/statistic" component={Users} />
           <Route path="/learning" component={Learning} />
-          <Route path="/dictionary" component={Home} />
+          <Route path="/dictionary" component={Vocabulary} />
           <Route path="/setting" component={Settings} />
           <Route path="/team" component={Home} />
           <Route path="/info" component={Home} />

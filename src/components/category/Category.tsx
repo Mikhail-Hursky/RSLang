@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { Card  } from 'antd';
 import { Pagination } from 'antd';
 
+import LinkTop from "../link-top/Link-top";
+
 import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
 import WordsItem from "../words-item/Words-item";
 
@@ -155,6 +157,13 @@ export default function Category(props: any) {
       });
     }
 
+    function itemRender(current: any, type: any, originalElement: any): any {
+      if (type === 'next') {
+        return <span>Перейти к - </span>;
+      }
+      return originalElement;
+    }
+
     return(
       <div className="list-word">
         <div className="navigation-categories">
@@ -174,7 +183,9 @@ export default function Category(props: any) {
           defaultCurrent={1}
           showSizeChanger={false}
           showQuickJumper
+          itemRender={itemRender}
         />
+        <LinkTop />
       </div>
     )
 }
