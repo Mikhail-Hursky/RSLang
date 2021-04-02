@@ -10,6 +10,7 @@ import Category from "../category/Category";
 import Vocabulary from "../vocabulary/Vocabulary";
 import Savannah from "../savannah_game/Savannah";
 import Ourgame from "../our_game/Ourgame";
+import Team from "../team/Team";
 
 export default function Content() {
   return (
@@ -21,7 +22,7 @@ export default function Content() {
           <Route path="/learning" component={Learning} />
           <Route path="/dictionary" component={Vocabulary} />
           <Route path="/setting" component={Settings} />
-          <Route path="/team" component={Home} />
+          <Route path="/team" component={Team} />
           <Route path="/info" component={Home} />
           <Route exact path="/" component={Home} />
           <Route path="/games/audiocall" component={AudioCall} />
