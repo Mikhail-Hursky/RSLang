@@ -141,8 +141,8 @@ export default function SprintGame({ words, setStart }: Props) {
       </div> 
       </div>
       <FullscreenGame />
-      {(words && state.SuccessWords.length + state.FailWords.length === words.length) || state.FailWords.length === 5 || time ? 
-      <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords]} /> : ''}
+      {(words && state.SuccessWords.length + state.FailWords.length === words.length) || (words && state.FailWords.length === 5) || (words && time) ? 
+      <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length]} /> : ''}
     </>
   );
 }
