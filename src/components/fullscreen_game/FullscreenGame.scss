@@ -1,0 +1,14 @@
+.fullscreengame_icon {
+ position: absolute;
+ top: 5rem;
+ left: 7rem;
+ border-radius: 6px;
+ font-size: 35px;
+ background: #fff;
+ transition: 0.3s all;
+   &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background: rgb(247, 138, 14);
+   }
+}

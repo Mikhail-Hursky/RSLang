@@ -4,13 +4,13 @@ import OurgameInstruction from "./OurgameInstruction";
 import "./Ourgame.scss";
 
 
-export default function Ourgame() {
+export default function Ourgame(props:any) {
   const [isStart, setStart] = useState(false);
 
   return (
-    <div className={isStart ? "OurgameGame" : "Ourgame"} >
+    <div className={isStart ? "OurgameGame" : "Ourgame"}>
       {isStart ? (
-        <OurgamePreload setStart={setStart} />
+        <OurgamePreload setStart={setStart} wordsArr={props.location.words}/>
       ) : (
         <OurgameInstruction setStart={setStart} />
       )}

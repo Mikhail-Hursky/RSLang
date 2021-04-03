@@ -10,12 +10,16 @@ import Category from "../category/Category";
 import Vocabulary from "../vocabulary/Vocabulary";
 import Savannah from "../savannah_game/Savannah";
 import Ourgame from "../our_game/Ourgame";
+
 import Team from "../team/Team";
+
+import Sprint from "../sprint_game/Sprint";
+
 
 export default function Content() {
   return (
     <>
-      <Layout.Content>
+      <Layout.Content id="game_fullscreen">
         <Switch>
           <Route exact path="/games" component={Games} />
           <Route path="/statistic" component={Users} />
@@ -28,6 +32,7 @@ export default function Content() {
           <Route path="/games/audiocall" component={AudioCall} />
           <Route path="/games/savannah" component={Savannah} />
           <Route path="/games/ourgame" component={Ourgame} />
+          <Route path="/games/sprint" component={Sprint} />
           <Route path="/categories" component={Category} />
         </Switch>
       </Layout.Content>
