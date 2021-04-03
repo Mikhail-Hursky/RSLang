@@ -6,7 +6,7 @@ export default function Learning() {
 
  return(
   <div className="learning">
-  <div className="learning_title">
+  <div className="learning_header">
     <h2>Приступим к обучению!</h2>
     <p>На этой странице вы можете изучать новые слова, повторять уже изученные, определять, какие слова для вас сложные и формировать свой словарь. Удачи!</p>
   </div>

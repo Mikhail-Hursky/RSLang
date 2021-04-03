@@ -18,6 +18,7 @@ export const btnTranscription = "SETTING/BTN_TRANSCRIPTION";
 export const btnPicture = "SETTING/BTN_PICTURE";
 export const btnAnswer = "SETTING/BTN_ANSWER";
 
+//Category and Vocabulary
 export const CATEGORY_CHANGE = "CATEGORY/CATEGORY_CHANGE";
 
 //User

@@ -8,9 +8,7 @@ export default function Home() {
  return (
    <div className='wrap-home'>
      <div className="col-left">
-       <h2>Home</h2>
-       <button onClick={() => dispatch(counterPlus())}>+++</button>
-       <button onClick={() => dispatch(counterMinus())}>---</button>
+
      </div>
      <div className="col-right">
        <div className="description">
@@ -27,3 +25,7 @@ export default function Home() {
    </div>
  );
 }
+
+// <h2>Home</h2>
+// <button onClick={() => dispatch(counterPlus())}>+++</button>
+// <button onClick={() => dispatch(counterMinus())}>---</button>

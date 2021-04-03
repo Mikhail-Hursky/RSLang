@@ -11,13 +11,15 @@ export default function Footer() {
   let regexp = new RegExp("/games/[a-z.]+");
 
   if (location.pathname.match(regexp)) return <></>;
-  
+
   return (
     <>
       <Layout.Footer style={{ textAlign: "center" }}>
         <Row justify="space-between" align="middle">
           <Col className="footer_logo">
-            <img src={logo} alt="logo" />
+            <Link href="https://rs.school/react/" target="_blank">
+              <img src={logo} alt="logo" />
+            </Link>
           </Col>
           <Col>
             <Link href="https://github.com/fedorovichpavel" target="_blank">

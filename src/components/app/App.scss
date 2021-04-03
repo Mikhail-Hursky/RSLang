@@ -22,113 +22,31 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
-/*
-body {
-  font-family: 'Poiret One', cursive;
-  font-size: 20px;
+
+a span.logo {
+  color: #FFF;
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
+.ant-menu-inline {
+  width: 200px;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-.app {
-  height: 100vh;
-  padding-left: 100px;
-  display: flex;
-  background: url(../../assets/img/bg-1.jpg) no-repeat left center;
-  background-size: 54%;
-}
-
-.content {
-  width: 100%;
-}
-
-.content {
-  padding: 100px 20px 0 0;
-}
-
-.wrap-home {
-  display: flex;
-
-  .col-left {
-    width: 60%;
-  }
-
-  .col-right {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    .description {
-      padding: 50px 0;
-      font-size: 30px;
-      line-height: 1.3;
-      text-align: right;
-    }
-
-    .button {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    button {
-      display: block;
-      padding: 10px 20px;
-      margin-left: 20px;
-      background-color: #FFF;
-      background-color: #333470;
-      border: none;
-      border: 1px solid #333470;
-      border-radius: 10px;
-      font-size: 24px;
-      color: #333470;
-      color: #FFF;
-      letter-spacing: 2px;
-      transition: background-color .3s;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #333470;
-      background-color: #FFF;
-      color: #FFF;
-      color: #333470;
-    }
-
-    button:focus {
-      outline: none;
-    }
-  }
-}
-
-@media screen and (max-width: 1360px) {
-  .app {
-    background-size: 65%;
-  }
-}
-
-@media screen and (max-width: 1170px) {
-  .wrap-home .col-right .description {
-    font-size: 24px;
-  }
-}
-
-// <a href='https://ru.freepik.com/vectors/certificate'>Certificate вектор создан(а) freepik - ru.freepik.com</a>
-// <a href='https://ru.freepik.com/vectors/school'>School вектор создан(а) pch.vector - ru.freepik.com</a>
-// <a href='https://ru.freepik.com/vectors/business'>Business вектор создан(а) pikisuperstar - ru.freepik.com</a> */
-
-aside,
 .ant-layout-sider-children,
 .ant-layout-sider-children ul {
   position: fixed;
   height: 100vh;
-
 }
+
+@media screen and (max-width: 900px) {
+  aside .ant-layout-sider-trigger {
+    display: none;
+  }
+}
+
+
+
+// <a href='https://ru.freepik.com/vectors/certificate'>Certificate вектор создан(а) freepik - ru.freepik.com</a>
+// <a href='https://ru.freepik.com/vectors/school'>School вектор создан(а) pch.vector - ru.freepik.com</a>
+// <a href='https://ru.freepik.com/vectors/business'>Business вектор создан(а) pikisuperstar - ru.freepik.com</a> */
+// <a href='https://ru.freepik.com/vectors/business'>Business вектор создан(а) stories - ru.freepik.com</a>
+// <a href='https://ru.freepik.com/vectors/background'>Background вектор создан(а) freepik - ru.freepik.com</a>

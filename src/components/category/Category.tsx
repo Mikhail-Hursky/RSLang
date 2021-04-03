@@ -161,12 +161,6 @@ export default function Category(props: any) {
       });
     }
 
-    function itemRender(current: any, type: any, originalElement: any): any {
-      if (type === 'next') {
-        return <span>Перейти к - </span>;
-      }
-      return originalElement;
-    }
     return(
       <div className="list-word">
         <div className="navigation-categories">
@@ -193,7 +187,6 @@ export default function Category(props: any) {
           defaultCurrent={1}
           showSizeChanger={false}
           showQuickJumper
-          itemRender={itemRender}
         />
         <LinkTop />
       </div>

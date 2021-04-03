@@ -2,10 +2,27 @@
  width: 100%;
  height: auto;
  padding: 1rem 3rem;
+}
 
- .learning-categories {
-   padding: 20px 0;
- }
+.color-strong {
+  color: #df168b;
+}
+
+.learning_header {
+  padding: 10px 20px;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: justify;
+  }
 }
 
 .learning_title {
@@ -92,4 +109,22 @@
 button:focus {
   outline: none;
 }
+}
+
+@media screen and (max-width: 550px) {
+  .learning  {
+    padding: 20px;
+  }
+
+  .learning_header {
+    font-size: 16px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
 }

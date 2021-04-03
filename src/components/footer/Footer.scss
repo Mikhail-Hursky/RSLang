@@ -1,4 +1,35 @@
+.ant-layout-footer {
+  padding: 20px 10px;
+}
+
 .footer_logo {
-    width:100px;
-    height: 90%;
+  width:60px;
+  height: 90%;
+}
+
+a.ant-typography,
+.ant-typography a {
+  color: #314963;
+}
+
+a.ant-typography:hover,
+.ant-typography a:hover {
+  color: #df168b;
+}
+
+h2.ant-typography,
+.ant-typography h2 {
+  font-size: 16px;
+  color: #314963;
+}
+
+@media screen and (max-width: 600px) {
+  footer div.ant-row.ant-row-space-between.ant-row-middle {
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer div.ant-row.ant-row-space-between.ant-row-middle > div {
+    margin-bottom: 10px;
+  }
 }
