@@ -10,7 +10,7 @@ export default function Words() {
 
   return(
    <div className="words">
-    <h3>В каждой категории доступен определенный набор слов - выберите <b>по уровню сложности</b>, чтобы продолжить</h3>
+    <h3>В каждой категории доступен определенный набор слов - выберите <span className="color-strong">по уровню сложности</span>, чтобы продолжить</h3>
     <WordsItem categories={categories} />
    </div>
   )

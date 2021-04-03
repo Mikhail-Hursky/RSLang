@@ -4,8 +4,29 @@
  padding: 1rem 3rem;
 
  .learning-categories {
-   padding: 20px 0;
+   // padding: 20px 0;
  }
+}
+
+.color-strong {
+  color: #df168b;
+}
+
+.learning_header {
+  padding: 10px 20px;
+  font-family: 'Poiret One', cursive;
+  font-size: 20px;
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: justify;
+  }
 }
 
 .learning_title {

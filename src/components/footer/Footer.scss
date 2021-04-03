@@ -22,3 +22,14 @@ h2.ant-typography,
   font-size: 16px;
   color: #314963;
 }
+
+@media screen and (max-width: 600px) {
+  footer div.ant-row.ant-row-space-between.ant-row-middle {
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer div.ant-row.ant-row-space-between.ant-row-middle > div {
+    margin-bottom: 10px;
+  }
+}

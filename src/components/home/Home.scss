@@ -1,15 +1,20 @@
 .wrap-home {
  display: flex;
+ font-family: 'Poiret One', cursive;
+ font-size: 20px;
+ // background: url(../../assets/img/bg.jpg) no-repeat left center;
+ // background-size: 56%;
 
-.col-left {
- width: 60%;
-}
+  .col-left {
+   width: 60%;
+  }
 
 .col-right {
  width: 40%;
+ padding-right: 50px;
  display: flex;
  flex-direction: column;
- justify-content: flex-end;
+ justify-content: flex-start;
 
  .description {
    padding: 50px 0;

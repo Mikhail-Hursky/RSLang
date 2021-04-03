@@ -23,3 +23,24 @@ h1.ant-typography {
   display: flex;
   align-items: center;
 }
+
+@media screen and (max-width: 450px) {
+  header.ant-layout-header {
+    padding: 0;
+    padding-left: 10px;
+  }
+
+  header .ant-col button {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  header.ant-layout-header {
+    padding-left: 0;
+  }
+
+  header .ant-col button {
+    margin-right: 0;
+  }
+}

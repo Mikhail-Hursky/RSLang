@@ -14,13 +14,14 @@
 .list-team {
   display: flex;
   flex-wrap: wrap;
-  padding-top: 50px;
+  padding-top: 20px;
 
   .item {
     width: 33%;
   }
 
   .avatar {
+    width: 100px;
     margin: auto;
     text-align: center;
   }
@@ -83,5 +84,31 @@
     font-family: 'Poiret One', cursive;
     font-size: 20px;
     padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .list-team {
+    justify-content: center;
+
+    .item {
+      width: 50%;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .list-team {
+    .item {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .team {
+    background-size: 250px;
+    padding-bottom: 200px;
   }
 }
