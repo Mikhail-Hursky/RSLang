@@ -2,13 +2,14 @@ import React, { useEffect, useState, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Link } from "react-router-dom";
-import { Button, Card } from "antd";
+import { Button, Card, Spin } from "antd";
 import { Pagination } from "antd";
 import LinkTop from "../link-top/Link-top";
 import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
 import WordsItem from "../words-item/Words-item";
 import "./Category.scss";
 import { Api, URL } from "../../api/Api";
+import CardWords from "../category_card_word/CardWords";
 
 export default function Category(props: any) {
   const [response, setResponse] = useState<any | null>(null);
@@ -53,89 +54,22 @@ export default function Category(props: any) {
   if (response) {
     arr = response.map((item: any, i: any) => {
       return (
-        <Card key={i.toString()} className={`item-${i} item`}>
-          <div className="word-header">
-            <div className="col-left">
-              <div className="wrap-img">
-                <img src={URL + item.image} alt="" />
-              </div>
-            </div>
-            <div className="col-right">
-              <p className="word-title">{item.word}</p>
-              <p className="word-translate">{item.wordTranslate}</p>
-              <p className="word-transcription">{item.transcription}</p>
-            </div>
-            <div className="button button-word">
-              <button
-                style={bgStyle}
-                onClick={() => {
-                  let urlSound = `${URL}${item.audio}`;
-                  startPlay(urlSound);
-                }}
-              >
-                <span className="material-icons">headphones</span>
-                <audio>
-                  <source src={URL + item.audio} type="audio/mp3" />
-                </audio>
-              </button>
-            </div>
-          </div>
-
-          <div className="word-body">
-            <div className="word-example">
-              <div className="word-example-text">
-                <p dangerouslySetInnerHTML={{ __html: item.textExample }}></p>
-                <p>{item.textExampleTranslate}</p>
-              </div>
-              <div className="button button-sound">
-                <button
-                  style={bgStyle}
-                  onClick={() => {
-                    let urlSound = `${URL}${item.audioExample}`;
-                    startPlay(urlSound);
-                  }}
-                >
-                  <span className="material-icons">headphones</span>
-                  <audio>
-                    <source src={URL + item.audioExample} type="audio/mp3" />
-                  </audio>
-                </button>
-              </div>
-            </div>
-            <div className="word-meaning">
-              <div className="word-meaning-text">
-                <p dangerouslySetInnerHTML={{ __html: item.textMeaning }}></p>
-                <p>{item.textMeaningTranslate}</p>
-              </div>
-              <div className="button button-sound">
-                <button
-                  style={bgStyle}
-                  onClick={() => {
-                    let urlSound = `${URL}${item.audioMeaning}`;
-                    startPlay(urlSound);
-                  }}
-                >
-                  <span className="material-icons">headphones</span>
-                  <audio>
-                    <source src={URL + item.audioMeaning} type="audio/mp3" />
-                  </audio>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="buttons-vocabulary">
-            <button className="add-to-add" title="добавить в словарь">
-              <span className="material-icons">add_task</span>
-            </button>
-            <button className="add-to-hard" title="отметить как сложное">
-              <span className="material-icons">star</span>
-            </button>
-            <button className="add-to-delete" title="удалить из изучаемых">
-              <span className="material-icons">delete_outline</span>
-            </button>
-          </div>
-        </Card>
+        <CardWords
+          key={item.id}
+          bgStyle={bgStyle}
+          idificator={item.id}
+          image={item.image}
+          word={item.word}
+          wordTranslate={item.wordTranslate}
+          transcription={item.transcription}
+          audio={item.audio}
+          textExample={item.textExample}
+          textExampleTranslate={item.textExampleTranslate}
+          audioExample={item.audioExample}
+          textMeaning={item.textMeaning}
+          textMeaningTranslate={item.textMeaningTranslate}
+          audioMeaning={item.audioMeaning}
+        />
       );
     });
   }
