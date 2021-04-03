@@ -30,7 +30,7 @@ return (
         '0%': '#108ee9',
         '100%': '#87d068',
       }}
-      percent={words[0].length * 10}
+      percent={+(words[0].length/words[2] * 100).toFixed(2)}
       style={{display:'flex', justifyContent: 'center', marginBottom: '15px'}}
     />
       <p className="statisticModal_words_title" style={{color:'#ff0707'}}>Я не знаю {words[1].length}</p>

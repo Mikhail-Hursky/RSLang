@@ -36,7 +36,11 @@ export default function Games(props:any) {
             <Meta style={metaStyle} avatar={<img src={speaker} alt="speaker"/>} />
           </Card>
         </Link>
-
+        <Link to={{
+            pathname: "/games/sprint",
+            //@ts-ignore
+            words: props.location.words
+        }}>
         <Card
           hoverable={true}
           style={cardStyle}
@@ -46,7 +50,7 @@ export default function Games(props:any) {
         >
           <Meta style={metaStyle} avatar={<img src={sprint} alt="sprint" />} />
         </Card>
-
+        </Link>
         <Link to={{
             pathname: "/games/savannah",
             //@ts-ignore

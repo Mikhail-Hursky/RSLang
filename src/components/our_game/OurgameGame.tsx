@@ -7,9 +7,9 @@ import OurgameWord from "./OurgameWord";
 import { useDispatch, useSelector } from "react-redux";
 import { topBg, sound } from "../../redux/action/gameAction";
 import StatisticModal from "../statisticModal/StatisticModal";
-import OurgameLifes from "./OurgameLifes";
+import OurgameLifes from "../game_features/GameLifes";
 import { State } from "../../redux/reducer/rootReducer";
-import ProgressBar from "./OurgameProgress";
+import ProgressBar from "../game_features/GameProgress";
 import FullscreenGame from "../fullscreen_game/FullscreenGame";
 
 const preloaderStyle:React.CSSProperties = {
@@ -101,7 +101,7 @@ export default function OurgameGame({ words, setStart }: Props) {
  }
 
   useEffect(()=>{
-    if (state.click && words && (state.SuccessWords.length + state.FailWords.length !== 10) && state.FailWords.length !== 5) {
+    if (state.click && words && (state.SuccessWords.length + state.FailWords.length !== words.length-4) && state.FailWords.length !== 5) {
      let wordsArr = words.filter(e=> {
       if (!state.SuccessWords.concat(state.FailWords).includes(e)) {return e}
      })
@@ -131,7 +131,7 @@ export default function OurgameGame({ words, setStart }: Props) {
         {state.wordsBtns.length !== 0 && words && !state.click ? <OurgameWord timer={fail} word={[state.word['word'], state.word['textExample']]} click={state.click}/> : <Spin style={preloaderStyle} size="large" />}
       </div>
       <div className="ourgame_progress">
-      <ProgressBar data={[state.SuccessWords.length, state.FailWords.length]} />
+      {words ? <ProgressBar data={[state.SuccessWords.length, state.FailWords.length, words?.length - 4]} /> : ''}
       </div>
       <div className="choose_image_btn">
        {state.wordsBtns.length !== 0 && words ? state.wordsBtns.map((e:any, i:any)=> {
@@ -141,8 +141,8 @@ export default function OurgameGame({ words, setStart }: Props) {
        }) : <Spin size="large" />}
       </div> 
       <FullscreenGame />
-      {state.SuccessWords.length + state.FailWords.length === 10 || state.FailWords.length === 5 ? 
-      <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords]} /> : ''}
+      {(words && state.SuccessWords.length + state.FailWords.length === words.length-4) || (words && state.FailWords.length === 5) ? 
+      <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length-4]} /> : ''}
     </>
   );
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
 
-export default function OurgameLifes({data}: any) {
+export default function Lifes({data}: any) {
 
 return (
- <div className="ourgame_lifes">
+ <div className="sprint_lifes">
   {
    new Array(data).fill('../../img/nolife.png').map((e:string, i:number) => {
      return (<img key={i} src={e} alt="nolife"/>)
