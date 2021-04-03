@@ -223,3 +223,94 @@
   left: -50px;
   color: transparent;
 }
+
+@media screen and (max-width: 1050px) {
+  .wrap-list-word {
+
+    .item {
+      width: 45%;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 30px;
+    }
+
+    p.word-title {
+      font-size: 20px;
+    }
+  }
+  .wrap-list-word .word-header .col-right {
+    justify-content: flex-start;
+
+    p {
+      padding-left: 20px;
+      text-align: left;
+    }
+  }
+}
+
+
+@media screen and (max-width: 950px) {
+  .wrap-list-word {
+
+    p.word-title {
+      font-size: 16px;
+    }
+  }
+
+  .wrap-list-word .word-header .col-right {
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .wrap-list-word .word-meaning-text,
+  .wrap-list-word .word-example-text {
+    width: 80%;
+    font-size: 16px;
+  }
+
+  .wrap-list-word .button-sound {
+    width: 20%;
+  }
+
+}
+
+@media screen and (max-width: 750px) {
+  .wrap-list-word {
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+      width: 95%;
+      margin: auto;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
+
+    .wrap-img {
+      width: 250px;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .wrap-list-word {
+    .wrap-img {
+      width: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .wrap-list-word {
+    .wrap-img {
+      width: 150px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  
+}

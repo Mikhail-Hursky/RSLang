@@ -2,10 +2,6 @@
  width: 100%;
  height: auto;
  padding: 1rem 3rem;
-
- .learning-categories {
-   // padding: 20px 0;
- }
 }
 
 .color-strong {
@@ -113,4 +109,22 @@
 button:focus {
   outline: none;
 }
+}
+
+@media screen and (max-width: 550px) {
+  .learning  {
+    padding: 20px;
+  }
+
+  .learning_header {
+    font-size: 16px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
 }
