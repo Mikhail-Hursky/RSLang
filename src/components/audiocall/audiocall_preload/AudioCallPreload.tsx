@@ -6,9 +6,10 @@ import AudioCallGame from "../audiocall_game/AudioCallGame";
 
 interface Props {
   wordsArr: Array<any>;
+  setStart: any;
 }
 
-export default function AudioCallPreload({wordsArr}: Props) {
+export default function AudioCallPreload({wordsArr, setStart}: Props) {
   const [words, setWords] = useState<any>(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function AudioCallPreload({wordsArr}: Props) {
   return (
     <>
       {words ? (
-        <AudioCallGame words={shuffle(words)} />
+        <AudioCallGame setStart={setStart} words={shuffle(words)} />
       ) : (
         <Spin tip="Загрузка..." size="large" />
       )}

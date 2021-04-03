@@ -9,7 +9,7 @@ export default function AudioCall(props:any) {
   return (
     <div className={isStart ? "AudioCallGame" : "AudioCall"}>
       {isStart ? (
-        <AudioCallPreload wordsArr={props.location.words} />
+        <AudioCallPreload setStart={setStart} wordsArr={props.location.words} />
       ) : (
         <InstructionAudioCall setStart={setStart} />
       )}
