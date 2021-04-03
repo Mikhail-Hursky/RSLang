@@ -7,6 +7,8 @@ export const Api = {
     const res = axios
       .post(URL + "signin", { email, password })
       .then((response: any) => {
+        console.log(response.data);
+
         return { ...response.data, status: 200 };
       })
       .catch(() => {
@@ -30,6 +32,15 @@ export const Api = {
       .get(URL + `words?group=${group}&page=${page}`)
       .then((response: any) => {
         return { ...response.data, status: 200 };
+      });
+    return res;
+  },
+
+  getWordsArr: (group: number, page: number) => {
+    const res = axios
+      .get(URL + `words?group=${group}&page=${page}`)
+      .then((response: any) => {
+        return { data: [...response.data], status: 200 };
       });
     return res;
   },
