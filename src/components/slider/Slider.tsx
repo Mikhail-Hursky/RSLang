@@ -1,25 +1,23 @@
 import React from "react";
-import { Carousel, Radio } from 'antd';
+import { Carousel, Radio } from "antd";
 
 import "./Slider.scss";
 
 export default function PositionCarouselDemo() {
-
+  const [dotPosition, setDotPosition] = React.useState("top");
   const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    backgroundColor: '#DDD',
+    height: "160px",
+    color: "#fff",
+    lineHeight: "160px",
+    backgroundColor: "#DDD",
   };
-
-  const [dotPosition, setDotPosition] = React.useState('top');
 
   return (
     <>
       <Carousel dotPosition="top">
         <div>
           <div className="slide" style={contentStyle}>
-            <h3>Все слова</h3>
+            <h3>Изученные слова</h3>
           </div>
         </div>
         <div>

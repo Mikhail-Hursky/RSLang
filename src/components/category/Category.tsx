@@ -8,7 +8,7 @@ import LinkTop from "../link-top/Link-top";
 import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
 import WordsItem from "../words-item/Words-item";
 import "./Category.scss";
-import { Api, URL } from "../../api/Api";
+import { Api } from "../../api/Api";
 import CardWords from "../category_card_word/CardWords";
 
 export default function Category(props: any) {
@@ -35,7 +35,7 @@ export default function Category(props: any) {
   let groupToken = group;
 
   useEffect(() => {
-    Api.getWordsArr(+pageToken, groupToken).then((response: any) => {
+    Api.getWordsArr(group, 0).then((response: any) => {
       setResponse(response.data);
       setWords(response.data);
     });
@@ -75,12 +75,13 @@ export default function Category(props: any) {
   }
 
   function onChange(e: any) {
+    console.log(e);
+
     window.scrollTo(0, 0);
-    Api.getWordsArr(+pageToken, groupToken).then((response: any) => {
+    Api.getWordsArr(group, e - 1).then((response: any) => {
       setResponse(response.data);
       setWords(response.data);
     });
-    return e;
   }
 
   function otherCategory(e: any) {
@@ -88,7 +89,7 @@ export default function Category(props: any) {
     pageToken = "0";
     groupToken = e;
     indexCategory = e;
-    Api.getWordsArr(+pageToken, groupToken).then((response: any) => {
+    Api.getWordsArr(group, e - 1).then((response: any) => {
       setResponse(response.data);
       setWords(response.data);
     });
