@@ -1,10 +1,10 @@
 import React from "react";
-import { Carousel, Radio } from "antd";
+import { Card, Carousel } from "antd";
 
 import "./Slider.scss";
+import CardTextBook from "../card_textbook/CardTextBook";
 
 export default function PositionCarouselDemo() {
-  const [dotPosition, setDotPosition] = React.useState("top");
   const contentStyle = {
     height: "160px",
     color: "#fff",
@@ -28,6 +28,9 @@ export default function PositionCarouselDemo() {
         <div>
           <div className="slide" style={contentStyle}>
             <h3>Удаленные слова</h3>
+          </div>
+          <div style={{ padding: "5px" }}>
+            <CardTextBook />
           </div>
         </div>
       </Carousel>

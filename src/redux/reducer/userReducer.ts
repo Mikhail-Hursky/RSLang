@@ -7,12 +7,14 @@ export interface userState {
   userId: string;
 }
 
-const initialState: userState = {
+const userStartState: userState = {
   message: "",
   name: "",
   token: "",
   userId: "",
 };
+const saveState = localStorage.getItem("USER");
+const initialState = saveState ? JSON.parse(saveState) : userStartState;
 
 export const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -23,5 +25,6 @@ export const userReducer = (state = initialState, action: any) => {
       state = { ...initialState };
       break;
   }
+  localStorage.setItem("USER", JSON.stringify(state));
   return state;
 };

@@ -14,6 +14,7 @@ import Ourgame from "../our_game/Ourgame";
 import Team from "../team/Team";
 
 import Sprint from "../sprint_game/Sprint";
+import WordsBook from "../words_book/WordsBook";
 
 
 export default function Content() {
@@ -28,7 +29,7 @@ export default function Content() {
           <Route path="/setting" component={Settings} />
           <Route path="/team" component={Team} />
           <Route path="/info" component={Home} />
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={WordsBook} />
           <Route path="/games/audiocall" component={AudioCall} />
           <Route path="/games/savannah" component={Savannah} />
           <Route path="/games/ourgame" component={Ourgame} />

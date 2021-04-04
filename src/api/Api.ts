@@ -44,4 +44,18 @@ export const Api = {
       });
     return res;
   },
+
+  getGroupsArr: async (group: number) => {
+    const timeStart = Date.now();
+
+    const res = await axios
+      .get(URL + `words/group?group=${group}`)
+      .then((response: any) => {
+        return { data: [...response.data], status: 200 };
+      });
+    const timeStop = Date.now();
+    console.log(timeStart - timeStop);
+
+    return await res;
+  },
 };

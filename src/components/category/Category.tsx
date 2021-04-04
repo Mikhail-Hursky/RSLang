@@ -2,7 +2,7 @@ import React, { useEffect, useState, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Link } from "react-router-dom";
-import { Button, Card, Spin } from "antd";
+import { Button } from "antd";
 import { Pagination } from "antd";
 import LinkTop from "../link-top/Link-top";
 import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
@@ -45,12 +45,6 @@ export default function Category(props: any) {
     otherCategory(group);
   }, []);
 
-  function startPlay(urlSound: any) {
-    let audio = new Audio();
-    audio.src = urlSound;
-    audio.autoplay = true;
-  }
-
   if (response) {
     arr = response.map((item: any, i: any) => {
       return (
@@ -75,8 +69,6 @@ export default function Category(props: any) {
   }
 
   function onChange(e: any) {
-    console.log(e);
-
     window.scrollTo(0, 0);
     Api.getWordsArr(group, e - 1).then((response: any) => {
       setResponse(response.data);
@@ -128,7 +120,7 @@ export default function Category(props: any) {
       <div className="wrap-list-word">{arr}</div>
       <Pagination
         onChange={onChange}
-        total={580}
+        total={600}
         defaultPageSize={20}
         defaultCurrent={1}
         showSizeChanger={false}
