@@ -58,4 +58,56 @@ export const Api = {
 
     return await res;
   },
+
+  getAllUserWord: async (token: string, userId: string) => {
+    axios
+      .get(URL + `users/${userId.trim()}/words`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response: any) => {
+        console.log(response);
+      });
+  },
+
+  setUserWord: async (
+    token: string,
+    userId: string,
+    wordId: string,
+    difficulty: "HARD" | "LEARNED" | "DELETED"
+  ) => {
+    axios.post(
+      URL + `users/${userId}/words/${wordId}`,
+      {
+        difficulty: difficulty,
+        optional: {},
+      },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+  },
+
+  updateUserWord: async(token: string,
+    userId: string,
+    wordId: string,
+    difficulty: "HARD" | "LEARNED" | "DELETED") =>{
+      axios.put(URL + `users/${userId}/words/${wordId}`,,
+      {
+        difficulty: difficulty,
+        optional: {},
+      },
+      { headers: { Authorization: "Bearer " + token } })
+    },
+
+  deleteUserWord:async(token: string,
+      userId: string,
+      wordId: string,
+      difficulty: "HARD" | "LEARNED" | "DELETED") =>{
+        axios.delete(URL + `users/${userId}/words/${wordId}`,
+        {
+          difficulty: difficulty,
+          optional: {},
+        },
+        { headers: { Authorization: "Bearer " + token } })
+    }
 };

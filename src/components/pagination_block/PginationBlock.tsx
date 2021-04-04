@@ -11,7 +11,7 @@ export default function PginationBlock(props: Props) {
   const [words, setWords] = useState(props.words.slice(0, 20));
   const onChange = (e: any) => {
     console.log(e);
-    setWords(props.words.slice(e * 20, (e + 1) * 20));
+    setWords(props.words.slice((e - 1) * 20, e * 20));
   };
 
   const itemRender = (current: any, type: any, originalElement: any): any => {
@@ -26,7 +26,7 @@ export default function PginationBlock(props: Props) {
       <div className="PginationBlock">{words}</div>
       <Pagination
         onChange={onChange}
-        total={600}
+        total={props.words.length}
         defaultPageSize={20}
         defaultCurrent={1}
         showSizeChanger={false}

@@ -22,7 +22,7 @@ export const userReducer = (state = initialState, action: any) => {
       state = { ...state, ...action.payload };
       break;
     case USER_LOG_OUT:
-      state = { ...initialState };
+      state = { ...userStartState };
       break;
   }
   localStorage.setItem("USER", JSON.stringify(state));

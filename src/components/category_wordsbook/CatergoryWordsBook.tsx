@@ -7,6 +7,7 @@ import PginationBlock from "../pagination_block/PginationBlock";
 export default function CatergoryWordsBook() {
   const [groups, setGroups] = useState(0);
   const [words, setWords] = useState([]);
+
   useEffect(() => {
     Api.getGroupsArr(groups).then((response) => {
       const res = response.data.map((item: any) => {
@@ -29,6 +30,8 @@ export default function CatergoryWordsBook() {
           />
         );
       });
+      console.log(res);
+
       setWords(res);
     });
     return () => setWords([]);
