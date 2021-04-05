@@ -60,7 +60,7 @@ export const Api = {
   },
 
   getAllUserWord: async (token: string, userId: string) => {
-    axios
+    const res = await axios
       .get(URL + `users/${userId.trim()}/words`, {
         headers: {
           Authorization: "Bearer " + token,
@@ -68,7 +68,9 @@ export const Api = {
       })
       .then((response: any) => {
         console.log(response);
+        return { data: [...response.data], status: 200 };
       });
+    return await res;
   },
 
   setUserWord: async (
@@ -91,7 +93,7 @@ export const Api = {
     userId: string,
     wordId: string,
     difficulty: "HARD" | "LEARNED" | "DELETED") =>{
-      axios.put(URL + `users/${userId}/words/${wordId}`,,
+      axios.put(URL + `users/${userId}/words/${wordId}`,
       {
         difficulty: difficulty,
         optional: {},

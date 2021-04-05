@@ -26,10 +26,15 @@ export default function Authorization({ setVisible }: Props) {
     const res: any = await Api.auth(email, password);
     if (res.status === 200) {
       const { message, name, token, userId } = res;
-      dispatch(authorization({ message, name, token, userId }));
+      const words: any = await Api.getAllUserWord(token, userId);
+      if (words.status === 200) {
+      const {data} = words;
+
+      dispatch(authorization({ message, name, token, userId, words:data }));
       setVisible(false);
       setLoading(false);
       form.resetFields();
+      }
     } else {
       message.error(res.message);
       setLoading(false);
