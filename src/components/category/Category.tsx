@@ -36,11 +36,11 @@ export default function Category() {
   const getListWords = (group: number) => {
     Api.getGroupsArr(group).then((response) => {
       console.log(userWords);
-
       const b = response.data.filter((res: any) => {
-        return userWords.some(
-          (user: any) => user.difficulty !== "DELETED" || user.wordId !== res.id
-        );
+        // return userWords.some(
+        //   (user: any) => user.difficulty !== "DELETED" || user.wordId !== res.id
+        // );
+        if (!userWords.filter((e:any) => e.difficulty === "DELETED").map((e:any)=> e['wordId']).includes(res.id)) return res;
       });
       console.log(b);
 
