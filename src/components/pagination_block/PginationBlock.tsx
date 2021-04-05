@@ -10,7 +10,7 @@ interface Props {
 export default function PginationBlock(props: Props) {
   const [words, setWords] = useState(props.words.slice(0, 20));
   const onChange = (e: any) => {
-    console.log(e);
+    window.scrollTo(0, 0);
     setWords(props.words.slice((e - 1) * 20, e * 20));
   };
 
@@ -23,7 +23,7 @@ export default function PginationBlock(props: Props) {
 
   return (
     <>
-      <div className="PginationBlock">{words}</div>
+      <div className="wrap-list-word">{words}</div>
       <Pagination
         onChange={onChange}
         total={props.words.length}

@@ -29,7 +29,7 @@ export default function Content() {
           <Route path="/setting" component={Settings} />
           <Route path="/team" component={Team} />
           <Route path="/info" component={Home} />
-          <Route exact path="/" component={WordsBook} />
+          <Route exact path="/" component={Home} />
           <Route path="/games/audiocall" component={AudioCall} />
           <Route path="/games/savannah" component={Savannah} />
           <Route path="/games/ourgame" component={Ourgame} />
