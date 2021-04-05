@@ -5,7 +5,7 @@ export interface userState {
   name: string;
   token: string;
   userId: string;
-  words: Array<object>;
+  userWords: Array<object>;
 }
 
 const userStartState: userState = {
@@ -13,7 +13,7 @@ const userStartState: userState = {
   name: "",
   token: "",
   userId: "",
-  words: [],
+  userWords: [],
 };
 const saveState = localStorage.getItem("USER");
 const initialState = saveState ? JSON.parse(saveState) : userStartState;

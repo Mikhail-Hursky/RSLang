@@ -10,10 +10,12 @@ import "./Category.scss";
 import { Api } from "../../api/Api";
 import CardWords from "../category_card_word/CardWords";
 import PginationBlock from "../pagination_block/PginationBlock";
+import { soundFail } from "../../sound/sound";
 
 export default function Category() {
   const [words, setWords] = useState<any | null>([]);
   const group = useSelector((state: State) => state.setting.group);
+  const { userWords } = useSelector((state: State) => state.user);
   const categories = CATEGORIES_WORDS;
   let indexCategory = group;
   let colorPage = categories.filter((item) => item.id === indexCategory);
@@ -22,7 +24,7 @@ export default function Category() {
     backgroundColor: `${colorPageValue}`,
   };
   console.log(bgStyle);
-  
+
   const btnGameStyle: React.CSSProperties = {
     float: "right",
     margin: "7px",
@@ -31,8 +33,17 @@ export default function Category() {
     borderColor: `${colorPageValue}`,
   };
 
-  useEffect(() => {
+  const getListWords = (group: number) => {
     Api.getGroupsArr(group).then((response) => {
+      console.log(userWords);
+
+      const b = response.data.filter((res: any) => {
+        return userWords.some(
+          (user: any) => user.difficulty !== "DELETED" || user.wordId !== res.id
+        );
+      });
+      console.log(b);
+
       const res = response.data.map((item: any) => {
         return (
           <CardWords
@@ -55,6 +66,10 @@ export default function Category() {
       });
       setWords(res);
     });
+  };
+
+  useEffect(() => {
+    getListWords(group);
     return () => setWords([]);
   }, [group]);
 

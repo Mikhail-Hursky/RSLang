@@ -28,12 +28,14 @@ export default function Authorization({ setVisible }: Props) {
       const { message, name, token, userId } = res;
       const words: any = await Api.getAllUserWord(token, userId);
       if (words.status === 200) {
-      const {data} = words;
+        const { data } = words;
 
-      dispatch(authorization({ message, name, token, userId, words:data }));
-      setVisible(false);
-      setLoading(false);
-      form.resetFields();
+        dispatch(
+          authorization({ message, name, token, userId, userWords: data })
+        );
+        setVisible(false);
+        setLoading(false);
+        form.resetFields();
       }
     } else {
       message.error(res.message);
