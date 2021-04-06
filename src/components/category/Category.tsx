@@ -2,27 +2,29 @@ import React, { useEffect, useState, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Link } from "react-router-dom";
-import { Button, Card, Spin } from "antd";
-import { Pagination } from "antd";
+import { Button, Spin } from "antd";
 import LinkTop from "../link-top/Link-top";
 import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
 import WordsItem from "../words-item/Words-item";
 import "./Category.scss";
 import { Api } from "../../api/Api";
 import CardWords from "../category_card_word/CardWords";
+import PginationBlock from "../pagination_block/PginationBlock";
+import { soundFail } from "../../sound/sound";
 
-export default function Category(props: any) {
-  const [response, setResponse] = useState<any | null>(null);
-  const [words, setWords] = useState<any | null>(null);
-  let arr = [];
-  const categories = CATEGORIES_WORDS;
+export default function Category() {
+  const [words, setWords] = useState<any | null>([]);
   const group = useSelector((state: State) => state.setting.group);
+  const { userWords } = useSelector((state: State) => state.user);
+  const categories = CATEGORIES_WORDS;
   let indexCategory = group;
   let colorPage = categories.filter((item) => item.id === indexCategory);
   let colorPageValue = colorPage[0].color;
   const bgStyle = {
     backgroundColor: `${colorPageValue}`,
   };
+  console.log(bgStyle);
+
   const btnGameStyle: React.CSSProperties = {
     float: "right",
     margin: "7px",
@@ -31,76 +33,46 @@ export default function Category(props: any) {
     borderColor: `${colorPageValue}`,
   };
 
-  let pageToken = "0";
-  let groupToken = group;
+  const getListWords = (group: number) => {
+    Api.getGroupsArr(group).then((response) => {
+      console.log(userWords);
+      const b = response.data.filter((res: any) => {
+        // return userWords.some(
+        //   (user: any) => user.difficulty !== "DELETED" || user.wordId !== res.id
+        // );
+        if (!userWords.filter((e:any) => e.difficulty === "DELETED").map((e:any)=> e['wordId']).includes(res.id)) return res;
+      });
+      console.log(b);
+
+      const res = response.data.map((item: any) => {
+        return (
+          <CardWords
+            key={item.id}
+            bgStyle={bgStyle}
+            idificator={item.id}
+            image={item.image}
+            word={item.word}
+            wordTranslate={item.wordTranslate}
+            transcription={item.transcription}
+            audio={item.audio}
+            textExample={item.textExample}
+            textExampleTranslate={item.textExampleTranslate}
+            audioExample={item.audioExample}
+            textMeaning={item.textMeaning}
+            textMeaningTranslate={item.textMeaningTranslate}
+            audioMeaning={item.audioMeaning}
+          />
+        );
+      });
+      setWords(res);
+    });
+  };
 
   useEffect(() => {
-    Api.getWordsArr(group, 0).then((response: any) => {
-      setResponse(response.data);
-      setWords(response.data);
-    });
+    getListWords(group);
+    return () => setWords([]);
   }, [group]);
 
-  useLayoutEffect(() => {
-    otherCategory(group);
-  }, []);
-
-  function startPlay(urlSound: any) {
-    let audio = new Audio();
-    audio.src = urlSound;
-    audio.autoplay = true;
-  }
-
-  if (response) {
-    arr = response.map((item: any, i: any) => {
-      return (
-        <CardWords
-          key={item.id}
-          bgStyle={bgStyle}
-          idificator={item.id}
-          image={item.image}
-          word={item.word}
-          wordTranslate={item.wordTranslate}
-          transcription={item.transcription}
-          audio={item.audio}
-          textExample={item.textExample}
-          textExampleTranslate={item.textExampleTranslate}
-          audioExample={item.audioExample}
-          textMeaning={item.textMeaning}
-          textMeaningTranslate={item.textMeaningTranslate}
-          audioMeaning={item.audioMeaning}
-        />
-      );
-    });
-  }
-
-  function onChange(e: any) {
-    console.log(e);
-
-    window.scrollTo(0, 0);
-    Api.getWordsArr(group, e - 1).then((response: any) => {
-      setResponse(response.data);
-      setWords(response.data);
-    });
-  }
-
-  function otherCategory(e: any) {
-    window.scrollTo(0, 0);
-    pageToken = "0";
-    groupToken = e;
-    indexCategory = e;
-    Api.getWordsArr(group, e - 1).then((response: any) => {
-      setResponse(response.data);
-      setWords(response.data);
-    });
-  }
-
-  function itemRender(current: any, type: any, originalElement: any): any {
-    if (type === "next") {
-      return <span>Перейти к - </span>;
-    }
-    return originalElement;
-  }
   return (
     <div className="list-word">
       <div className="navigation-categories">
@@ -124,17 +96,11 @@ export default function Category(props: any) {
           </Button>
         </Link>
       </h2>
-
-      <div className="wrap-list-word">{arr}</div>
-      <Pagination
-        onChange={onChange}
-        total={580}
-        defaultPageSize={20}
-        defaultCurrent={1}
-        showSizeChanger={false}
-        showQuickJumper
-        itemRender={itemRender}
-      />
+      {words.length > 0 ? (
+        <PginationBlock words={words} />
+      ) : (
+        <Spin size="large" />
+      )}
       <LinkTop />
     </div>
   );

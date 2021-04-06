@@ -18,6 +18,8 @@ const metaStyle = {
 };
 
 export default function Games(props:any) {
+  console.log(props);
+  
   return (
     <>
       <Row justify="space-around" align="middle">

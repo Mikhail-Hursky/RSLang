@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
-import { URL } from "../../api/Api";
+import { Api, URL } from "../../api/Api";
 import { State } from "../../redux/reducer/rootReducer";
 import { soundWord } from "../../sound/sound";
 
@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function CardWords(props: Props) {
-  const auth = useSelector((state: State) => state.user.message);
+  const { message, token, userId } = useSelector((state: State) => state.user);
 
   return (
     <Card className={`item-${props.idificator} item`}>
@@ -97,15 +97,33 @@ export default function CardWords(props: Props) {
           </div>
         </div>
       </div>
-      {auth === "Authenticated" ? (
+      {message === "Authenticated" ? (
         <div className="buttons-vocabulary">
-          <button className="add-to-add" title="добавить в словарь">
+          <button
+            onClick={() => {
+              Api.setUserWord(token, userId, props.idificator, "LEARNED");
+            }}
+            className="add-to-add"
+            title="добавить в словарь"
+          >
             <span className="material-icons">add_task</span>
           </button>
-          <button className="add-to-hard" title="отметить как сложное">
+          <button
+            onClick={() => {
+              Api.setUserWord(token, userId, props.idificator, "HARD");
+            }}
+            className="add-to-hard"
+            title="отметить как сложное"
+          >
             <span className="material-icons">star</span>
           </button>
-          <button className="add-to-delete" title="удалить из изучаемых">
+          <button
+            onClick={() => {
+              Api.setUserWord(token, userId, props.idificator, "DELETED");
+            }}
+            className="add-to-delete"
+            title="удалить из изучаемых"
+          >
             <span className="material-icons">delete_outline</span>
           </button>
         </div>

@@ -1,0 +1,15 @@
+.CardTextBook {
+  padding: 5px;
+  height: 80px;
+  width: 100%;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .CardTextBook_word {
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

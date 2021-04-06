@@ -44,4 +44,72 @@ export const Api = {
       });
     return res;
   },
+
+  getGroupsArr: async (group: number) => {
+    const timeStart = Date.now();
+
+    const res = await axios
+      .get(URL + `words/group?group=${group}`)
+      .then((response: any) => {
+        return { data: [...response.data], status: 200 };
+      });
+    const timeStop = Date.now();
+    console.log(timeStart - timeStop);
+
+    return await res;
+  },
+
+  getAllUserWord: async (token: string, userId: string) => {
+    const res = await axios
+      .get(URL + `users/${userId.trim()}/words`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response: any) => {
+        console.log(response);
+        return { data: [...response.data], status: 200 };
+      });
+    return await res;
+  },
+
+  setUserWord: async (
+    token: string,
+    userId: string,
+    wordId: string,
+    difficulty: "HARD" | "LEARNED" | "DELETED"
+  ) => {
+    axios.post(
+      URL + `users/${userId}/words/${wordId}`,
+      {
+        difficulty: difficulty,
+        optional: {},
+      },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+  },
+
+  updateUserWord: async(token: string,
+    userId: string,
+    wordId: string,
+    difficulty: "HARD" | "LEARNED" | "DELETED") =>{
+      axios.put(URL + `users/${userId}/words/${wordId}`,
+      {
+        difficulty: difficulty,
+        optional: {},
+      },
+      { headers: { Authorization: "Bearer " + token } })
+    },
+
+  deleteUserWord:async(token: string,
+      userId: string,
+      wordId: string,
+      difficulty: "HARD" | "LEARNED" | "DELETED") =>{
+        axios.delete(URL + `users/${userId}/words/${wordId}`,
+        {
+          difficulty: difficulty,
+          optional: {},
+        },
+        { headers: { Authorization: "Bearer " + token } })
+    }
 };
