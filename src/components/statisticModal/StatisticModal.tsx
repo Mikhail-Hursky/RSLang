@@ -18,6 +18,7 @@ const userMessage = useSelector((state: State) => state.user.message);
 
 useEffect(()=> {
   exitFullscreen('game_fullscreen');
+  Api.setUserStat(token, userId, words[0].length);
 }, []);
 
 const successMessage = () => {

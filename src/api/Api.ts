@@ -111,5 +111,33 @@ export const Api = {
           optional: {},
         },
         { headers: { Authorization: "Bearer " + token } })
-    }
+    },
+
+  getUserStat: async (userId: string, token: string) => {
+    const res = await axios
+      .get(URL + `users/${userId.trim()}/statistics`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response: any) => {
+        console.log(response);
+        return { data: [...response.data], status: 200 };
+      });
+    return await res;
+  },
+  setUserStat: async (
+    token: string,
+    userId: string,
+    learnedWords: number
+  ) => {
+    axios.put(URL + `users/${userId}/statistics/${learnedWords}`,
+    {
+      learnedWords,
+      optional: {},
+    },
+    { headers: { Authorization: "Bearer " + token } })
+  }
 };
+
+
