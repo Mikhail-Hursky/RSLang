@@ -18,7 +18,7 @@
 }
 
 .statisticModal_word_text {
- width: 90%;
+ width: 75%;
 }
 
 .statisticModal_words_title {
@@ -38,4 +38,16 @@
 
 .ant-modal-close-x {
 display: none;
+}
+
+.delete_word {
+   svg {
+      transition: 0.3s all;
+      fill: #d4d5d5;
+      &:hover{
+         cursor: pointer;
+         transform: scale(1.1);
+         fill:#000;
+        }
+   }
 }

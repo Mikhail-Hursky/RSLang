@@ -55,7 +55,6 @@ export default function SprintGame({ words, setStart }: Props) {
        SuccessWords: [...state.SuccessWords, state.word],
        click: true
       });
-      dispatch(topBg());
    } else {
     if(soundState) {soundFail();}
      setState({ ...state,

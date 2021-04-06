@@ -14,7 +14,10 @@ export default function SprintTimer({timeout}:any) {
 
 return (
  <>
- <Progress type="circle" percent={timer / 60 * 100} format={percent => timer} />
+ <Progress strokeColor={{
+        '0%': '#e66465',
+        '100%': '#9198e5',
+      }} type="circle" percent={timer / 60 * 100} format={percent => timer} />
  </>
 )
 }
