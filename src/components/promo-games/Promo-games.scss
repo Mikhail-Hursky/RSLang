@@ -1,0 +1,141 @@
+.promo-games {
+  padding-top: 100px;
+  font-family: 'Poiret One', cursive;
+
+  h3 {
+    font-size: 26px;
+    color: #366b82;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.list-games {
+  list-style-type: none;
+  padding: 50px;
+
+  h4 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 26px;
+    color: #ca3d45;
+  }
+
+  li:nth-child(2n) {
+    h4 {
+      text-align: right;
+    }
+
+    .game-description {
+      flex-direction: row-reverse;
+    }
+
+    p {
+      margin-right: 50px;
+      text-align: right;
+    }
+  }
+
+  li:nth-child(2n+1) {
+    h4 {
+      text-align: left;
+    }
+
+    p {
+      margin-left: 50px;
+    }
+  }
+
+  .game-description {
+    display: flex;
+
+    .game-img {
+      width: 200px;
+      height: 200px;
+      padding: 3px;
+      border-radius: 50%;
+      background-color: #ca3d45;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    p {
+      width: 60%;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .list-games {
+    .game-description {
+      .game-img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .list-games {
+    .game-description {
+      display: block;
+
+      .game-img{
+        margin: auto;
+      }
+
+      p {
+        width: 90%;
+        margin: 10px auto;
+      }
+    }
+
+    li:nth-child(2n) {
+
+      p {
+        margin-right: 0;
+      }
+    }
+
+    li:nth-child(2n+1) {
+
+      p {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .list-games {
+    .game-description {
+      p {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .list-games {
+    padding: 20px;
+
+    .game-description {
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}

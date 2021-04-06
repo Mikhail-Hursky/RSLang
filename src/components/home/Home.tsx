@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./Home.scss";
 
 export default function Home() {
@@ -13,9 +15,11 @@ export default function Home() {
             возможности отслеживания индивидуального прогресса
           </p>
         </div>
-        <div className="button">
-          <button>узнать о приложении</button>
-        </div>
+        <Link to="/info">
+          <div className="button">
+            <button>узнать о приложении</button>
+          </div>
+        </Link>
       </div>
     </div>
   );
