@@ -89,29 +89,37 @@ export const Api = {
     );
   },
 
-  updateUserWord: async(token: string,
+  updateUserWord: async (
+    token: string,
     userId: string,
     wordId: string,
-    difficulty: "HARD" | "LEARNED" | "DELETED") =>{
-      axios.put(URL + `users/${userId}/words/${wordId}`,
+    difficulty: "HARD" | "LEARNED" | "DELETED"
+  ) => {
+    axios.put(
+      URL + `users/${userId}/words/${wordId}`,
       {
         difficulty: difficulty,
         optional: {},
       },
-      { headers: { Authorization: "Bearer " + token } })
-    },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+  },
 
-  deleteUserWord:async(token: string,
-      userId: string,
-      wordId: string,
-      difficulty: "HARD" | "LEARNED" | "DELETED") =>{
-        axios.delete(URL + `users/${userId}/words/${wordId}`,
-        {
-          difficulty: difficulty,
-          optional: {},
-        },
-        { headers: { Authorization: "Bearer " + token } })
-    },
+  deleteUserWord: async (
+    token: string,
+    userId: string,
+    wordId: string,
+    difficulty: "HARD" | "LEARNED" | "DELETED"
+  ) => {
+    axios.delete(
+      URL + `users/${userId}/words/${wordId}`,
+      {
+        difficulty: difficulty,
+        optional: {},
+      },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+  },
 
   getUserStat: async (userId: string, token: string) => {
     const res = await axios
@@ -122,6 +130,9 @@ export const Api = {
       })
       .then((response: any) => {
         return { data: response.data, status: 200 };
+      })
+      .catch((error: any) => {
+        return { status: 404 };
       });
     return await res;
   },
@@ -131,15 +142,15 @@ export const Api = {
     learnedWords: number,
     words: Object
   ) => {
-    axios.put(URL + `users/${userId}/statistics/`,
-    {
-      learnedWords,
-      optional: {
-        words
+    axios.put(
+      URL + `users/${userId}/statistics/`,
+      {
+        learnedWords,
+        optional: {
+          ...words,
+        },
       },
-    },
-    { headers: { Authorization: "Bearer " + token } })
-  }
+      { headers: { Authorization: "Bearer " + token } }
+    );
+  },
 };
-
-
