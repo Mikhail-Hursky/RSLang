@@ -14,7 +14,6 @@ import Ourgame from "../our_game/Ourgame";
 import Team from "../team/Team";
 
 import Sprint from "../sprint_game/Sprint";
-import WordsBook from "../words_book/WordsBook";
 
 
 export default function Content() {

@@ -20,7 +20,7 @@ export default function Category() {
   let indexCategory = group;
   let colorPage = categories.filter((item) => item.id === indexCategory);
   let colorPageValue = colorPage[0].color;
-  const bgStyle = {
+  const bgStyle: React.CSSProperties = {
     backgroundColor: `${colorPageValue}`,
   };
   console.log(bgStyle);
@@ -35,16 +35,21 @@ export default function Category() {
 
   const getListWords = (group: number) => {
     Api.getGroupsArr(group).then((response) => {
-      console.log(userWords);
+      /* console.log(userWords);
       const b = response.data.filter((res: any) => {
         // return userWords.some(
         //   (user: any) => user.difficulty !== "DELETED" || user.wordId !== res.id
         // );
-        if (!userWords.filter((e:any) => e.difficulty === "DELETED").map((e:any)=> e['wordId']).includes(res.id)) return res;
+        if (
+          !userWords
+            .filter((e: any) => e.difficulty === "DELETED")
+            .map((e: any) => e["wordId"])
+            .includes(res.id)
+        )
+          return res;
       });
-      console.log(b);
-
-      const res = response.data.map((item: any) => {
+ */
+      /* const res = response.data.map((item: any) => {
         return (
           <CardWords
             key={item.id}
@@ -63,8 +68,8 @@ export default function Category() {
             audioMeaning={item.audioMeaning}
           />
         );
-      });
-      setWords(res);
+      }); */
+      setWords(response.data);
     });
   };
 
@@ -97,7 +102,7 @@ export default function Category() {
         </Link>
       </h2>
       {words.length > 0 ? (
-        <PginationBlock words={words} />
+        <PginationBlock bgStyle={bgStyle} words={words} />
       ) : (
         <Spin size="large" />
       )}
