@@ -1,5 +1,6 @@
-import { Card } from "antd";
-import React from "react";
+import { DeleteOutlined, StarOutlined } from "@ant-design/icons";
+import { Button, Card, Tooltip } from "antd";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Api, URL } from "../../api/Api";
 import { Word } from "../../interfaces/Words";
@@ -9,9 +10,10 @@ import { soundWord } from "../../sound/sound";
 interface Props {
   bgStyle: React.CSSProperties;
   item: Word;
+  setIdWord(id: string): void;
 }
 
-export default function CardWords({ bgStyle, item }: Props) {
+export default function CardWords({ setIdWord, bgStyle, item }: Props) {
   const { message, token, userId } = useSelector((state: State) => state.user);
 
   return (
@@ -42,7 +44,6 @@ export default function CardWords({ bgStyle, item }: Props) {
           </button>
         </div>
       </div>
-
       <div className="word-body">
         <div className="word-example">
           <div className="word-example-text">
@@ -87,33 +88,32 @@ export default function CardWords({ bgStyle, item }: Props) {
       </div>
       {message === "Authenticated" ? (
         <div className="buttons-vocabulary">
-          <button
-            onClick={() => {
-              Api.setUserWord(token, userId, item.id, "LEARNED");
-            }}
-            className="add-to-add"
-            title="добавить в словарь"
-          >
-            <span className="material-icons">add_task</span>
-          </button>
-          <button
-            onClick={() => {
-              Api.setUserWord(token, userId, item.id, "HARD");
-            }}
-            className="add-to-hard"
-            title="отметить как сложное"
-          >
-            <span className="material-icons">star</span>
-          </button>
-          <button
-            onClick={() => {
-              Api.setUserWord(token, userId, item.id, "DELETED");
-            }}
-            className="add-to-delete"
-            title="удалить из изучаемых"
-          >
-            <span className="material-icons">delete_outline</span>
-          </button>
+          <Tooltip title="Отметить как сложное">
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => {
+                Api.setUserWord(token, userId, item.id, "HARD");
+              }}
+              className="add-to-hard"
+              icon={<StarOutlined />}
+              shape="circle"
+            />
+          </Tooltip>
+          <Tooltip title="Удалить из изучаемых">
+            <Button
+              type="primary"
+              danger
+              size="large"
+              onClick={() => {
+                setIdWord(item.id);
+              }}
+              className="add-to-delete"
+              title="удалить из изучаемых"
+              icon={<DeleteOutlined />}
+              shape="circle"
+            />
+          </Tooltip>
         </div>
       ) : (
         <></>

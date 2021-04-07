@@ -1,5 +1,5 @@
 import { Pagination } from "antd";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Word } from "../../interfaces/Words";
 import { State } from "../../redux/reducer/rootReducer";
@@ -15,12 +15,17 @@ export default function PginationBlock(props: Props) {
   const { userWords } = useSelector((state: State) => state.user);
   const delete_word = userWords.filter((e: any) => e.difficulty === "DELETED");
   const [page, setPage] = useState(1);
-  const [words] = useState(
+  const [idWordDelete, setIdWord] = useState("");
+  const [words, setWords] = useState(
     props.words.filter((res: any) => {
       if (!delete_word.map((e: any) => e["wordId"]).includes(res.id))
         return res;
     })
   );
+
+  useEffect(() => {
+    setWords(words.filter((item: Word) => item.id !== idWordDelete));
+  }, [idWordDelete]);
 
   const onChange = (e: any) => {
     window.scrollTo(0, 0);
@@ -38,12 +43,17 @@ export default function PginationBlock(props: Props) {
     <>
       <div className="wrap-list-word">
         {words.slice((page - 1) * 20, page * 20).map((item) => (
-          <CardWords key={item.id} bgStyle={props.bgStyle} item={item} />
+          <CardWords
+            key={item.id}
+            setIdWord={setIdWord}
+            bgStyle={props.bgStyle}
+            item={item}
+          />
         ))}
       </div>
       <Pagination
         onChange={onChange}
-        total={props.words.length}
+        total={words.length}
         defaultPageSize={20}
         defaultCurrent={1}
         showSizeChanger={false}

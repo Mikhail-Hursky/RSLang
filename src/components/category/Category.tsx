@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Link } from "react-router-dom";
@@ -8,9 +8,7 @@ import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
 import WordsItem from "../words-item/Words-item";
 import "./Category.scss";
 import { Api } from "../../api/Api";
-import CardWords from "../category_card_word/CardWords";
 import PginationBlock from "../pagination_block/PginationBlock";
-import { soundFail } from "../../sound/sound";
 
 export default function Category() {
   const [words, setWords] = useState<any | null>([]);
@@ -35,40 +33,6 @@ export default function Category() {
 
   const getListWords = (group: number) => {
     Api.getGroupsArr(group).then((response) => {
-      /* console.log(userWords);
-      const b = response.data.filter((res: any) => {
-        // return userWords.some(
-        //   (user: any) => user.difficulty !== "DELETED" || user.wordId !== res.id
-        // );
-        if (
-          !userWords
-            .filter((e: any) => e.difficulty === "DELETED")
-            .map((e: any) => e["wordId"])
-            .includes(res.id)
-        )
-          return res;
-      });
- */
-      /* const res = response.data.map((item: any) => {
-        return (
-          <CardWords
-            key={item.id}
-            bgStyle={bgStyle}
-            idificator={item.id}
-            image={item.image}
-            word={item.word}
-            wordTranslate={item.wordTranslate}
-            transcription={item.transcription}
-            audio={item.audio}
-            textExample={item.textExample}
-            textExampleTranslate={item.textExampleTranslate}
-            audioExample={item.audioExample}
-            textMeaning={item.textMeaning}
-            textMeaningTranslate={item.textMeaningTranslate}
-            audioMeaning={item.audioMeaning}
-          />
-        );
-      }); */
       setWords(response.data);
     });
   };
