@@ -23,7 +23,7 @@ useEffect(()=> {
     let newWordObj;
     if (response.data.optional) {
       const allWords = response.data.optional.words;
-      if (response.data.optional.words[game]) {
+      if (response.data.optional.words[game] !== null) {
         const wordsArray = response.data.optional.words[game];
         for (let key in wordsArray) {
           newWords.push(wordsArray[key]);

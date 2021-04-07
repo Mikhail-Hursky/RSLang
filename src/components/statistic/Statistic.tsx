@@ -7,14 +7,25 @@ import { State } from '../../redux/reducer/rootReducer';
 import "./Statistic.scss";
 
 function Spoiler() {
- const [data, setData] = useState<any>({}); 
+ const [data, setData] = useState<any>([]); 
  const { Panel } = Collapse;
  const { message, token, userId } = useSelector((state: State) => state.user);
+ const games = ["Audiocall", "Savannah", "Sprint", "Our"];
 
  useEffect(()=> {
   Api.getUserStat(userId, token).then((response)=> {
-   console.log(response.data.optional.words["Our"].length);
-   setData(response.data.optional.words);
+    console.log(response)
+    const obj = {};
+   const objGames = games.map((e:any) => {
+     let game = response.data.optional.words[e];
+     let count = 0;
+     for (let key in game) {
+        count++;
+     }
+     return {[e]: count};
+   })
+   console.log(objGames);
+   setData(objGames);
   });
   console.log(data);
  }, []);
@@ -23,16 +34,16 @@ function Spoiler() {
  'Процент правильных ответов - ',
  'Серия правильных ответов - '];
 
- const games = ["Audiocall", "Savannah", "Sprint", "Our"];
+ 
 
  return (
   <Collapse accordion>
     {
-    games.map(game => (
+    games.map((game, index) => (
       <Panel header={`${game} game`} key={game}>
       <p>{text.map((e,i)=> (
        <List.Item key={'1' + i}>
-       {data[game] ? e + data[game].length : e + '0'}
+       {data.length ? e + data[index][game] : e + '0'}
      </List.Item>
       ))}</p>
     </Panel>
