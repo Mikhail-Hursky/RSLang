@@ -34,6 +34,11 @@ export default function Authorization({ setVisible }: Props) {
           Savannah: -1,
           Our: -1,
           Audiocall: -1,
+        }, {
+          Sprint: 0,
+          Savannah: 0,
+          Our: 0,
+          Audiocall: 0,
         }));
       const words: any = await Api.getAllUserWord(token, userId);
       if (words.status === 200) {

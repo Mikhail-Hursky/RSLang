@@ -8,6 +8,7 @@ import "./Statistic.scss";
 
 function Spoiler() {
  const [data, setData] = useState<any>([]); 
+ const [percent, setPercent] = useState<any>([]); 
  const { Panel } = Collapse;
  const { message, token, userId } = useSelector((state: State) => state.user);
  const games = ["Audiocall", "Savannah", "Sprint", "Our"];
@@ -17,15 +18,16 @@ function Spoiler() {
     console.log(response)
     const obj = {};
    const objGames = games.map((e:any) => {
-     let game = response.data.optional.words[e];
+     let game = response.data.optional[e];
      let count = 0;
      for (let key in game) {
         count++;
      }
      return {[e]: count};
    })
-   console.log(objGames);
+   console.log(response.data.optional.percent);
    setData(objGames);
+   setPercent(response.data.optional.percent);
   });
   console.log(data);
  }, []);
@@ -41,11 +43,15 @@ function Spoiler() {
     {
     games.map((game, index) => (
       <Panel header={`${game} game`} key={game}>
-      <p>{text.map((e,i)=> (
-       <List.Item key={'1' + i}>
-       {data.length ? e + data[index][game] : e + '0'}
-     </List.Item>
-      ))}</p>
+      <p><List.Item>
+       {data.length ? text[0] + data[index][game] : text[0] + '0'}
+     </List.Item></p>
+     <p><List.Item>
+       {data.length ? text[1] + percent[game].percent + '%' : text[1] + '0' + '%'}
+     </List.Item></p>
+     <p><List.Item>
+       {data.length ? text[0] + data[index][game] : text[0] + '0'}
+     </List.Item></p>
     </Panel>
     ))
     /* <Panel header="Audiocall game" key="1">

@@ -140,7 +140,8 @@ export const Api = {
     token: string,
     userId: string,
     learnedWords: number,
-    words: Object
+    words: Object,
+    percent: Object
   ) => {
     axios.put(
       URL + `users/${userId}/statistics/`,
@@ -148,6 +149,7 @@ export const Api = {
         learnedWords,
         optional: {
           ...words,
+          percent
         },
       },
       { headers: { Authorization: "Bearer " + token } }

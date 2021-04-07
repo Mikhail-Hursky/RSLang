@@ -17,29 +17,27 @@ const userMessage = useSelector((state: State) => state.user.message);
 };
 
 useEffect(()=> {
+  let percent = +(words[0].length/words[2] * 100).toFixed(2);
   exitFullscreen('game_fullscreen');
   Api.getUserStat(userId, token).then((response)=> {
     const newWords:any = [];
     let newWordObj;
-    if (response.data.optional) {
-      const allWords = response.data.optional.words;
-      if (response.data.optional.words[game] !== null) {
-        const wordsArray = response.data.optional.words[game];
+      const allWords = response.data.optional;
+        const wordsArray = response.data.optional[game] === -1 ? {} : response.data.optional[game];
         for (let key in wordsArray) {
           newWords.push(wordsArray[key]);
         }
-      }
-      words[0].forEach((e:any) => {
-        if (!newWords.map((e:any)=> e["id"]).includes(e["id"])) { newWords.push(e); }
-      });
-      newWordObj = {...allWords, [game]:{...newWords}};
-      Api.setUserStat(token, userId, words[0].length, newWordObj);
-      return
-    }
+      newWordObj = {...allWords, [game]:{...newWords, ...words[0]}};
+      console.log(response.data.optional);
     words[0].forEach((e:any) => {
       if (!newWords.map((e:any)=> e["id"]).includes(e["id"])) { newWords.push(e); }
     });
-    Api.setUserStat(token, userId, words[0].length, {[game]:{...newWords}});
+    if (response.data.optional.percent[game] !== 0) {
+      percent = +((response.data.optional.percent[game] + percent) / 2).toFixed(2);
+    }
+    const allPercent = response.data.optional.percent;
+    const newPercentObj = {...allPercent, [game]:{percent}};
+    Api.setUserStat(token, userId, words[0].length, newWordObj, newPercentObj);
    });
 
 }, []);
