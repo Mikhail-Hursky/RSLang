@@ -1,29 +1,43 @@
 import { Collapse, Divider, List, Typography } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Api } from '../../api/Api';
 import { State } from '../../redux/reducer/rootReducer';
 import "./Statistic.scss";
 
 function Spoiler() {
+ const [data, setData] = useState<any>({}); 
  const { Panel } = Collapse;
  const { message, token, userId } = useSelector((state: State) => state.user);
 
  useEffect(()=> {
   Api.getUserStat(userId, token).then((response)=> {
-   console.log(response);
+   console.log(response.data.optional.words["Our"].length);
+   setData(response.data.optional.words);
   });
-  console.log(1);
+  console.log(data);
  }, []);
 
- const text = ['Изучено слов - 11',
- 'Процент правильных ответов - 74%',
- 'Серия правильных ответов - ']
+ const text = ['Изучено слов - ',
+ 'Процент правильных ответов - ',
+ 'Серия правильных ответов - '];
+
+ const games = ["Audiocall", "Savannah", "Sprint", "Our"];
 
  return (
   <Collapse accordion>
-    <Panel header="Audiocall game" key="1">
+    {
+    games.map(game => (
+      <Panel header={`${game} game`} key={game}>
+      <p>{text.map((e,i)=> (
+       <List.Item key={'1' + i}>
+       {data[game] ? e + data[game].length : e + '0'}
+     </List.Item>
+      ))}</p>
+    </Panel>
+    ))
+    /* <Panel header="Audiocall game" key="1">
       <p>{text.map((e,i)=> (
        <List.Item key={'1' + i}>
        {e}
@@ -50,7 +64,7 @@ function Spoiler() {
        {e}
      </List.Item>
       ))}</p>
-    </Panel>
+    </Panel> */}
   </Collapse>
  )
 }

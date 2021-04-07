@@ -121,20 +121,22 @@ export const Api = {
         },
       })
       .then((response: any) => {
-        console.log(response);
-        return { data: [...response.data], status: 200 };
+        return { data: response.data, status: 200 };
       });
     return await res;
   },
   setUserStat: async (
     token: string,
     userId: string,
-    learnedWords: number
+    learnedWords: number,
+    words: Object
   ) => {
-    axios.put(URL + `users/${userId}/statistics/${learnedWords}`,
+    axios.put(URL + `users/${userId}/statistics/`,
     {
       learnedWords,
-      optional: {},
+      optional: {
+        words
+      },
     },
     { headers: { Authorization: "Bearer " + token } })
   }

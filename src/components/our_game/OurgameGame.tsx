@@ -142,7 +142,7 @@ export default function OurgameGame({ words, setStart }: Props) {
       </div> 
       <FullscreenGame />
       {(words && state.SuccessWords.length + state.FailWords.length === words.length-4) || (words && state.FailWords.length === 5) ? 
-      <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length-4]} /> : ''}
+      <StatisticModal game={"Our"} setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length-4]} /> : ''}
     </>
   );
 }

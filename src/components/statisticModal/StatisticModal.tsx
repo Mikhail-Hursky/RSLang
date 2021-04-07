@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Api } from "../../api/Api";
 
-function StatisticModal({words, setStart}:any) {
+function StatisticModal({words, setStart, game}:any) {
 const { token, userId } = useSelector((state: State) => state.user);
 const userMessage = useSelector((state: State) => state.user.message);
 
@@ -18,7 +18,30 @@ const userMessage = useSelector((state: State) => state.user.message);
 
 useEffect(()=> {
   exitFullscreen('game_fullscreen');
-  Api.setUserStat(token, userId, words[0].length);
+  Api.getUserStat(userId, token).then((response)=> {
+    const newWords:any = [];
+    let newWordObj;
+    if (response.data.optional) {
+      const allWords = response.data.optional.words;
+      if (response.data.optional.words[game]) {
+        const wordsArray = response.data.optional.words[game];
+        for (let key in wordsArray) {
+          newWords.push(wordsArray[key]);
+        }
+      }
+      words[0].forEach((e:any) => {
+        if (!newWords.map((e:any)=> e["id"]).includes(e["id"])) { newWords.push(e); }
+      });
+      newWordObj = {...allWords, [game]:{...newWords}};
+      Api.setUserStat(token, userId, words[0].length, newWordObj);
+      return
+    }
+    words[0].forEach((e:any) => {
+      if (!newWords.map((e:any)=> e["id"]).includes(e["id"])) { newWords.push(e); }
+    });
+    Api.setUserStat(token, userId, words[0].length, {[game]:{...newWords}});
+   });
+
 }, []);
 
 const successMessage = () => {

@@ -112,7 +112,7 @@ export default function AudioCallGame({ words, setStart }: Props) {
             }
           />
         </div>
-     {endGame ? <StatisticModal setStart={setStart} words={[stat.successWords, stat.failWords, words.length]} /> : ''}
+     {endGame ? <StatisticModal game={"Audiocall"} setStart={setStart} words={[stat.successWords, stat.failWords, words.length]} /> : ''}
     </>
   );
 }
