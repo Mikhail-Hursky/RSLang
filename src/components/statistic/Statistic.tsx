@@ -79,8 +79,12 @@ export default function Statistic() {
    }, []);
 
  let sumPercent = 0;
+ let count = 0;
  for (let key in percent) { 
+   if (percent[key].percent === 0) continue
+   count++;
   sumPercent += +percent[key].percent;
+  sumPercent = sumPercent/count;
  }
 
  let newWords:any = [];

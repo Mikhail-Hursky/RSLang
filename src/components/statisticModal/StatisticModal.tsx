@@ -28,7 +28,7 @@ useEffect(()=> {
           newWords.push(wordsArray[key]);
         }
     words[0].forEach((e:any) => {
-      if (!newWords.map((e:any)=> e["id"]).includes(e["id"])) { newWords.push(e); }
+      if (!newWords.includes(e["id"])) { newWords.push(e["id"]); }
     });
     allWords[game] = {...newWords};
     newWordObj = {...allWords};

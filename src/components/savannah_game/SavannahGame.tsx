@@ -61,7 +61,7 @@ export default function SavannahGame({ words, setStart }: Props) {
        SuccessWords: [...state.SuccessWords, state.word],
        click: true
       });
-      dispatch(topBg());
+      dispatch(topBg(+100/words.length));
    } else {
     if (streak > streakStat) {setStreakStat(streak); } 
     setStreak(0);

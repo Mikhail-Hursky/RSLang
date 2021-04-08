@@ -5,7 +5,7 @@ import {Props} from "../../interfaces/Words"
 import { soundSuccess, soundFail } from "../../sound/sound";
 import OurgameWord from "./OurgameWord";
 import { useDispatch, useSelector } from "react-redux";
-import { topBg, sound } from "../../redux/action/gameAction";
+import { sound } from "../../redux/action/gameAction";
 import StatisticModal from "../statisticModal/StatisticModal";
 import OurgameLifes from "../game_features/GameLifes";
 import { State } from "../../redux/reducer/rootReducer";
@@ -61,7 +61,6 @@ export default function OurgameGame({ words, setStart }: Props) {
        SuccessWords: [...state.SuccessWords, state.word],
        click: true
       });
-      dispatch(topBg());
    } else {
     if (streak > streakStat) {setStreakStat(streak); } 
     setStreak(0);
