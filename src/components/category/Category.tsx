@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Link } from "react-router-dom";
 import { Button, Spin } from "antd";
@@ -9,11 +9,13 @@ import WordsItem from "../words-item/Words-item";
 import "./Category.scss";
 import { Api } from "../../api/Api";
 import PginationBlock from "../pagination_block/PginationBlock";
+import { setUserWords } from "../../redux/action/userAction";
 
 export default function Category() {
+  const dispatch = useDispatch();
   const [words, setWords] = useState<any | null>([]);
   const group = useSelector((state: State) => state.setting.group);
-  const { userWords } = useSelector((state: State) => state.user);
+  const { token, userId } = useSelector((state: State) => state.user);
   const categories = CATEGORIES_WORDS;
   let indexCategory = group;
   let colorPage = categories.filter((item) => item.id === indexCategory);
@@ -38,6 +40,7 @@ export default function Category() {
   };
 
   useEffect(() => {
+    dispatch(setUserWords(token, userId));
     getListWords(group);
     return () => setWords([]);
   }, [group]);

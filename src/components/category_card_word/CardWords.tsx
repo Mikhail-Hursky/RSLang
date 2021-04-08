@@ -1,9 +1,11 @@
 import { DeleteOutlined, StarOutlined } from "@ant-design/icons";
 import { Button, Card, Tooltip } from "antd";
+import { message as Message } from "antd";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Api, URL } from "../../api/Api";
 import { Word } from "../../interfaces/Words";
+import { setUserWords } from "../../redux/action/userAction";
 import { State } from "../../redux/reducer/rootReducer";
 import { soundWord } from "../../sound/sound";
 
@@ -14,7 +16,10 @@ interface Props {
 }
 
 export default function CardWords({ setIdWord, bgStyle, item }: Props) {
+  const dispatch = useDispatch();
   const { message, token, userId } = useSelector((state: State) => state.user);
+  const [isLoadingDelete, setLoadingDelete] = useState(false);
+  const [isLoadingHard, setLoadingHard] = useState(false);
 
   return (
     <Card className={`item-${item.id} item`}>
@@ -98,15 +103,29 @@ export default function CardWords({ setIdWord, bgStyle, item }: Props) {
               className="add-to-hard"
               icon={<StarOutlined />}
               shape="circle"
+              disabled={isLoadingDelete}
             />
           </Tooltip>
           <Tooltip title="Удалить из изучаемых">
             <Button
+              loading={isLoadingDelete}
               type="primary"
               danger
               size="large"
               onClick={() => {
-                setIdWord(item.id);
+                setLoadingDelete(true);
+                Api.setUserWord(token, userId, item.id, "DELETED").then(
+                  (response) => {
+                    if (response.status === 200) {
+                      dispatch(setUserWords(token, userId));
+                      setIdWord(item.id);
+                      Message.success('Слово добавлено в удаленные');
+                    } else {
+                      Message.error('Ой, что то пошло не так!');
+                      setLoadingDelete(false);
+                    }
+                  }
+                );
               }}
               className="add-to-delete"
               title="удалить из изучаемых"
