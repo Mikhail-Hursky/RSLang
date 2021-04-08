@@ -13,7 +13,7 @@ const initialState: savannahState = {
 export const savannahReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SAVANNAH_BG:
-      state = { ...state, position:  state.position - 10};
+      state = { ...state, position:  state.position - action.value};
       break;
     case SAVANNAH_BG_START:
         state = { ...state, position:  100};
