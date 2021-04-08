@@ -48,11 +48,14 @@ export default function OurgameGame({ words, setStart }: Props) {
   click: true,
   sound: true
  });
+ const [streak, setStreak] = useState(0);
+ const [streakStat, setStreakStat] = useState(0);
 
  function handlerClick(target: any) {
   if (state.click) {return}
   if (words) {
    if (target === state.word['image']) {
+    setStreak(streak+1);
       if(soundState) {soundSuccess();}
       setState({ ...state,
        SuccessWords: [...state.SuccessWords, state.word],
@@ -60,6 +63,8 @@ export default function OurgameGame({ words, setStart }: Props) {
       });
       dispatch(topBg());
    } else {
+    if (streak > streakStat) {setStreakStat(streak); } 
+    setStreak(0);
     if(soundState) {soundFail();}
      setState({ ...state,
       FailWords: [...state.FailWords, state.word],
@@ -142,7 +147,7 @@ export default function OurgameGame({ words, setStart }: Props) {
       </div> 
       <FullscreenGame />
       {(words && state.SuccessWords.length + state.FailWords.length === words.length-4) || (words && state.FailWords.length === 5) ? 
-      <StatisticModal game={"Our"} setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length-4]} /> : ''}
+      <StatisticModal streak={[streak, streakStat]} game={"Our"} setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length-4]} /> : ''}
     </>
   );
 }

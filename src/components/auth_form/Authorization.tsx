@@ -30,11 +30,16 @@ export default function Authorization({ setVisible }: Props) {
       
       if (stat.status === 404)
         console.log(Api.setUserStat(token, userId, 0, {
-          Sprint: -1,
-          Savannah: -1,
-          Our: -1,
-          Audiocall: -1,
+          Sprint: 0,
+          Savannah: 0,
+          Our: 0,
+          Audiocall: 0,
         }, {
+          Sprint: {percent: 0},
+          Savannah: {percent: 0},
+          Our: {percent: 0},
+          Audiocall: {percent: 0},
+        },{
           Sprint: 0,
           Savannah: 0,
           Our: 0,

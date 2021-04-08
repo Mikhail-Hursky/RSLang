@@ -51,6 +51,8 @@ export default function AudioCallGame({ words, setStart }: Props) {
     arr.sort((a, b) => Math.random() - 0.5);
     setArrAnswer(arr);
   }, [index]);
+  const [streak, setStreak] = useState(0);
+  const [streakStat, setStreakStat] = useState(0);
 
   const handleClick = () => {
     if (!isReplied) {
@@ -94,6 +96,10 @@ export default function AudioCallGame({ words, setStart }: Props) {
         word={words[index]}
         stat={stat}
         index={index}
+        streak={streak}
+        setStreak={setStreak}
+        streakStat={streakStat}
+        setStreakStat={setStreakStat}
       />
       <Button
         onClick={handleClick}
@@ -112,7 +118,7 @@ export default function AudioCallGame({ words, setStart }: Props) {
             }
           />
         </div>
-     {endGame ? <StatisticModal game={"Audiocall"} setStart={setStart} words={[stat.successWords, stat.failWords, words.length]} /> : ''}
+     {endGame ? <StatisticModal streak={[streak, streakStat]} game={"Audiocall"} setStart={setStart} words={[stat.successWords, stat.failWords, words.length]} /> : ''}
     </>
   );
 }

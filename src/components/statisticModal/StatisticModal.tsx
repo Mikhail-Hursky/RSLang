@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Api } from "../../api/Api";
 
-function StatisticModal({words, setStart, game}:any) {
+function StatisticModal({words, setStart, game, streak}:any) {
 const { token, userId } = useSelector((state: State) => state.user);
 const userMessage = useSelector((state: State) => state.user.message);
 
@@ -22,22 +22,33 @@ useEffect(()=> {
   Api.getUserStat(userId, token).then((response)=> {
     const newWords:any = [];
     let newWordObj;
-      const allWords = response.data.optional;
-        const wordsArray = response.data.optional[game] === -1 ? {} : response.data.optional[game];
+      const allWords = response.data.optional.words;
+        const wordsArray = response.data.optional.words[game] === 0 ? {} : response.data.optional.words[game];
         for (let key in wordsArray) {
           newWords.push(wordsArray[key]);
         }
-      newWordObj = {...allWords, [game]:{...newWords, ...words[0]}};
-      console.log(response.data.optional);
     words[0].forEach((e:any) => {
       if (!newWords.map((e:any)=> e["id"]).includes(e["id"])) { newWords.push(e); }
     });
-    if (response.data.optional.percent[game] !== 0) {
-      percent = +((response.data.optional.percent[game] + percent) / 2).toFixed(2);
+    allWords[game] = {...newWords};
+    newWordObj = {...allWords};
+    console.log(newWordObj);
+    console.log(words[0]);
+    if (response.data.optional.percent[game].percent !== 0) {
+      percent = +((response.data.optional.percent[game].percent + percent) / 2).toFixed(2);
     }
+    let streakStat = streak[0] > streak[1] ? streak[0] : streak[1];
+    const allStreak = response.data.optional.streak;
+    let newStreakObj = allStreak;
+    console.log(response.data.optional.streak);
+    if (response.data.optional.streak[game] < streakStat) {
+      newStreakObj = {...allStreak, [game]:streakStat};
+    }
+    console.log(streakStat);
     const allPercent = response.data.optional.percent;
     const newPercentObj = {...allPercent, [game]:{percent}};
-    Api.setUserStat(token, userId, words[0].length, newWordObj, newPercentObj);
+    console.log(token, userId, words[0].length, newWordObj, newPercentObj, newStreakObj);
+    Api.setUserStat(token, userId, words[0].length, newWordObj, newPercentObj, newStreakObj);
    });
 
 }, []);

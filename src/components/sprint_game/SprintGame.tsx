@@ -42,6 +42,8 @@ export default function SprintGame({ words, setStart }: Props) {
   click: true,
   sound: true
  });
+ const [streak, setStreak] = useState(0);
+ const [streakStat, setStreakStat] = useState(0);
  const [time, setTime] = useState<boolean>(false);
 
 
@@ -50,12 +52,15 @@ export default function SprintGame({ words, setStart }: Props) {
   const condition = state.wordsBtns['word'] === state.word['word'];
   if (words) {
    if (condition === arg) {
+      setStreak(streak+1);
       if(soundState) {soundSuccess();}
       setState({ ...state,
        SuccessWords: [...state.SuccessWords, state.word],
        click: true
       });
    } else {
+     if (streak > streakStat) {setStreakStat(streak); } 
+    setStreak(0);
     if(soundState) {soundFail();}
      setState({ ...state,
       FailWords: [...state.FailWords, state.word],
@@ -81,6 +86,8 @@ export default function SprintGame({ words, setStart }: Props) {
  }
 
  function fail() {
+  if (streak > streakStat) {setStreakStat(streak); } 
+    setStreak(0);
   if (words) {
     if(soundState) {soundFail();}
      setState({ ...state,
@@ -108,7 +115,7 @@ export default function SprintGame({ words, setStart }: Props) {
        wordsBtns: array.map(e=> wordsArr[e])[0],
        word: wordsArr[array[random]],
       click:false
-     }), 500);
+     }), 0);
      }
     }
      document.addEventListener("keydown", handlerKey);
@@ -140,8 +147,8 @@ export default function SprintGame({ words, setStart }: Props) {
       </div> 
       </div>
       <FullscreenGame />
-      {(words && state.SuccessWords.length + state.FailWords.length === words.length) || (words && state.FailWords.length === 5) || (words && time) ? 
-      <StatisticModal game={"Sprint"} setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length]} /> : ''}
+      {(words && ((state.SuccessWords.length + state.FailWords.length) === words.length)) || (words && state.FailWords.length === 5) || (words && time) ? 
+      <StatisticModal streak={[streak, streakStat]} game={"Sprint"} setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length]} /> : ''}
     </>
   );
 }
