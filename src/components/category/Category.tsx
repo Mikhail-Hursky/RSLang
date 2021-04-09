@@ -14,6 +14,7 @@ import { soundFail } from "../../sound/sound";
 
 export default function Category() {
   const [words, setWords] = useState<any | null>([]);
+  const [gameWords, setGameWords] = useState<any>([]);
   const group = useSelector((state: State) => state.setting.group);
   const { userWords } = useSelector((state: State) => state.user);
   const categories = CATEGORIES_WORDS;
@@ -42,8 +43,8 @@ export default function Category() {
         // );
         if (!userWords.filter((e:any) => e.difficulty === "DELETED").map((e:any)=> e['wordId']).includes(res.id)) return res;
       });
-      console.log(b);
-
+      console.log(response.data);
+      setGameWords(b);
       const res = response.data.map((item: any) => {
         return (
           <CardWords
@@ -88,7 +89,7 @@ export default function Category() {
           to={{
             pathname: "/games",
             //@ts-ignore
-            words: words,
+            words: gameWords,
           }}
         >
           <Button type="primary" style={btnGameStyle}>
