@@ -103,7 +103,7 @@ export default function Statistic() {
 
  const dataText = [
   `Слов изучено сегодня - ${newWords.length}`,
-  `Процент правильных ответов сегодня - ${sumPercent}%`,
+  `Процент правильных ответов сегодня - ${sumPercent.toFixed(2)}%`,
 ];
 
 console.log()
