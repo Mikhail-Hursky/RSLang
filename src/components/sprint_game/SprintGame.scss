@@ -18,7 +18,7 @@
  border-radius: 15px;
 }
 
-.sprint_word { 
+.sprint_word {
  color: #000;
  font-size: 2.5rem;
  text-align: center;
@@ -30,7 +30,7 @@
  top: 45%;
  width:40%;
  .ant-progress-show-info .ant-progress-outer {
-      padding-right: 0; 
+      padding-right: 0;
   }
   .ant-progress-text {
       display: none;
@@ -87,7 +87,7 @@
             }
 }
 
-.sprint_lifes { 
+.sprint_lifes {
 position: absolute;
 top: 5rem;
 right: 2rem;
@@ -100,4 +100,12 @@ right: 2rem;
 #Capa_1:hover {
       cursor: pointer;
       fill: #1890ff;
+}
+
+@media screen and (max-width: 550px) {
+  .sprint_lifes {
+    top: 9rem;
+    left: 6rem;
+    right: auto;
+  }
 }

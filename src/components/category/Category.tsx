@@ -93,7 +93,7 @@ export default function Category() {
           }}
         >
           <Button type="primary" style={btnGameStyle}>
-            Играть!
+            играть!
           </Button>
         </Link>
       </h2>
