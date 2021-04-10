@@ -16,6 +16,7 @@ import Promo from "../promo/Promo";
 
 import Sprint from "../sprint_game/Sprint";
 import WordsBook from "../words_book/WordsBook";
+import Statistic from "../statistic/Statistic";
 
 
 export default function Content() {
@@ -24,7 +25,7 @@ export default function Content() {
       <Layout.Content id="game_fullscreen">
         <Switch>
           <Route exact path="/games" component={Games} />
-          <Route path="/statistic" component={Users} />
+          <Route path="/statistic" component={Statistic} />
           <Route path="/learning" component={Learning} />
           <Route path="/dictionary" component={Vocabulary} />
           <Route path="/setting" component={Settings} />
@@ -40,8 +41,4 @@ export default function Content() {
       </Layout.Content>
     </>
   );
-}
-
-function Users() {
-  return <h2>statistic</h2>;
 }

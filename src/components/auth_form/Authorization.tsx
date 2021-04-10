@@ -15,7 +15,6 @@ export default function Authorization({ setVisible }: Props) {
   const [isLoading, setLoading] = useState(false);
   const [, forceUpdate] = useState({});
 
-  // To disable submit button at the beginning.
   useEffect(() => {
     forceUpdate({});
   }, []);
@@ -26,6 +25,26 @@ export default function Authorization({ setVisible }: Props) {
     const res: any = await Api.auth(email, password);
     if (res.status === 200) {
       const { message, name, token, userId } = res;
+      const stat = await Api.getUserStat(userId, token);
+      console.log(stat);
+      
+      if (stat.status === 404)
+        console.log(Api.setUserStat(token, userId, 0, {
+          Sprint: 0,
+          Savannah: 0,
+          Our: 0,
+          Audiocall: 0,
+        }, {
+          Sprint: {percent: 0},
+          Savannah: {percent: 0},
+          Our: {percent: 0},
+          Audiocall: {percent: 0},
+        },{
+          Sprint: 0,
+          Savannah: 0,
+          Our: 0,
+          Audiocall: 0,
+        }));
       const words: any = await Api.getAllUserWord(token, userId);
       if (words.status === 200) {
         const { data } = words;

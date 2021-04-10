@@ -13,14 +13,9 @@ export default function SavannahPreload({ setStart, wordsArr }: Props) {
   const [words, setWords] = useState<any>(null);
 
   useEffect(() => {
-    if (!words && !wordsArr) {
-      Api.getWords(1, 1).then((res: any) => {
-        setWords(res);
-      });
-    } else if (!words){
-      setWords(wordsArr);
-    }
-  }, [words]);
+    console.log(wordsArr);
+    setWords(wordsArr);
+}, [words]);
 
   return (
     <>

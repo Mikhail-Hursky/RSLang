@@ -49,17 +49,22 @@ export default function SavannahGame({ words, setStart }: Props) {
   click: true,
   sound: true
  });
+ const [streak, setStreak] = useState(0);
+ const [streakStat, setStreakStat] = useState(0);
 
  function handlerClick(target: any) {
   if (words) {
    if (target === state.word['wordTranslate']) {
+    setStreak(streak+1);
       if(soundState) {soundSuccess();}
       setState({ ...state,
        SuccessWords: [...state.SuccessWords, state.word],
        click: true
       });
-      dispatch(topBg());
+      dispatch(topBg(+100/words.length));
    } else {
+    if (streak > streakStat) {setStreakStat(streak); } 
+    setStreak(0);
     if(soundState) {soundFail();}
      setState({ ...state,
       FailWords: [...state.FailWords, state.word],
@@ -146,7 +151,7 @@ export default function SavannahGame({ words, setStart }: Props) {
       </div>
       <FullscreenGame />
       {(words && state.SuccessWords.length + state.FailWords.length === words.length-4) || (words && state.FailWords.length === 5) ? 
-      <StatisticModal setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length - 4]} /> : ''}
+      <StatisticModal streak={[streak, streakStat]} game={"Savannah"} setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length - 4]} /> : ''}
     </>
   );
 }
