@@ -3,7 +3,7 @@
  //    top: 26%;
  //    left: calc((100% - 370px) / 2);
   width: 450px;
-  padding-top: 100px;
+  padding-top: 50px;
   text-align: center;
    p {
     color: #fff;
@@ -75,4 +75,10 @@ right: 2rem;
 #Capa_1:hover {
       cursor: pointer;
       fill: #1890ff;
+}
+
+@media screen and (max-width: 550px) {
+  .ourgame_word_contain {
+    padding-top: 100px;
+  }
 }

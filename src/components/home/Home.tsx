@@ -6,7 +6,6 @@ import "./Home.scss";
 export default function Home() {
   return (
     <div className="wrap-home">
-      <div className="col-left"></div>
       <div className="col-right">
         <div className="description">
           <p>

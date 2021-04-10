@@ -1,16 +1,7 @@
 .promo-description {
-  font-family: 'Poiret One', cursive;
-
-
-  .promo-img {
-    // padding-bottom: 270px;
-    // background: url(../../assets/img/promo2.jpg) no-repeat center bottom #FFF;
-    // background-size: 270px;
-    // min-height: 40vh;
-  }
-
 
   h3 {
+    font-family: 'Poiret One', cursive;
     font-size: 26px;
     color: #366b82;
     font-weight: bold;
@@ -52,8 +43,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 16px;
     }
   }
 }

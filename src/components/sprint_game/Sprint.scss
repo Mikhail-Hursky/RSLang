@@ -10,6 +10,22 @@
  flex-direction: column;
  justify-content:center;
  align-items:center;
+
+ h2.ant-typography {
+   font-family: 'Poiret One', cursive;
+   font-size: 30px;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+ }
+
+ h3.ant-typography {
+   text-align: center;
+ }
+
+ div.ant-typography {
+   font-size: 16px;
+   text-align: center;
+ }
 }
 
 .SprintGame {
@@ -26,4 +42,47 @@
  align-items:center;
  transition: 1s all;
  user-select: none;
+}
+
+@media screen and (max-width: 800px) {
+  .SprintGame {
+    .sprint_container {
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .SprintGame {
+    .sprint_container {
+      width: 80%;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .SprintGame {
+    .sprint_container {
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Sprint {
+    h2.ant-typography {
+      font-size: 24px;
+    }
+    h3.ant-typography {
+      font-size: 20px;
+    }
+  }
+
+  .SprintGame {
+    .sprint_contant_center {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
