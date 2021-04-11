@@ -56,7 +56,7 @@ export default function Settings() {
         </div>
         <div className="words_set">
           <h3>Настройки ежедневного обучения</h3>
-          <p>Количество новых слов в день для изучения</p>
+          <p>Количество новых слов в игре для изучения(исключая Спринт)</p>
           <div className="count_words">
             <button onClick={() => dispatch(wordMinus())}>-</button>
             <span>{settingWords}</span>

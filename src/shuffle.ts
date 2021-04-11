@@ -1,3 +1,5 @@
+import { abort } from "node:process";
+
 export default function shuffle(obj: any): Array<any> {
   let arr: Array<object> = Object.values(obj);
 

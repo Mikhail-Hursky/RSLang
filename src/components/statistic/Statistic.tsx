@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Api } from "../../api/Api";
 import { State } from "../../redux/reducer/rootReducer";
+import Chart from "react-apexcharts";
 import "./Statistic.scss";
 
 function Spoiler({ games, data, percent, streak }: any) {
@@ -14,6 +15,8 @@ function Spoiler({ games, data, percent, streak }: any) {
     "Процент правильных ответов - ",
     "Серия правильных ответов - ",
   ];
+
+  console.log(games);
 
   return (
     <Collapse accordion>
@@ -38,8 +41,8 @@ export default function Statistic() {
   const { message, token, userId } = useSelector((state: State) => state.user);
   const games = ["Audiocall", "Savannah", "Sprint", "Our"];
   const [data, setData] = useState<any>({
-    0: { Savannah: 0 },
-    1: { Audiocall: 0 },
+    0: { Audiocall: 0 },
+    1: { Savannah: 0 },
     2: { Sprint: 0 },
     3: { Our: 0 },
   });
@@ -116,7 +119,22 @@ export default function Statistic() {
     `Процент правильных ответов сегодня - ${sumPercent.toFixed(2)}%`,
   ];
 
-  console.log();
+  const chartState = {
+    options: {
+      chart: {
+        id: "basic-bar",
+      },
+      xaxis: {
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+      },
+    },
+    series: [
+      {
+        name: "series-1",
+        data: [30, 40, 45, 50, 49, 60, 70, 91],
+      },
+    ],
+  };
 
   return (
     <Content
@@ -137,6 +155,20 @@ export default function Statistic() {
           dataSource={dataText}
           renderItem={(item) => <List.Item>{item}</List.Item>}
         />
+        <div className="chart_container">
+          <Chart
+            options={chartState.options}
+            series={chartState.series}
+            type="bar"
+            width="500"
+          />
+          <Chart
+            options={chartState.options}
+            series={chartState.series}
+            type="line"
+            width="500"
+          />
+        </div>
       </div>
     </Content>
   );

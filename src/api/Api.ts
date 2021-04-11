@@ -142,7 +142,7 @@ export const Api = {
     learnedWords: number,
     words: Object,
     percent: Object,
-    streak: Object,
+    streak: Object
   ) => {
     axios.put(
       URL + `users/${userId}/statistics/`,
@@ -151,7 +151,7 @@ export const Api = {
         optional: {
           words,
           percent,
-          streak
+          streak,
         },
       },
       { headers: { Authorization: "Bearer " + token } }
