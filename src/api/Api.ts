@@ -2,6 +2,18 @@ const axios = require("axios").default;
 
 export const URL = "https://lang-en.herokuapp.com/";
 
+const DELETED = 'filter={"$and":[{"userWord.difficulty":"DELETED"}]}';
+const LEARNED = 'filter={"$and":[{"userWord.difficulty":"LEARNED"}]}';
+const HARD = 'filter={"$and":[{"userWord.difficulty":"HARD"}]}';
+
+interface userWord {
+  difficulty: "HARD" | "LEARNED" | "DELETED";
+  optional: {
+    rightCount: number;
+    notRightCount: number;
+  };
+}
+
 export const Api = {
   auth: (email: string, password: string) => {
     const res = axios
@@ -76,16 +88,21 @@ export const Api = {
     token: string,
     userId: string,
     wordId: string,
-    difficulty: "HARD" | "LEARNED" | "DELETED"
+    body: "HARD" | "LEARNED" | "DELETED"
   ) => {
     const res = await axios
       .post(
         URL + `users/${userId}/words/${wordId}`,
         {
-          difficulty: difficulty,
-          optional: {},
+          difficulty: body,
+          optional: {
+            rightCount: 0,
+            notRightCount: 0,
+          },
         },
-        { headers: { Authorization: "Bearer " + token } }
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
       )
       .then((response: any) => {
         return { data: response.data, status: 200 };
@@ -97,16 +114,11 @@ export const Api = {
     token: string,
     userId: string,
     wordId: string,
-    difficulty: "HARD" | "LEARNED" | "DELETED"
+    body: any
   ) => {
-    return axios.put(
-      URL + `users/${userId}/words/${wordId}`,
-      {
-        difficulty: difficulty,
-        optional: {},
-      },
-      { headers: { Authorization: "Bearer " + token } }
-    );
+    return axios.put(URL + `users/${userId}/words/${wordId}`, body, {
+      headers: { Authorization: "Bearer " + token },
+    });
   },
 
   deleteUserWord: async (token: string, userId: string, wordId: string) => {
@@ -150,5 +162,51 @@ export const Api = {
       },
       { headers: { Authorization: "Bearer " + token } }
     );
+  },
+  getAllDeleteUserWord: async (userId: string, token: string) => {
+    const url =
+      URL + `users/${userId}/aggregatedWords?wordsPerPage=3600&${DELETED}`;
+    const res = axios
+      .get(url, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response: any) => {
+        console.log(response);
+        return { data: response.data[0].paginatedResults, status: 200 };
+      });
+    return res;
+  },
+  getAllLearnUserWord: async (userId: string, token: string) => {
+    const url =
+      URL + `users/${userId}/aggregatedWords?wordsPerPage=3600&${LEARNED}`;
+    const res = axios
+      .get(url, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response: any) => {
+        console.log(response);
+        return { data: response.data[0].paginatedResults, status: 200 };
+      });
+    return res;
+  },
+
+  getAllHardUserWord: async (userId: string, token: string) => {
+    const url =
+      URL + `users/${userId}/aggregatedWords?wordsPerPage=3600&${HARD}`;
+    const res = axios
+      .get(url, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response: any) => {
+        console.log(response);
+        return { data: response.data[0].paginatedResults, status: 200 };
+      });
+    return res;
   },
 };
