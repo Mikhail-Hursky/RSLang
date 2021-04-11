@@ -13,19 +13,13 @@ export default function OurgamePreload({ setStart, wordsArr }: Props) {
   const [words, setWords] = useState<any>(null);
 
   useEffect(() => {
-    if (!words && !wordsArr) {
-      Api.getWords(1, 1).then((res: any) => {
-        setWords(res);
-      });
-    } else if (!words) {
       setWords(wordsArr);
-    }
   }, [words]);
 
   return (
     <>
       {words ? (
-        <OurgameGame setStart={setStart} words={shuffle(words)} />
+        <OurgameGame setStart={setStart} words={shuffle(wordsArr)} />
       ) : (
         <Spin tip="Загрузка..." size="large" />
       )}

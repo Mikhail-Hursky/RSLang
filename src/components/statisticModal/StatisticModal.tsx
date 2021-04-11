@@ -8,17 +8,50 @@ import { useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Api } from "../../api/Api";
 
-function StatisticModal({ words, setStart }: any) {
-  const { token, userId } = useSelector((state: State) => state.user);
-  const userMessage = useSelector((state: State) => state.user.message);
+function StatisticModal({words, setStart, game, streak}:any) {
+const { token, userId } = useSelector((state: State) => state.user);
+const userMessage = useSelector((state: State) => state.user.message);
 
   const handleOk = (e: any) => {
     setStart(false);
   };
 
-  useEffect(() => {
-    exitFullscreen("game_fullscreen");
-  }, []);
+useEffect(()=> {
+  let percent = +(words[0].length/words[2] * 100).toFixed(2);
+  exitFullscreen('game_fullscreen');
+  Api.getUserStat(userId, token).then((response)=> {
+    const newWords:any = [];
+    let newWordObj;
+      const allWords = response.data.optional.words;
+        const wordsArray = response.data.optional.words[game] === 0 ? {} : response.data.optional.words[game];
+        for (let key in wordsArray) {
+          newWords.push(wordsArray[key]);
+        }
+    words[0].forEach((e:any) => {
+      if (!newWords.includes(e["id"])) { newWords.push(e["id"]); }
+    });
+    allWords[game] = {...newWords};
+    newWordObj = {...allWords};
+    console.log(newWordObj);
+    console.log(words[0]);
+    if (response.data.optional.percent[game].percent !== 0) {
+      percent = +((response.data.optional.percent[game].percent + percent) / 2).toFixed(2);
+    }
+    let streakStat = streak[0] > streak[1] ? streak[0] : streak[1];
+    const allStreak = response.data.optional.streak;
+    let newStreakObj = allStreak;
+    console.log(response.data.optional.streak);
+    if (response.data.optional.streak[game] < streakStat) {
+      newStreakObj = {...allStreak, [game]:streakStat};
+    }
+    console.log(streakStat);
+    const allPercent = response.data.optional.percent;
+    const newPercentObj = {...allPercent, [game]:{percent}};
+    console.log(token, userId, words[0].length, newWordObj, newPercentObj, newStreakObj);
+    Api.setUserStat(token, userId, words[0].length, newWordObj, newPercentObj, newStreakObj);
+   });
+
+}, []);
 
   const successMessage = () => {
     message.success("Слово успешно удалено!");

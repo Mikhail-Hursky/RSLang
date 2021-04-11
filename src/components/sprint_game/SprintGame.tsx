@@ -32,49 +32,41 @@ function setRandomIndexWords(min: number, max: number) {
 }
 
 export default function SprintGame({ words, setStart }: Props) {
-  const dispatch = useDispatch();
-  const soundState = useSelector((state: State) => state.savannah.sound);
-  const [state, setState] = useState<any>({
-    wordsBtns: [
-      { wordTranslate: " " },
-      { wordTranslate: " " },
-      { wordTranslate: " " },
-      { wordTranslate: " " },
-    ],
-    word: { word: "undefined" },
-    SuccessWords: [],
-    FailWords: [],
-    click: true,
-    sound: true,
-  });
-  const [time, setTime] = useState<boolean>(false);
+ const dispatch = useDispatch();
+ const soundState = useSelector((state: State) => state.savannah.sound);
+ const [state, setState] = useState<any>({
+  wordsBtns: [{'wordTranslate': ' '}, {'wordTranslate': ' '}, {'wordTranslate': ' '}, {'wordTranslate': ' '}],
+  word: {'word': 'undefined'},
+  SuccessWords: [],
+  FailWords: [],
+  click: true,
+  sound: true
+ });
+ const [streak, setStreak] = useState(0);
+ const [streakStat, setStreakStat] = useState(0);
+ const [time, setTime] = useState<boolean>(false);
 
-  function handlerClick(arg: boolean) {
-    if (state.click) {
-      return;
-    }
-    const condition = state.wordsBtns["word"] === state.word["word"];
-    if (words) {
-      if (condition === arg) {
-        if (soundState) {
-          soundSuccess();
-        }
-        setState({
-          ...state,
-          SuccessWords: [...state.SuccessWords, state.word],
-          click: true,
-        });
-      } else {
-        if (soundState) {
-          soundFail();
-        }
-        setState({
-          ...state,
-          FailWords: [...state.FailWords, state.word],
-          click: true,
-        });
-      }
-    }
+
+ function handlerClick(arg:boolean) {
+  if (state.click) {return}
+  const condition = state.wordsBtns['word'] === state.word['word'];
+  if (words) {
+   if (condition === arg) {
+      setStreak(streak+1);
+      if(soundState) {soundSuccess();}
+      setState({ ...state,
+       SuccessWords: [...state.SuccessWords, state.word],
+       click: true
+      });
+   } else {
+     if (streak > streakStat) {setStreakStat(streak); } 
+    setStreak(0);
+    if(soundState) {soundFail();}
+     setState({ ...state,
+      FailWords: [...state.FailWords, state.word],
+      click: true
+     });
+   }
   }
 
   function handlerKey(event: any) {
@@ -92,57 +84,38 @@ export default function SprintGame({ words, setStart }: Props) {
     }
   }
 
-  function fail() {
-    if (words) {
-      if (soundState) {
-        soundFail();
-      }
-      setState({
-        ...state,
-        FailWords: [...state.FailWords, state.word],
-        click: true,
-      });
+ function fail() {
+  if (streak > streakStat) {setStreakStat(streak); } 
+    setStreak(0);
+  if (words) {
+    if(soundState) {soundFail();}
+     setState({ ...state,
+      FailWords: [...state.FailWords, state.word],
+      click: true
+     });
     }
   }
 
-  useEffect(() => {
-    if (
-      state.click &&
-      words &&
-      state.SuccessWords.length + state.FailWords.length !== words.length &&
-      state.FailWords.length !== 5 &&
-      !time
-    ) {
-      let wordsArr = words.filter((e) => {
-        if (!state.SuccessWords.concat(state.FailWords).includes(e)) {
-          return e;
-        }
-      });
-      if (wordsArr.length === 1) {
-        setTimeout(
-          () =>
-            setState({
-              ...state,
-              wordsBtns: wordsArr[0],
-              word: wordsArr[0],
-              click: false,
-            }),
-          500
-        );
-      } else {
-        let array = setRandomIndexWords(0, wordsArr.length - 1);
-        let random = Math.abs(randomInteger(0, 1));
-        setTimeout(
-          () =>
-            setState({
-              ...state,
-              wordsBtns: array.map((e) => wordsArr[e])[0],
-              word: wordsArr[array[random]],
-              click: false,
-            }),
-          500
-        );
-      }
+  useEffect(()=>{
+    if (state.click && words && (state.SuccessWords.length + state.FailWords.length !== words.length) && state.FailWords.length !== 5 && !time) {
+     let wordsArr = words.filter(e=> {
+      if (!state.SuccessWords.concat(state.FailWords).includes(e)) {return e}
+     })
+     if (wordsArr.length === 1) {
+      setTimeout(()=> setState({...state, 
+       wordsBtns: wordsArr[0],
+       word: wordsArr[0],
+      click:false
+     }), 500);
+     } else {
+      let array = setRandomIndexWords(0, wordsArr.length-1);
+     let random = Math.abs(randomInteger(0,1));
+      setTimeout(()=> setState({...state, 
+       wordsBtns: array.map(e=> wordsArr[e])[0],
+       word: wordsArr[array[random]],
+      click:false
+     }), 0);
+     }
     }
     document.addEventListener("keydown", handlerKey);
     return () => document.removeEventListener("keydown", handlerKey);
@@ -195,17 +168,8 @@ export default function SprintGame({ words, setStart }: Props) {
         </div>
       </div>
       <FullscreenGame />
-      {(words &&
-        state.SuccessWords.length + state.FailWords.length === words.length) ||
-      (words && state.FailWords.length === 5) ||
-      (words && time) ? (
-        <StatisticModal
-          setStart={setStart}
-          words={[state.SuccessWords, state.FailWords, words.length]}
-        />
-      ) : (
-        ""
-      )}
+      {(words && ((state.SuccessWords.length + state.FailWords.length) === words.length)) || (words && state.FailWords.length === 5) || (words && time) ? 
+      <StatisticModal streak={[streak, streakStat]} game={"Sprint"} setStart={setStart} words={[state.SuccessWords, state.FailWords, words.length]} /> : ''}
     </>
   );
 }

@@ -14,6 +14,7 @@ import { setUserWords } from "../../redux/action/userAction";
 export default function Category() {
   const dispatch = useDispatch();
   const [words, setWords] = useState<any | null>([]);
+  const [gameWords, setGameWords] = useState<any>([]);
   const group = useSelector((state: State) => state.setting.group);
   const { token, userId } = useSelector((state: State) => state.user);
   const categories = CATEGORIES_WORDS;
@@ -60,11 +61,11 @@ export default function Category() {
           to={{
             pathname: "/games",
             //@ts-ignore
-            words: words,
+            words: gameWords,
           }}
         >
           <Button type="primary" style={btnGameStyle}>
-            Играть!
+            играть!
           </Button>
         </Link>
       </h2>

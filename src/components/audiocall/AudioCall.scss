@@ -8,6 +8,22 @@
   flex-direction: column;
   justify-content:center;
   align-items:center;
+
+  h2.ant-typography {
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  h3.ant-typography {
+    text-align: center;
+  }
+
+  div.ant-typography {
+    font-size: 16px;
+    text-align: center;
+  }
 }
 
 .AudioCallGame {
@@ -20,4 +36,50 @@
   flex-direction: column;
   justify-content:center;
   align-items:center;
+}
+
+@media screen and (max-width: 800px) {
+  .AudioCallGame {
+    div.ant-space.ant-space-horizontal.ant-space-align-center.AnswerBtn {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        margin-bottom: 10px;
+
+        button {
+          width: 250px;
+        }
+      }
+
+      div:last-child {
+        margin-right: 8px;
+      }
+    }
+
+    .volume_btn {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .AudioCallGame {
+    .volume_btn {
+      height: 150px;
+      width: 150px;
+      margin-top: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .AudioCall {
+    h2.ant-typography {
+      font-size: 24px;
+    }
+    h3.ant-typography {
+      font-size: 20px;
+    }
+  }
 }

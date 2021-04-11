@@ -1,6 +1,9 @@
-.savannah_word { 
+.savannah_word {
  position: absolute;
- left: 48%;
+ width: 100%;
+ text-align: center;
+ // left: 48%;
+ left: 2rem;
  transition: 12s ease all;
  color: #fff;
  font-size: 2.5rem;
@@ -12,7 +15,7 @@
  top: 61%;
  width:40%;
  .ant-progress-show-info .ant-progress-outer {
-      padding-right: 0; 
+      padding-right: 0;
   }
   .ant-progress-text {
       display: none;
@@ -43,7 +46,7 @@
             }
 }
 
-.savannah_lifes { 
+.savannah_lifes {
 position: absolute;
 top: 5rem;
 right: 2rem;
@@ -71,7 +74,7 @@ right: 2rem;
             transform: scale(1.2);
           }
 }
-      
+
 .savannah_icon_tree {
     position: absolute;
     bottom: 1rem;
@@ -89,4 +92,18 @@ right: 2rem;
 #Capa_1:hover {
       cursor: pointer;
       fill: #1890ff;
+}
+
+@media screen and (max-width: 950px) {
+  .choose_word_btn {
+    top: 50%;
+     flex-direction: column;
+     width: 300px;
+          button {
+           margin-bottom: 20px;
+          }
+  }
+  .savannah_progress {
+    top: 75%;
+  }
 }

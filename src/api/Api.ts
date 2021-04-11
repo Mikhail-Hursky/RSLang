@@ -114,4 +114,41 @@ export const Api = {
       headers: { Authorization: "Bearer " + token },
     });
   },
+
+  getUserStat: async (userId: string, token: string) => {
+    const res = await axios
+      .get(URL + `users/${userId.trim()}/statistics`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response: any) => {
+        return { data: response.data, status: 200 };
+      })
+      .catch((error: any) => {
+        return { status: 404 };
+      });
+    return await res;
+  },
+  setUserStat: async (
+    token: string,
+    userId: string,
+    learnedWords: number,
+    words: Object,
+    percent: Object,
+    streak: Object
+  ) => {
+    axios.put(
+      URL + `users/${userId}/statistics/`,
+      {
+        learnedWords,
+        optional: {
+          words,
+          percent,
+          streak,
+        },
+      },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+  },
 };

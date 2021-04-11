@@ -12,8 +12,10 @@ import Savannah from "../savannah_game/Savannah";
 import Ourgame from "../our_game/Ourgame";
 
 import Team from "../team/Team";
+import Promo from "../promo/Promo";
 
 import Sprint from "../sprint_game/Sprint";
+import Statistic from "../statistic/Statistic";
 
 
 export default function Content() {
@@ -22,12 +24,12 @@ export default function Content() {
       <Layout.Content id="game_fullscreen">
         <Switch>
           <Route exact path="/games" component={Games} />
-          <Route path="/statistic" component={Users} />
+          <Route path="/statistic" component={Statistic} />
           <Route path="/learning" component={Learning} />
           <Route path="/dictionary" component={Vocabulary} />
           <Route path="/setting" component={Settings} />
           <Route path="/team" component={Team} />
-          <Route path="/info" component={Home} />
+          <Route path="/info" component={Promo} />
           <Route exact path="/" component={Home} />
           <Route path="/games/audiocall" component={AudioCall} />
           <Route path="/games/savannah" component={Savannah} />
@@ -38,8 +40,4 @@ export default function Content() {
       </Layout.Content>
     </>
   );
-}
-
-function Users() {
-  return <h2>statistic</h2>;
 }

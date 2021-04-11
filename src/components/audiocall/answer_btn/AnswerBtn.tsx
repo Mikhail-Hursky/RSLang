@@ -12,7 +12,11 @@ interface Props {
   setStat: any;
   word: any;
   stat: any;
-  index: number;
+  index:number;
+  streak:number;
+  setStreak:any;
+  streakStat:number;
+  setStreakStat:any;
 }
 
 export default function AnswerBtn({
@@ -24,10 +28,16 @@ export default function AnswerBtn({
   setStat,
   word,
   stat,
+  streak,
+  setStreak,
+  streakStat,
+  setStreakStat
 }: Props) {
   const handlerClickFail = (e: any) => {
     if (!isReplied) {
-      setStat({ ...stat, failWords: [...stat.failWords, word] });
+      if (streak > streakStat) {setStreakStat(streak); } 
+    setStreak(0);
+      setStat({...stat, failWords: [...stat.failWords, word]});
       setIsReplied(true);
       if (sound) {
         soundFail();
@@ -37,7 +47,8 @@ export default function AnswerBtn({
 
   const handlerClickSuccess = (e: any) => {
     if (!isReplied) {
-      setStat({ ...stat, successWords: [...stat.successWords, word] });
+      setStreak(streak+1);
+      setStat({...stat, successWords: [...stat.successWords, word]});
       setIsReplied(true);
       if (sound) {
         soundSuccess();
