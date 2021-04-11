@@ -1,9 +1,15 @@
-import { USER_AUTHORIZATION, USER_LOG_OUT, USER_WORDS, SET_USER_WORDS } from "../actionTypes";
+import {
+  USER_AUTHORIZATION,
+  USER_LOG_OUT,
+  USER_WORDS,
+  SET_USER_WORDS,
+} from "../actionTypes";
 
 export interface userState {
   message: string | "Authenticated";
   name: string;
   token: string;
+  refreshToken: string;
   userId: string;
   userWords: Array<object>;
 }
@@ -11,6 +17,7 @@ export interface userState {
 const userStartState: userState = {
   message: "",
   name: "",
+  refreshToken: "",
   token: "",
   userId: "",
   userWords: [],

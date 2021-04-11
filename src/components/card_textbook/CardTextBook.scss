@@ -1,15 +1,112 @@
-.CardTextBook {
+.CardDeleteTextBook {
+  margin: 10px;
   padding: 5px;
-  height: 80px;
-  width: 100%;
-  background-color: blue;
+  height: 200px;
+  background-color: rgba(223, 79, 79, 0.5);
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .CardTextBook_word {
-    p {
+  box-sizing: border-box;
+  img {
+    height: 50%;
+    border-radius: 15px;
+  }
+  .aboutWord {
+    padding: 0 10px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    .group {
       margin: 0;
       padding: 0;
+      width: 100px;
+      text-align: center;
+      border-radius: 15px;
     }
+  }
+  .btnGroup {
+    height: 80%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+.CardHardTextBook {
+  margin: 10px;
+  padding: 5px;
+  height: 200px;
+  background-color: rgba(216, 230, 22, 0.5);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  img {
+    height: 50%;
+    border-radius: 15px;
+  }
+  .aboutWord {
+    padding: 0 10px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    .group {
+      margin: 0;
+      padding: 0;
+      width: 100px;
+      text-align: center;
+      border-radius: 15px;
+    }
+  }
+  .btnGroup {
+    height: 80%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.CardLearnTextBook {
+  margin: 10px;
+  padding: 5px;
+  height: 200px;
+  background-color: rgba(0, 253, 76, 0.5);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  img {
+    height: 50%;
+    border-radius: 15px;
+  }
+  .aboutWord {
+    padding: 0 10px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    .group {
+      margin: 0;
+      padding: 0;
+      width: 100px;
+      text-align: center;
+      border-radius: 15px;
+    }
+  }
+  .btnGroup {
+    height: 80%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }

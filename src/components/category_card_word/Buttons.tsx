@@ -17,7 +17,9 @@ export default function Buttons({ isHard, wordId, setIdWord }: Props) {
   const [isLoadingDelete, setLoadingDelete] = useState(false);
   const [isLoadingHard, setLoadingHard] = useState(false);
   const [hard, setHard] = useState(isHard);
-  const { token, userId } = useSelector((state: State) => state.user);
+  const { token, userId, userWords } = useSelector(
+    (state: State) => state.user
+  );
 
   return (
     <>
@@ -28,19 +30,26 @@ export default function Buttons({ isHard, wordId, setIdWord }: Props) {
             size="large"
             onClick={() => {
               setLoadingHard(true);
-              Api.setUserWord(token, userId, wordId, "LEARNED")
+              const obj = userWords.find(
+                (word: any) => word.wordId === word.id
+              );
+              const body = {
+                difficulty: "LEARNED",
+                optional: {
+                  rightCount: 0,
+                  notRightCount: 0,
+                },
+              };
+              if (obj) {
+                //@ts-ignore
+                body.optional = obj.optional;
+              }
+              Api.updateUserWord(token, userId, wordId, body)
                 .then(() => {
                   message.success("Слово убрано из сложных");
                   setHard(false);
                 })
-                .catch(() => {
-                  Api.updateUserWord(token, userId, wordId, "LEARNED")
-                    .then(() => {
-                      message.success("Слово убрано из сложных");
-                      setHard(false);
-                    })
-                    .catch(() => message.error("Ой, что-то пошло не так..."));
-                })
+                .catch(() => message.error("Ой, что-то пошло не так..."))
                 .finally(() => {
                   setLoadingHard(false);
                   dispatch(setUserWords(token, userId));
@@ -60,13 +69,27 @@ export default function Buttons({ isHard, wordId, setIdWord }: Props) {
             size="large"
             onClick={() => {
               setLoadingHard(true);
+              const obj = userWords.find(
+                (word: any) => word.wordId === word.id
+              );
+              const body = {
+                difficulty: "HARD",
+                optional: {
+                  rightCount: 0,
+                  notRightCount: 0,
+                },
+              };
+              if (obj) {
+                //@ts-ignore
+                body.optional = obj.optional;
+              }
               Api.setUserWord(token, userId, wordId, "HARD")
                 .then(() => {
                   message.success("Слово добавлено в сложные");
                   setHard(true);
                 })
                 .catch(() => {
-                  Api.updateUserWord(token, userId, wordId, "HARD")
+                  Api.updateUserWord(token, userId, wordId, body)
                     .then(() => {
                       message.success("Слово добавлено в сложные");
                       setHard(true);
@@ -95,13 +118,20 @@ export default function Buttons({ isHard, wordId, setIdWord }: Props) {
           size="large"
           onClick={() => {
             setLoadingDelete(true);
+            const body = {
+              difficulty: "HARD",
+              optional: {
+                rightCount: 0,
+                notRightCount: 0,
+              },
+            };
             Api.setUserWord(token, userId, wordId, "DELETED")
               .then(() => {
                 setIdWord(wordId);
                 message.success("Слово добавлено в удаленные");
               })
               .catch(() => {
-                Api.updateUserWord(token, userId, wordId, "DELETED")
+                Api.updateUserWord(token, userId, wordId, body)
                   .then(() => {
                     setIdWord(wordId);
                     message.success("Слово добавлено в удаленные");

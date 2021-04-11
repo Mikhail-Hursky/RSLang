@@ -24,33 +24,49 @@ export default function Authorization({ setVisible }: Props) {
     const { email, password } = values;
     const res: any = await Api.auth(email, password);
     if (res.status === 200) {
-      const { message, name, token, userId } = res;
+      const { message, name, token, userId, refreshToken } = res;
       const stat = await Api.getUserStat(userId, token);
       console.log(stat);
-      
+
       if (stat.status === 404)
-        console.log(Api.setUserStat(token, userId, 0, {
-          Sprint: 0,
-          Savannah: 0,
-          Our: 0,
-          Audiocall: 0,
-        }, {
-          Sprint: {percent: 0},
-          Savannah: {percent: 0},
-          Our: {percent: 0},
-          Audiocall: {percent: 0},
-        },{
-          Sprint: 0,
-          Savannah: 0,
-          Our: 0,
-          Audiocall: 0,
-        }));
+        console.log(
+          Api.setUserStat(
+            token,
+            userId,
+            0,
+            {
+              Sprint: 0,
+              Savannah: 0,
+              Our: 0,
+              Audiocall: 0,
+            },
+            {
+              Sprint: { percent: 0 },
+              Savannah: { percent: 0 },
+              Our: { percent: 0 },
+              Audiocall: { percent: 0 },
+            },
+            {
+              Sprint: 0,
+              Savannah: 0,
+              Our: 0,
+              Audiocall: 0,
+            }
+          )
+        );
       const words: any = await Api.getAllUserWord(token, userId);
       if (words.status === 200) {
         const { data } = words;
 
         dispatch(
-          authorization({ message, name, token, userId, userWords: data })
+          authorization({
+            message,
+            name,
+            token,
+            refreshToken,
+            userId,
+            userWords: data,
+          })
         );
         setVisible(false);
         setLoading(false);
