@@ -1,3 +1,14 @@
 .site-layout-background {
- background: #fff;
+  background: #fff;
+}
+
+.stat__list {
+  background-color: #fafafa;
+}
+
+.chart_container {
+  padding-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
