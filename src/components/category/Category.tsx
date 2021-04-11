@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../redux/reducer/rootReducer";
 import { Link } from "react-router-dom";
 import { Button, Spin } from "antd";
@@ -8,20 +8,20 @@ import { CATEGORIES_WORDS } from "../../mock-data/categoriesWords";
 import WordsItem from "../words-item/Words-item";
 import "./Category.scss";
 import { Api } from "../../api/Api";
-import CardWords from "../category_card_word/CardWords";
 import PginationBlock from "../pagination_block/PginationBlock";
-import { soundFail } from "../../sound/sound";
+import { setUserWords } from "../../redux/action/userAction";
 
 export default function Category() {
+  const dispatch = useDispatch();
   const [words, setWords] = useState<any | null>([]);
   const [gameWords, setGameWords] = useState<any>([]);
   const group = useSelector((state: State) => state.setting.group);
-  const { userWords } = useSelector((state: State) => state.user);
+  const { token, userId } = useSelector((state: State) => state.user);
   const categories = CATEGORIES_WORDS;
   let indexCategory = group;
   let colorPage = categories.filter((item) => item.id === indexCategory);
   let colorPageValue = colorPage[0].color;
-  const bgStyle = {
+  const bgStyle: React.CSSProperties = {
     backgroundColor: `${colorPageValue}`,
   };
   console.log(bgStyle);
@@ -36,40 +36,12 @@ export default function Category() {
 
   const getListWords = (group: number) => {
     Api.getGroupsArr(group).then((response) => {
-      console.log(userWords);
-      const b = response.data.filter((res: any) => {
-        // return userWords.some(
-        //   (user: any) => user.difficulty !== "DELETED" || user.wordId !== res.id
-        // );
-        if (!userWords.filter((e:any) => e.difficulty === "DELETED").map((e:any)=> e['wordId']).includes(res.id)) return res;
-      });
-      console.log(response.data);
-      setGameWords(b);
-      const res = response.data.map((item: any) => {
-        return (
-          <CardWords
-            key={item.id}
-            bgStyle={bgStyle}
-            idificator={item.id}
-            image={item.image}
-            word={item.word}
-            wordTranslate={item.wordTranslate}
-            transcription={item.transcription}
-            audio={item.audio}
-            textExample={item.textExample}
-            textExampleTranslate={item.textExampleTranslate}
-            audioExample={item.audioExample}
-            textMeaning={item.textMeaning}
-            textMeaningTranslate={item.textMeaningTranslate}
-            audioMeaning={item.audioMeaning}
-          />
-        );
-      });
-      setWords(res);
+      setWords(response.data);
     });
   };
 
   useEffect(() => {
+    dispatch(setUserWords(token, userId));
     getListWords(group);
     return () => setWords([]);
   }, [group]);
@@ -98,7 +70,7 @@ export default function Category() {
         </Link>
       </h2>
       {words.length > 0 ? (
-        <PginationBlock words={words} />
+        <PginationBlock bgStyle={bgStyle} words={words} />
       ) : (
         <Spin size="large" />
       )}

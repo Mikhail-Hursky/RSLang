@@ -67,7 +67,6 @@ export const Api = {
         },
       })
       .then((response: any) => {
-        console.log(response);
         return { data: [...response.data], status: 200 };
       });
     return await res;
@@ -79,14 +78,19 @@ export const Api = {
     wordId: string,
     difficulty: "HARD" | "LEARNED" | "DELETED"
   ) => {
-    axios.post(
-      URL + `users/${userId}/words/${wordId}`,
-      {
-        difficulty: difficulty,
-        optional: {},
-      },
-      { headers: { Authorization: "Bearer " + token } }
-    );
+    const res = await axios
+      .post(
+        URL + `users/${userId}/words/${wordId}`,
+        {
+          difficulty: difficulty,
+          optional: {},
+        },
+        { headers: { Authorization: "Bearer " + token } }
+      )
+      .then((response: any) => {
+        return { data: response.data, status: 200 };
+      });
+    return res;
   },
 
   updateUserWord: async (
@@ -95,7 +99,7 @@ export const Api = {
     wordId: string,
     difficulty: "HARD" | "LEARNED" | "DELETED"
   ) => {
-    axios.put(
+    return axios.put(
       URL + `users/${userId}/words/${wordId}`,
       {
         difficulty: difficulty,
@@ -105,20 +109,10 @@ export const Api = {
     );
   },
 
-  deleteUserWord: async (
-    token: string,
-    userId: string,
-    wordId: string,
-    difficulty: "HARD" | "LEARNED" | "DELETED"
-  ) => {
-    axios.delete(
-      URL + `users/${userId}/words/${wordId}`,
-      {
-        difficulty: difficulty,
-        optional: {},
-      },
-      { headers: { Authorization: "Bearer " + token } }
-    );
+  deleteUserWord: async (token: string, userId: string, wordId: string) => {
+    axios.delete(URL + `users/${userId}/words/${wordId}`, {
+      headers: { Authorization: "Bearer " + token },
+    });
   },
 
   getUserStat: async (userId: string, token: string) => {

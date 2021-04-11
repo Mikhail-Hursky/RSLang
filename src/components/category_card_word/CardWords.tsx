@@ -1,97 +1,87 @@
 import { Card } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Api, URL } from "../../api/Api";
+import { URL } from "../../api/Api";
+import { Word } from "../../interfaces/Words";
 import { State } from "../../redux/reducer/rootReducer";
 import { soundWord } from "../../sound/sound";
+import Buttons from "./Buttons";
 
 interface Props {
-  bgStyle: {
-    backgroundColor: string;
-  };
-  idificator: string;
-  image: string;
-  word: string;
-  wordTranslate: string;
-  transcription: string;
-  audio: string;
-  textExample: string;
-  textExampleTranslate: string;
-  audioExample: string;
-  textMeaning: string;
-  textMeaningTranslate: string;
-  audioMeaning: string;
+  bgStyle: React.CSSProperties;
+  item: Word;
+  setIdWord(id: string): void;
+  isHard: boolean;
 }
 
-export default function CardWords(props: Props) {
-  const { message, token, userId } = useSelector((state: State) => state.user);
+export default function CardWords({ isHard, setIdWord, bgStyle, item }: Props) {
+  const { message } = useSelector((state: State) => state.user);
 
   return (
-    <Card className={`item-${props.idificator} item`}>
+    <Card className={`item-${item.id} item`}>
       <div className="word-header">
         <div className="col-left">
           <div className="wrap-img">
-            <img src={URL + props.image} alt="" />
+            <img src={URL + item.image} alt="" />
           </div>
         </div>
         <div className="col-right">
-          <p className="word-title">{props.word}</p>
-          <p className="word-translate">{props.wordTranslate}</p>
-          <p className="word-transcription">{props.transcription}</p>
+          <p className="word-title">{item.word}</p>
+          <p className="word-translate">{item.wordTranslate}</p>
+          <p className="word-transcription">{item.transcription}</p>
         </div>
         <div className="button button-word">
           <button
-            style={props.bgStyle}
+            style={bgStyle}
             onClick={() => {
-              let urlSound = `${URL}${props.audio}`;
+              let urlSound = `${URL}${item.audio}`;
               soundWord(urlSound);
             }}
           >
             <span className="material-icons">headphones</span>
             <audio>
-              <source src={URL + props.audio} type="audio/mp3" />
+              <source src={URL + item.audio} type="audio/mp3" />
             </audio>
           </button>
         </div>
       </div>
-
       <div className="word-body">
         <div className="word-example">
           <div className="word-example-text">
-            <p dangerouslySetInnerHTML={{ __html: props.textExample }}></p>
-            <p>{props.textExampleTranslate}</p>
+            <p dangerouslySetInnerHTML={{ __html: item.textExample }}></p>
+            <p>{item.textExampleTranslate}</p>
           </div>
           <div className="button button-sound">
             <button
-              style={props.bgStyle}
+              style={bgStyle}
               onClick={() => {
-                let urlSound = `${URL}${props.audioExample}`;
+                let urlSound = `${URL}${item.audioExample}`;
                 soundWord(urlSound);
               }}
             >
               <span className="material-icons">headphones</span>
               <audio>
-                <source src={URL + props.audioExample} type="audio/mp3" />
+                <source src={URL + item.audioExample} type="audio/mp3" />
               </audio>
             </button>
           </div>
         </div>
         <div className="word-meaning">
           <div className="word-meaning-text">
-            <p dangerouslySetInnerHTML={{ __html: props.textMeaning }}></p>
-            <p>{props.textMeaningTranslate}</p>
+            <p dangerouslySetInnerHTML={{ __html: item.textMeaning }}></p>
+            <p>{item.textMeaningTranslate}</p>
           </div>
           <div className="button button-sound">
             <button
-              style={props.bgStyle}
+              style={bgStyle}
               onClick={() => {
-                let urlSound = `${URL}${props.audioMeaning}`;
+                let urlSound = `${URL}${item.audioMeaning}`;
                 soundWord(urlSound);
               }}
             >
               <span className="material-icons">headphones</span>
               <audio>
-                <source src={URL + props.audioMeaning} type="audio/mp3" />
+                <source src={URL + item.audioMeaning} type="audio/mp3" />
               </audio>
             </button>
           </div>
@@ -99,33 +89,7 @@ export default function CardWords(props: Props) {
       </div>
       {message === "Authenticated" ? (
         <div className="buttons-vocabulary">
-          <button
-            onClick={() => {
-              Api.setUserWord(token, userId, props.idificator, "LEARNED");
-            }}
-            className="add-to-add"
-            title="добавить в словарь"
-          >
-            <span className="material-icons">add_task</span>
-          </button>
-          <button
-            onClick={() => {
-              Api.setUserWord(token, userId, props.idificator, "HARD");
-            }}
-            className="add-to-hard"
-            title="отметить как сложное"
-          >
-            <span className="material-icons">star</span>
-          </button>
-          <button
-            onClick={() => {
-              Api.setUserWord(token, userId, props.idificator, "DELETED");
-            }}
-            className="add-to-delete"
-            title="удалить из изучаемых"
-          >
-            <span className="material-icons">delete_outline</span>
-          </button>
+          <Buttons isHard={isHard} wordId={item.id} setIdWord={setIdWord} />
         </div>
       ) : (
         <></>

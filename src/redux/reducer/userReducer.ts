@@ -1,4 +1,4 @@
-import { USER_AUTHORIZATION, USER_LOG_OUT, USER_WORDS } from "../actionTypes";
+import { USER_AUTHORIZATION, USER_LOG_OUT, USER_WORDS, SET_USER_WORDS } from "../actionTypes";
 
 export interface userState {
   message: string | "Authenticated";
@@ -28,6 +28,9 @@ export const userReducer = (state = initialState, action: any) => {
       break;
     case USER_LOG_OUT:
       state = { ...userStartState };
+      break;
+    case SET_USER_WORDS:
+      state = { ...state, userWords: action.payload };
       break;
   }
   localStorage.setItem("USER", JSON.stringify(state));

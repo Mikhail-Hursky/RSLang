@@ -9,7 +9,7 @@ interface Props {
   setStart: any;
 }
 
-export default function AudioCallPreload({wordsArr, setStart}: Props) {
+export default function AudioCallPreload({ wordsArr, setStart }: Props) {
   const [words, setWords] = useState<any>(null);
 
   useEffect(() => {

@@ -15,7 +15,6 @@ import Team from "../team/Team";
 import Promo from "../promo/Promo";
 
 import Sprint from "../sprint_game/Sprint";
-import WordsBook from "../words_book/WordsBook";
 import Statistic from "../statistic/Statistic";
 
 

@@ -1,5 +1,5 @@
 import { Button, Space } from "antd";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { soundFail, soundSuccess } from "../../../sound/sound";
 import "./AnswerBtn.scss";
 
@@ -9,7 +9,7 @@ interface Props {
   words: string[];
   setIsReplied(click: boolean): void;
   sound: boolean;
-  setStat:any;
+  setStat: any;
   word: any;
   stat: any;
   index:number;
@@ -33,15 +33,15 @@ export default function AnswerBtn({
   streakStat,
   setStreakStat
 }: Props) {
-  const [btn, setBtn] = useState('');
-
   const handlerClickFail = (e: any) => {
     if (!isReplied) {
       if (streak > streakStat) {setStreakStat(streak); } 
     setStreak(0);
       setStat({...stat, failWords: [...stat.failWords, word]});
       setIsReplied(true);
-      if (sound) {soundFail();}
+      if (sound) {
+        soundFail();
+      }
     }
   };
 
@@ -50,17 +50,19 @@ export default function AnswerBtn({
       setStreak(streak+1);
       setStat({...stat, successWords: [...stat.successWords, word]});
       setIsReplied(true);
-      if (sound) {soundSuccess();}
+      if (sound) {
+        soundSuccess();
+      }
     }
   };
 
   return (
     <>
-      <Space className='AnswerBtn'>
+      <Space className="AnswerBtn">
         {words.map((word, i) => {
           return word !== successWord ? (
             <Button
-            size="large"
+              size="large"
               key={word}
               danger={isReplied}
               type="primary"
@@ -70,7 +72,7 @@ export default function AnswerBtn({
             </Button>
           ) : (
             <Button
-            size="large"
+              size="large"
               className={isReplied ? "Success" : ""}
               key={word}
               type="primary"
