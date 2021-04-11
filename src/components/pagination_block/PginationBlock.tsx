@@ -22,6 +22,13 @@ export default function PginationBlock(props: Props) {
         return res;
     })
   );
+  const hardWords = userWords
+    .filter((word: any) => {
+      return word.difficulty === "HARD";
+    })
+    .map((word: any) => word.wordId);
+    
+
 
   useEffect(() => {
     setWords(words.filter((item: Word) => item.id !== idWordDelete));
@@ -48,6 +55,7 @@ export default function PginationBlock(props: Props) {
             setIdWord={setIdWord}
             bgStyle={props.bgStyle}
             item={item}
+            isHard={hardWords.includes(item.id)}
           />
         ))}
       </div>

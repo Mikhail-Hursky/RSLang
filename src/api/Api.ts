@@ -109,19 +109,9 @@ export const Api = {
     );
   },
 
-  deleteUserWord: async (
-    token: string,
-    userId: string,
-    wordId: string,
-    difficulty: "HARD" | "LEARNED" | "DELETED"
-  ) => {
-    axios.delete(
-      URL + `users/${userId}/words/${wordId}`,
-      {
-        difficulty: difficulty,
-        optional: {},
-      },
-      { headers: { Authorization: "Bearer " + token } }
-    );
+  deleteUserWord: async (token: string, userId: string, wordId: string) => {
+    axios.delete(URL + `users/${userId}/words/${wordId}`, {
+      headers: { Authorization: "Bearer " + token },
+    });
   },
 };

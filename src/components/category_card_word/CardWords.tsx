@@ -1,25 +1,23 @@
-import { DeleteOutlined, StarOutlined } from "@ant-design/icons";
-import { Button, Card, Tooltip } from "antd";
-import { message as Message } from "antd";
-import React, { useState } from "react";
+import { Card } from "antd";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Api, URL } from "../../api/Api";
+import { URL } from "../../api/Api";
 import { Word } from "../../interfaces/Words";
-import { setUserWords } from "../../redux/action/userAction";
 import { State } from "../../redux/reducer/rootReducer";
 import { soundWord } from "../../sound/sound";
+import Buttons from "./Buttons";
 
 interface Props {
   bgStyle: React.CSSProperties;
   item: Word;
   setIdWord(id: string): void;
+  isHard: boolean;
 }
 
-export default function CardWords({ setIdWord, bgStyle, item }: Props) {
-  const dispatch = useDispatch();
-  const { message, token, userId } = useSelector((state: State) => state.user);
-  const [isLoadingDelete, setLoadingDelete] = useState(false);
-  const [isLoadingHard, setLoadingHard] = useState(false);
+export default function CardWords({ isHard, setIdWord, bgStyle, item }: Props) {
+  const { message } = useSelector(
+    (state: State) => state.user
+  );
 
   return (
     <Card className={`item-${item.id} item`}>
@@ -93,46 +91,7 @@ export default function CardWords({ setIdWord, bgStyle, item }: Props) {
       </div>
       {message === "Authenticated" ? (
         <div className="buttons-vocabulary">
-          <Tooltip title="Отметить как сложное">
-            <Button
-              type="primary"
-              size="large"
-              onClick={() => {
-                Api.setUserWord(token, userId, item.id, "HARD");
-              }}
-              className="add-to-hard"
-              icon={<StarOutlined />}
-              shape="circle"
-              disabled={isLoadingDelete}
-            />
-          </Tooltip>
-          <Tooltip title="Удалить из изучаемых">
-            <Button
-              loading={isLoadingDelete}
-              type="primary"
-              danger
-              size="large"
-              onClick={() => {
-                setLoadingDelete(true);
-                Api.setUserWord(token, userId, item.id, "DELETED").then(
-                  (response) => {
-                    if (response.status === 200) {
-                      dispatch(setUserWords(token, userId));
-                      setIdWord(item.id);
-                      Message.success('Слово добавлено в удаленные');
-                    } else {
-                      Message.error('Ой, что то пошло не так!');
-                      setLoadingDelete(false);
-                    }
-                  }
-                );
-              }}
-              className="add-to-delete"
-              title="удалить из изучаемых"
-              icon={<DeleteOutlined />}
-              shape="circle"
-            />
-          </Tooltip>
+          <Buttons isHard={isHard} wordId={item.id} setIdWord={setIdWord} />
         </div>
       ) : (
         <></>
