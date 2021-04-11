@@ -16,19 +16,39 @@ interface Props {
 
 export default function CardWords({ isHard, setIdWord, bgStyle, item }: Props) {
   const { message } = useSelector((state: State) => state.user);
+  const {
+    btnExample,
+    btnMeaning,
+    btnPicture,
+    btnTranscription,
+    btnTranslate,
+  } = useSelector((state: State) => state.setting);
 
   return (
     <Card className={`item-${item.id} item`}>
       <div className="word-header">
-        <div className="col-left">
-          <div className="wrap-img">
-            <img src={URL + item.image} alt="" />
+        {btnPicture ? (
+          <div className="col-left">
+            <div className="wrap-img">
+              <img src={URL + item.image} alt="" />
+            </div>
           </div>
-        </div>
+        ) : (
+          <></>
+        )}
+
         <div className="col-right">
           <p className="word-title">{item.word}</p>
-          <p className="word-translate">{item.wordTranslate}</p>
-          <p className="word-transcription">{item.transcription}</p>
+          {btnTranslate ? (
+            <p className="word-translate">{item.wordTranslate}</p>
+          ) : (
+            <></>
+          )}
+          {btnTranscription ? (
+            <p className="word-transcription">{item.transcription}</p>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="button button-word">
           <button
@@ -46,46 +66,55 @@ export default function CardWords({ isHard, setIdWord, bgStyle, item }: Props) {
         </div>
       </div>
       <div className="word-body">
-        <div className="word-example">
-          <div className="word-example-text">
-            <p dangerouslySetInnerHTML={{ __html: item.textExample }}></p>
-            <p>{item.textExampleTranslate}</p>
+        {btnExample ? (
+          <div className="word-example">
+            <div className="word-example-text">
+              <p dangerouslySetInnerHTML={{ __html: item.textExample }}></p>
+              <p>{item.textExampleTranslate}</p>
+            </div>
+            <div className="button button-sound">
+              <button
+                style={bgStyle}
+                onClick={() => {
+                  let urlSound = `${URL}${item.audioExample}`;
+                  soundWord(urlSound);
+                }}
+              >
+                <span className="material-icons">headphones</span>
+                <audio>
+                  <source src={URL + item.audioExample} type="audio/mp3" />
+                </audio>
+              </button>
+            </div>
           </div>
-          <div className="button button-sound">
-            <button
-              style={bgStyle}
-              onClick={() => {
-                let urlSound = `${URL}${item.audioExample}`;
-                soundWord(urlSound);
-              }}
-            >
-              <span className="material-icons">headphones</span>
-              <audio>
-                <source src={URL + item.audioExample} type="audio/mp3" />
-              </audio>
-            </button>
+        ) : (
+          <></>
+        )}
+
+        {btnMeaning ? (
+          <div className="word-meaning">
+            <div className="word-meaning-text">
+              <p dangerouslySetInnerHTML={{ __html: item.textMeaning }}></p>
+              <p>{item.textMeaningTranslate}</p>
+            </div>
+            <div className="button button-sound">
+              <button
+                style={bgStyle}
+                onClick={() => {
+                  let urlSound = `${URL}${item.audioMeaning}`;
+                  soundWord(urlSound);
+                }}
+              >
+                <span className="material-icons">headphones</span>
+                <audio>
+                  <source src={URL + item.audioMeaning} type="audio/mp3" />
+                </audio>
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="word-meaning">
-          <div className="word-meaning-text">
-            <p dangerouslySetInnerHTML={{ __html: item.textMeaning }}></p>
-            <p>{item.textMeaningTranslate}</p>
-          </div>
-          <div className="button button-sound">
-            <button
-              style={bgStyle}
-              onClick={() => {
-                let urlSound = `${URL}${item.audioMeaning}`;
-                soundWord(urlSound);
-              }}
-            >
-              <span className="material-icons">headphones</span>
-              <audio>
-                <source src={URL + item.audioMeaning} type="audio/mp3" />
-              </audio>
-            </button>
-          </div>
-        </div>
+        ) : (
+          <> </>
+        )}
       </div>
       {message === "Authenticated" ? (
         <div className="buttons-vocabulary">

@@ -11,6 +11,7 @@ import OurgameLifes from "../game_features/GameLifes";
 import { State } from "../../redux/reducer/rootReducer";
 import ProgressBar from "../game_features/GameProgress";
 import FullscreenGame from "../fullscreen_game/FullscreenGame";
+import GameCountWords from "../game_features/GameCountWords";
 
 const preloaderStyle: React.CSSProperties = {
   position: "absolute",
@@ -40,6 +41,7 @@ function setRandomIndexWords(min: number, max: number) {
 export default function OurgameGame({ words, setStart }: Props) {
   const dispatch = useDispatch();
   const soundState = useSelector((state: State) => state.savannah.sound);
+  const { userWords } = useSelector((state: State) => state.user);
   const [state, setState] = useState<any>({
     wordsBtns: [
       { wordTranslate: " " },
@@ -57,6 +59,7 @@ export default function OurgameGame({ words, setStart }: Props) {
   const [streakStat, setStreakStat] = useState(0);
 
   function handlerClick(target: any) {
+    GameCountWords(userWords, true);
     if (state.click) {
       return;
     }

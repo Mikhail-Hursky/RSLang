@@ -13,6 +13,7 @@ interface Props {
 
 export default function PginationBlock(props: Props) {
   const { userWords } = useSelector((state: State) => state.user);
+  const { settingCards } = useSelector((state: State) => state.setting);
   const delete_word = userWords.filter((e: any) => e.difficulty === "DELETED");
   const [page, setPage] = useState(1);
   const [idWordDelete, setIdWord] = useState("");
@@ -47,20 +48,22 @@ export default function PginationBlock(props: Props) {
   return (
     <>
       <div className="wrap-list-word">
-        {words.slice((page - 1) * 20, page * 20).map((item) => (
-          <CardWords
-            key={item.id}
-            setIdWord={setIdWord}
-            bgStyle={props.bgStyle}
-            item={item}
-            isHard={hardWords.includes(item.id)}
-          />
-        ))}
+        {words
+          .slice((page - 1) * settingCards, page * settingCards)
+          .map((item) => (
+            <CardWords
+              key={item.id}
+              setIdWord={setIdWord}
+              bgStyle={props.bgStyle}
+              item={item}
+              isHard={hardWords.includes(item.id)}
+            />
+          ))}
       </div>
       <Pagination
         onChange={onChange}
         total={words.length}
-        defaultPageSize={20}
+        defaultPageSize={settingCards}
         defaultCurrent={1}
         showSizeChanger={false}
         showQuickJumper
