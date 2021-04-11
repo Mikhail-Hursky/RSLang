@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { URL } from "../../../api/Api";
 import volume from "../../../assets/img/volume.png";
-import { soundFail, soundWord } from "../../../sound/sound";
+import { soundWord } from "../../../sound/sound";
 
 interface Props {
   audio: string[];
@@ -11,7 +11,7 @@ interface Props {
 export default function SoundBtn({ audio, index }: Props) {
   useEffect(() => {
     soundWord(URL + audio[index]);
-  },[]);
+  }, []);
   return (
     <div className="volume_btn" onClick={() => soundWord(URL + audio[index])}>
       <img src={volume} alt="" />

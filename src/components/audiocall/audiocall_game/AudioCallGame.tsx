@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import "./AudioCallGame.scss";
 import SoundBtn from "../sound_button/SoundBtn";
 import AnswerBtn from "../answer_btn/AnswerBtn";

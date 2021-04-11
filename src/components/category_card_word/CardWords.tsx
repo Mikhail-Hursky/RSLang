@@ -1,6 +1,6 @@
 import { Card } from "antd";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { URL } from "../../api/Api";
 import { Word } from "../../interfaces/Words";
 import { State } from "../../redux/reducer/rootReducer";
@@ -15,9 +15,7 @@ interface Props {
 }
 
 export default function CardWords({ isHard, setIdWord, bgStyle, item }: Props) {
-  const { message } = useSelector(
-    (state: State) => state.user
-  );
+  const { message } = useSelector((state: State) => state.user);
 
   return (
     <Card className={`item-${item.id} item`}>

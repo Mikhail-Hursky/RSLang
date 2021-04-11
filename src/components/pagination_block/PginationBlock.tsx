@@ -1,5 +1,5 @@
 import { Pagination } from "antd";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Word } from "../../interfaces/Words";
 import { State } from "../../redux/reducer/rootReducer";
@@ -27,8 +27,6 @@ export default function PginationBlock(props: Props) {
       return word.difficulty === "HARD";
     })
     .map((word: any) => word.wordId);
-    
-
 
   useEffect(() => {
     setWords(words.filter((item: Word) => item.id !== idWordDelete));

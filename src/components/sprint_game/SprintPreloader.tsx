@@ -17,7 +17,7 @@ export default function SprintPreload({ setStart, wordsArr }: Props) {
       Api.getWords(1, 1).then((res: any) => {
         setWords(res);
       });
-    } else if (!words){
+    } else if (!words) {
       setWords(wordsArr);
     }
   }, [words]);

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, Carousel } from "antd";
+import { Carousel } from "antd";
 
 import "./Slider.scss";
 import CardTextBook from "../card_textbook/CardTextBook";
@@ -18,7 +18,7 @@ export default function PositionCarouselDemo() {
 
   useEffect(() => {
     Api.getAllUserWord(token, userId);
-  },[]);
+  }, []);
 
   return (
     <>

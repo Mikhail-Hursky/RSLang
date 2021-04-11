@@ -10,7 +10,6 @@ import { topBg, sound } from "../../redux/action/gameAction";
 import StatisticModal from "../statisticModal/StatisticModal";
 import SavannahLifes from "../game_features/GameLifes";
 import { State } from "../../redux/reducer/rootReducer";
-import { FullscreenOutlined } from "@ant-design/icons";
 import FullscreenGame from "../fullscreen_game/FullscreenGame";
 
 const preloaderStyle:React.CSSProperties = {

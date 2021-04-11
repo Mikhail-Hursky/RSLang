@@ -9,7 +9,7 @@ interface Props {
   setStart: any;
 }
 
-export default function AudioCallPreload({wordsArr, setStart}: Props) {
+export default function AudioCallPreload({ wordsArr, setStart }: Props) {
   const [words, setWords] = useState<any>(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function AudioCallPreload({wordsArr, setStart}: Props) {
       Api.getWords(1, 1).then((res: any) => {
         setWords(res);
       });
-    } else if (!words){
+    } else if (!words) {
       setWords(wordsArr);
     }
   }, [words]);
