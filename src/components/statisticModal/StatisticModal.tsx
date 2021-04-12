@@ -18,6 +18,14 @@ function StatisticModal({ words, setStart, game, streak }: any) {
 
   useEffect(() => {
     let percent = +((words[0].length / words[2]) * 100).toFixed(2);
+    const date = new Date();
+    const today = `${
+      date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+    }.${
+      date.getMonth() + 1 < 10
+        ? "0" + (date.getMonth() + 1)
+        : date.getMonth() + 1
+    }.${date.getFullYear()}`;
     exitFullscreen("game_fullscreen");
     Api.getUserStat(userId, token).then((response) => {
       if (response.status === 200) {
@@ -56,18 +64,16 @@ function StatisticModal({ words, setStart, game, streak }: any) {
         console.log(streakStat);
         const allPercent = response.data.optional.percent;
         const newPercentObj = { ...allPercent, [game]: { percent } };
-        console.log(
-          token,
-          userId,
-          words[0].length,
-          newWordObj,
-          newPercentObj,
-          newStreakObj
-        );
+        const allLearned = response.data.optional.allLearnedWords;
+        const todayWords: number = allLearned[today] + words[0].length;
+        const allLearnedWords = { ...allLearned, [today]: todayWords };
+
         Api.setUserStat(
           token,
           userId,
           words[0].length,
+          today,
+          allLearnedWords,
           newWordObj,
           newPercentObj,
           newStreakObj

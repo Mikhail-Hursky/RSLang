@@ -37,6 +37,7 @@ export default function Category() {
   const getListWords = (group: number) => {
     Api.getGroupsArr(group).then((response) => {
       setWords(response.data);
+      setGameWords(response.data);
     });
   };
 

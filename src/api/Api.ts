@@ -110,6 +110,22 @@ export const Api = {
     return res;
   },
 
+  setUserWordCount: async (
+    token: string,
+    userId: string,
+    wordId: string,
+    body: any
+  ) => {
+    const res = await axios
+      .post(URL + `users/${userId}/words/${wordId}`, body, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((response: any) => {
+        return { data: response.data, status: 200 };
+      });
+    return res;
+  },
+
   updateUserWord: async (
     token: string,
     userId: string,
@@ -146,6 +162,8 @@ export const Api = {
     token: string,
     userId: string,
     learnedWords: number,
+    today: string,
+    allLearnedWords: Object,
     words: Object,
     percent: Object,
     streak: Object
@@ -155,6 +173,8 @@ export const Api = {
       {
         learnedWords,
         optional: {
+          today,
+          allLearnedWords,
           words,
           percent,
           streak,

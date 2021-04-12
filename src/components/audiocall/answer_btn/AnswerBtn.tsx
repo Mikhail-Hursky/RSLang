@@ -1,6 +1,10 @@
 import { Button, Space } from "antd";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserWords } from "../../../redux/action/userAction";
+import { State } from "../../../redux/reducer/rootReducer";
 import { soundFail, soundSuccess } from "../../../sound/sound";
+import GameCountWords from "../../game_features/GameCountWords";
 import "./AnswerBtn.scss";
 
 interface Props {
@@ -12,11 +16,11 @@ interface Props {
   setStat: any;
   word: any;
   stat: any;
-  index:number;
-  streak:number;
-  setStreak:any;
-  streakStat:number;
-  setStreakStat:any;
+  index: number;
+  streak: number;
+  setStreak: any;
+  streakStat: number;
+  setStreakStat: any;
 }
 
 export default function AnswerBtn({
@@ -31,28 +35,39 @@ export default function AnswerBtn({
   streak,
   setStreak,
   streakStat,
-  setStreakStat
+  setStreakStat,
 }: Props) {
+  const { userWords, token, userId } = useSelector(
+    (state: State) => state.user
+  );
+  const dispatch = useDispatch();
+
   const handlerClickFail = (e: any) => {
     if (!isReplied) {
-      if (streak > streakStat) {setStreakStat(streak); } 
-    setStreak(0);
-      setStat({...stat, failWords: [...stat.failWords, word]});
+      GameCountWords(userWords, word["id"], true, token, userId);
+      if (streak > streakStat) {
+        setStreakStat(streak);
+      }
+      setStreak(0);
+      setStat({ ...stat, failWords: [...stat.failWords, word] });
       setIsReplied(true);
       if (sound) {
         soundFail();
       }
+      dispatch(setUserWords(token, userId));
     }
   };
 
   const handlerClickSuccess = (e: any) => {
     if (!isReplied) {
-      setStreak(streak+1);
-      setStat({...stat, successWords: [...stat.successWords, word]});
+      GameCountWords(userWords, word["id"], false, token, userId);
+      setStreak(streak + 1);
+      setStat({ ...stat, successWords: [...stat.successWords, word] });
       setIsReplied(true);
       if (sound) {
         soundSuccess();
       }
+      dispatch(setUserWords(token, userId));
     }
   };
 

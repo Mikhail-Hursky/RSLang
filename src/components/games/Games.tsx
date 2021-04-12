@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Row, Select } from "antd";
+import { Button, Card, Row, Select, Spin } from "antd";
 import { Link } from "react-router-dom";
 import Meta from "antd/lib/card/Meta";
 import speaker from "../../assets/img/speaker.png";
@@ -40,6 +40,7 @@ export function setRandomIndexWords(min: number, max: number, length: number) {
 export default function Games(props: any) {
   const [group, setGroup] = useState(0);
   const [words, setWords] = useState([]);
+  const [go, setGo] = useState(false);
   const [allWords, setAllWords] = useState([]);
   const { userWords } = useSelector((state: State) => state.user);
   const { settingWords } = useSelector((state: State) => state.setting);
@@ -47,6 +48,7 @@ export default function Games(props: any) {
 
   function handleChange(value: any) {
     setGroup(value);
+    setGo(false);
   }
 
   useEffect(() => {
@@ -68,6 +70,7 @@ export default function Games(props: any) {
         );
         setWords(arrayWords.map((e: number) => groupWords[e]));
         setAllWords(groupWords);
+        setGo(true);
       });
     } else {
       const groupWords = props.location.words;
@@ -79,9 +82,9 @@ export default function Games(props: any) {
       );
       setWords(arrayWords.map((e: number) => groupWords[e]));
       setAllWords(groupWords);
-      console.log(words);
+      setGo(true);
     }
-  }, []);
+  }, [group]);
 
   return (
     <>
@@ -101,85 +104,89 @@ export default function Games(props: any) {
       ) : (
         ""
       )}
-      <Row justify="space-around" align="middle">
-        <Link
-          to={{
-            pathname: "/games/audiocall",
-            //@ts-ignore
-            words: words.slice(4),
-          }}
-        >
-          <Card
-            hoverable={true}
-            style={cardStyle}
-            bordered={true}
-            title="Аудиовызов"
-            actions={[<Button type="primary">Играть!</Button>]}
+      {go ? (
+        <Row justify="space-around" align="middle">
+          <Link
+            to={{
+              pathname: "/games/audiocall",
+              //@ts-ignore
+              words: words.slice(4),
+            }}
           >
-            <Meta
-              style={metaStyle}
-              avatar={<img src={speaker} alt="speaker" />}
-            />
-          </Card>
-        </Link>
-        <Link
-          to={{
-            pathname: "/games/sprint",
-            //@ts-ignore
-            words: allWords,
-          }}
-        >
-          <Card
-            hoverable={true}
-            style={cardStyle}
-            bordered={true}
-            title="Спринт"
-            actions={[<Button type="primary">Играть!</Button>]}
+            <Card
+              hoverable={true}
+              style={cardStyle}
+              bordered={true}
+              title="Аудиовызов"
+              actions={[<Button type="primary">Играть!</Button>]}
+            >
+              <Meta
+                style={metaStyle}
+                avatar={<img src={speaker} alt="speaker" />}
+              />
+            </Card>
+          </Link>
+          <Link
+            to={{
+              pathname: "/games/sprint",
+              //@ts-ignore
+              words: allWords,
+            }}
           >
-            <Meta
-              style={metaStyle}
-              avatar={<img src={sprint} alt="sprint" />}
-            />
-          </Card>
-        </Link>
-        <Link
-          to={{
-            pathname: "/games/savannah",
-            //@ts-ignore
-            words: words,
-          }}
-        >
-          <Card
-            hoverable={true}
-            style={cardStyle}
-            bordered={true}
-            title="Саванна"
-            actions={[<Button type="primary">Играть!</Button>]}
+            <Card
+              hoverable={true}
+              style={cardStyle}
+              bordered={true}
+              title="Спринт"
+              actions={[<Button type="primary">Играть!</Button>]}
+            >
+              <Meta
+                style={metaStyle}
+                avatar={<img src={sprint} alt="sprint" />}
+              />
+            </Card>
+          </Link>
+          <Link
+            to={{
+              pathname: "/games/savannah",
+              //@ts-ignore
+              words: words,
+            }}
           >
-            <Meta
-              style={metaStyle}
-              avatar={<img src={savannah} alt="savannah" />}
-            />
-          </Card>
-        </Link>
-        <Link
-          to={{
-            pathname: "/games/ourgame",
-            //@ts-ignore
-            words: words,
-          }}
-        >
-          <Card
-            hoverable={true}
-            style={cardStyle}
-            bordered={true}
-            title="Наша игра"
-            actions={[<Button type="primary">Играть!</Button>]}
+            <Card
+              hoverable={true}
+              style={cardStyle}
+              bordered={true}
+              title="Саванна"
+              actions={[<Button type="primary">Играть!</Button>]}
+            >
+              <Meta
+                style={metaStyle}
+                avatar={<img src={savannah} alt="savannah" />}
+              />
+            </Card>
+          </Link>
+          <Link
+            to={{
+              pathname: "/games/ourgame",
+              //@ts-ignore
+              words: words,
+            }}
           >
-            <Meta style={metaStyle} avatar={<img src={card} alt="card" />} />
-          </Card>
-        </Link>
-      </Row>
+            <Card
+              hoverable={true}
+              style={cardStyle}
+              bordered={true}
+              title="Наша игра"
+              actions={[<Button type="primary">Играть!</Button>]}
+            >
+              <Meta style={metaStyle} avatar={<img src={card} alt="card" />} />
+            </Card>
+          </Link>
+        </Row>
+      ) : (
+        <Spin size="large" />
+      )}
     </>
   );
 }

@@ -12,6 +12,7 @@ import { State } from "../../redux/reducer/rootReducer";
 import ProgressBar from "../game_features/GameProgress";
 import FullscreenGame from "../fullscreen_game/FullscreenGame";
 import GameCountWords from "../game_features/GameCountWords";
+import { setUserWords } from "../../redux/action/userAction";
 
 const preloaderStyle: React.CSSProperties = {
   position: "absolute",
@@ -41,7 +42,9 @@ function setRandomIndexWords(min: number, max: number) {
 export default function OurgameGame({ words, setStart }: Props) {
   const dispatch = useDispatch();
   const soundState = useSelector((state: State) => state.savannah.sound);
-  const { userWords } = useSelector((state: State) => state.user);
+  const { userWords, token, userId } = useSelector(
+    (state: State) => state.user
+  );
   const [state, setState] = useState<any>({
     wordsBtns: [
       { wordTranslate: " " },
@@ -59,12 +62,13 @@ export default function OurgameGame({ words, setStart }: Props) {
   const [streakStat, setStreakStat] = useState(0);
 
   function handlerClick(target: any) {
-    GameCountWords(userWords, true);
     if (state.click) {
       return;
     }
     if (words) {
-      if (target === state.word["image"]) {
+      if (target["image"] === state.word["image"]) {
+        GameCountWords(userWords, state.word["id"], true, token, userId);
+
         setStreak(streak + 1);
         if (soundState) {
           soundSuccess();
@@ -75,6 +79,7 @@ export default function OurgameGame({ words, setStart }: Props) {
           click: true,
         });
       } else {
+        GameCountWords(userWords, state.word["id"], false, token, userId);
         if (streak > streakStat) {
           setStreakStat(streak);
         }
@@ -89,6 +94,7 @@ export default function OurgameGame({ words, setStart }: Props) {
         });
       }
     }
+    dispatch(setUserWords(token, userId));
   }
 
   function handlerKey(event: any) {
@@ -201,7 +207,7 @@ export default function OurgameGame({ words, setStart }: Props) {
                     : { background: "rgba(255,255,255,0.75)" }
                 }
                 key={i}
-                onClick={() => handlerClick(e["image"])}
+                onClick={() => handlerClick(e)}
               />
             );
           })

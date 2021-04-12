@@ -26,14 +26,50 @@ export default function Authorization({ setVisible }: Props) {
     if (res.status === 200) {
       const { message, name, token, userId, refreshToken } = res;
       const stat = await Api.getUserStat(userId, token);
-      console.log(stat);
+      const date = new Date();
+      const today = `${
+        date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+      }.${
+        date.getMonth() + 1 < 10
+          ? "0" + (date.getMonth() + 1)
+          : date.getMonth() + 1
+      }.${date.getFullYear()}`;
 
-      if (stat.status === 404)
-        console.log(
+      if (stat.status === 404) {
+        Api.setUserStat(
+          token,
+          userId,
+          0,
+          today,
+          { [today]: 0 },
+          {
+            Sprint: 0,
+            Savannah: 0,
+            Our: 0,
+            Audiocall: 0,
+          },
+          {
+            Sprint: { percent: 0 },
+            Savannah: { percent: 0 },
+            Our: { percent: 0 },
+            Audiocall: { percent: 0 },
+          },
+          {
+            Sprint: 0,
+            Savannah: 0,
+            Our: 0,
+            Audiocall: 0,
+          }
+        );
+      } else {
+        if (stat.data.optional.today !== today) {
+          const allLearnedWords: Object = stat.data.optional.allLearnedWords;
           Api.setUserStat(
             token,
             userId,
             0,
+            today,
+            { ...allLearnedWords, [today]: 0 },
             {
               Sprint: 0,
               Savannah: 0,
@@ -52,8 +88,10 @@ export default function Authorization({ setVisible }: Props) {
               Our: 0,
               Audiocall: 0,
             }
-          )
-        );
+          );
+        }
+        console.log(stat);
+      }
       const words: any = await Api.getAllUserWord(token, userId);
       if (words.status === 200) {
         const { data } = words;

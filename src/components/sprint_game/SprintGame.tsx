@@ -12,6 +12,8 @@ import { State } from "../../redux/reducer/rootReducer";
 import FullscreenGame from "../fullscreen_game/FullscreenGame";
 import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
 import SprintTimer from "./SprintTimer";
+import { setUserWords } from "../../redux/action/userAction";
+import GameCountWords from "../game_features/GameCountWords";
 
 function randomInteger(min: number, max: number) {
   let rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -50,6 +52,9 @@ export default function SprintGame({ words, setStart }: Props) {
   const [streak, setStreak] = useState(0);
   const [streakStat, setStreakStat] = useState(0);
   const [time, setTime] = useState<boolean>(false);
+  const { userWords, token, userId } = useSelector(
+    (state: State) => state.user
+  );
 
   function handlerClick(arg: boolean) {
     if (state.click) {
@@ -58,6 +63,7 @@ export default function SprintGame({ words, setStart }: Props) {
     const condition = state.wordsBtns["word"] === state.word["word"];
     if (words) {
       if (condition === arg) {
+        GameCountWords(userWords, state.word["id"], true, token, userId);
         setStreak(streak + 1);
         if (soundState) {
           soundSuccess();
@@ -68,6 +74,7 @@ export default function SprintGame({ words, setStart }: Props) {
           click: true,
         });
       } else {
+        GameCountWords(userWords, state.word["id"], false, token, userId);
         if (streak > streakStat) {
           setStreakStat(streak);
         }
@@ -81,6 +88,7 @@ export default function SprintGame({ words, setStart }: Props) {
           click: true,
         });
       }
+      dispatch(setUserWords(token, userId));
     }
   }
 
