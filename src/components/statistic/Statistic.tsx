@@ -64,6 +64,7 @@ export default function Statistic() {
     Our: 0,
     Audiocall: 0,
   });
+  const [chartStat, setChartStat] = useState<any>([[0], [0]]);
 
   useEffect(() => {
     Api.getUserStat(userId, token).then((response) => {
@@ -83,6 +84,16 @@ export default function Statistic() {
         setStreak(response.data.optional.streak);
         setData({ ...objGames });
         setPercent(response.data.optional.percent);
+        const keysLearned = [];
+        const valuesLearned = [];
+        for (const [key, value] of Object.entries(
+          response.data.optional.allLearnedWords
+        )) {
+          keysLearned.push(key);
+          valuesLearned.push(value);
+        }
+
+        setChartStat([keysLearned, valuesLearned]);
       }
     });
   }, []);
@@ -97,14 +108,14 @@ export default function Statistic() {
   }
 
   let newWords: any = [];
-  console.log("words ", words);
+
   for (let key in words) {
     if (words[key] === 0) continue;
     const wordGame = [];
     for (let i in words[key]) {
       wordGame.push(words[key][i]);
     }
-    console.log(wordGame);
+
     const idNewWords = newWords ? newWords.map((e: any) => e["id"]) : [];
     const newWordsFiltred = wordGame.filter(
       (e: any) => !idNewWords.includes(e["id"])
@@ -112,10 +123,10 @@ export default function Statistic() {
     newWords = [...newWords, ...newWordsFiltred];
   }
 
-  console.log(newWords);
+  console.log(chartStat);
 
   const dataText = [
-    `Слов изучено сегодня - ${newWords.length}`,
+    `Слов изучено сегодня - ${chartStat[1].reduce((a: any, e: any) => a + e)}`,
     `Процент правильных ответов сегодня - ${sumPercent.toFixed(2)}%`,
   ];
 
@@ -125,13 +136,25 @@ export default function Statistic() {
         id: "basic-bar",
       },
       xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+        categories: chartStat[0],
       },
     },
     series: [
       {
-        name: "series-1",
-        data: [30, 40, 45, 50, 49, 60, 70, 91],
+        name: "Изученные слова",
+        data: chartStat[1],
+      },
+    ],
+    series2: [
+      {
+        name: "Всего изучено слов",
+        data: chartStat[1].map((e: any, i: number) =>
+          i !== 0
+            ? chartStat[1]
+                .slice(0, i + 1)
+                .reduce((acc: any, el: any) => acc + el)
+            : e
+        ),
       },
     ],
   };
@@ -156,18 +179,24 @@ export default function Statistic() {
           renderItem={(item) => <List.Item>{item}</List.Item>}
         />
         <div className="chart_container">
-          <Chart
-            options={chartState.options}
-            series={chartState.series}
-            type="bar"
-            width="500"
-          />
-          <Chart
-            options={chartState.options}
-            series={chartState.series}
-            type="line"
-            width="500"
-          />
+          <div>
+            <h3>За каждый день</h3>
+            <Chart
+              options={chartState.options}
+              series={chartState.series}
+              type="bar"
+              width="500"
+            />
+          </div>
+          <div>
+            <h3>Увеличение общего количества</h3>
+            <Chart
+              options={chartState.options}
+              series={chartState.series2}
+              type="line"
+              width="500"
+            />
+          </div>
         </div>
       </div>
     </Content>

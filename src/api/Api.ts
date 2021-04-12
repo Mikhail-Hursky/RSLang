@@ -66,7 +66,6 @@ export const Api = {
         return { data: [...response.data], status: 200 };
       });
     const timeStop = Date.now();
-    console.log(timeStart - timeStop);
 
     return await res;
   },
