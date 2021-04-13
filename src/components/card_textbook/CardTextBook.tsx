@@ -12,9 +12,10 @@ import "./CardTextBook.scss";
 
 interface Props {
   word: any;
+  setUpdate(value: boolean): void;
 }
 
-export function CardDeleteTextBook({ word }: Props) {
+export function CardDeleteTextBook({ word, setUpdate }: Props) {
   const { userId, userWords, token } = useSelector(
     (state: State) => state.user
   );
@@ -72,7 +73,7 @@ export function CardDeleteTextBook({ word }: Props) {
   );
 }
 
-export function CardHardTextBook({ word }: Props) {
+export function CardHardTextBook({ word, setUpdate }: Props) {
   const { userId, userWords, token } = useSelector(
     (state: State) => state.user
   );
@@ -130,7 +131,7 @@ export function CardHardTextBook({ word }: Props) {
   );
 }
 
-export function CardLearnTextBook({ word }: Props) {
+export function CardLearnTextBook({ word, setUpdate }: Props) {
   const { userId, userWords, token } = useSelector(
     (state: State) => state.user
   );

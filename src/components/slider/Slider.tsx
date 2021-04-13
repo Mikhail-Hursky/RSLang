@@ -16,6 +16,9 @@ export default function PositionCarouselDemo() {
   const [deleteWords, setDeleteWords] = useState<null | []>(null);
   const [learnWords, setLearnWords] = useState<null | []>(null);
   const [hardWords, setHardWords] = useState<null | []>(null);
+  const [updateDelete, setUpdateDelete] = useState(false);
+  const [updateLearn, setUpdateLearn] = useState(false);
+  const [updateHard, setUpdateHard] = useState(false);
   const [pageDelete, setPageDelete] = useState(1);
   const [pageLearn, setPageLearn] = useState(1);
   const [pageHard, setPageHard] = useState(1);
@@ -45,11 +48,15 @@ export default function PositionCarouselDemo() {
     Api.getAllDeleteUserWord(userId, token).then((res) =>
       setDeleteWords(res.data)
     );
+  }, [updateDelete]);
+  useEffect(() => {
     Api.getAllLearnUserWord(userId, token).then((res) =>
       setLearnWords(res.data)
     );
+  }, [updateLearn]);
+  useEffect(() => {
     Api.getAllHardUserWord(userId, token).then((res) => setHardWords(res.data));
-  }, []);
+  }, [updateHard]);
 
   return (
     <>
@@ -66,7 +73,13 @@ export default function PositionCarouselDemo() {
                     {learnWords
                       .slice((pageLearn - 1) * 20, pageLearn * 20)
                       .map((word: any) => {
-                        return <CardLearnTextBook key={word._id} word={word} />;
+                        return (
+                          <CardLearnTextBook
+                            setUpdate={setUpdateLearn}
+                            key={word._id}
+                            word={word}
+                          />
+                        );
                       })}
                     <Pagination
                       onChange={learnOnChange}
@@ -97,12 +110,18 @@ export default function PositionCarouselDemo() {
                 {hardWords.length > 0 ? (
                   <>
                     {hardWords
-                      .slice((pageLearn - 1) * 20, pageLearn * 20)
+                      .slice((pageHard - 1) * 20, pageHard * 20)
                       .map((word: any) => {
-                        return <CardHardTextBook key={word._id} word={word} />;
+                        return (
+                          <CardHardTextBook
+                            setUpdate={setUpdateHard}
+                            key={word._id}
+                            word={word}
+                          />
+                        );
                       })}
                     <Pagination
-                      onChange={learnOnChange}
+                      onChange={hardOnChange}
                       total={hardWords.length}
                       defaultPageSize={20}
                       defaultCurrent={1}
@@ -130,12 +149,18 @@ export default function PositionCarouselDemo() {
                 {deleteWords.length > 0 ? (
                   <>
                     {deleteWords
-                      .slice((pageLearn - 1) * 20, pageLearn * 20)
+                      .slice((pageDelete - 1) * 20, pageDelete * 20)
                       .map((word: any) => {
-                        return <CardDeleteTextBook key={word._id} word={word} />;
+                        return (
+                          <CardDeleteTextBook
+                            setUpdate={setUpdateDelete}
+                            key={word._id}
+                            word={word}
+                          />
+                        );
                       })}
                     <Pagination
-                      onChange={learnOnChange}
+                      onChange={deleteOnChange}
                       total={deleteWords.length}
                       defaultPageSize={20}
                       defaultCurrent={1}
