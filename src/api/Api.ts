@@ -137,9 +137,14 @@ export const Api = {
   },
 
   deleteUserWord: async (token: string, userId: string, wordId: string) => {
-    axios.delete(URL + `users/${userId}/words/${wordId}`, {
-      headers: { Authorization: "Bearer " + token },
-    });
+    const res = axios
+      .delete(URL + `users/${userId}/words/${wordId}`, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((response: any) => {
+        return response.status;
+      });
+    return res;
   },
 
   getUserStat: async (userId: string, token: string) => {

@@ -28,19 +28,7 @@ export default function Content() {
           <Route path="/team" component={Team} />
           <Route path="/info" component={Promo} />
           <Route exact path="/" component={Home} />
-          <Route path="*">
-            <Result
-              status="404"
-              title="404"
-              subTitle="Извините, страница, которую вы посетили, не существует."
-              extra={
-                <Link to="/">
-                  <Button type="primary">Вернуться домой</Button>
-                </Link>
-              }
-            />
-            ,
-          </Route>
+
           {message === "Authenticated" ? (
             <>
               <Route exact path="/games" component={Games} />
@@ -57,6 +45,19 @@ export default function Content() {
           ) : (
             <></>
           )}
+          <Route path="*">
+            <Result
+              status="404"
+              title="404"
+              subTitle="Извините, страница, которую вы посетили, не существует."
+              extra={
+                <Link to="/">
+                  <Button type="primary">Вернуться домой</Button>
+                </Link>
+              }
+            />
+            ,
+          </Route>
         </Switch>
       </Layout.Content>
     </>

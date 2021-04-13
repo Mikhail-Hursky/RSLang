@@ -119,10 +119,8 @@ export default function Buttons({ isHard, wordId, setIdWord }: Props) {
           onClick={() => {
             setLoadingDelete(true);
             const body = {
-              difficulty: "HARD",
+              difficulty: "DELETED",
               optional: {
-                rightCount: 0,
-                notRightCount: 0,
               },
             };
             Api.setUserWord(token, userId, wordId, "DELETED")
