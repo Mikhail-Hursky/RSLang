@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Carousel, Pagination, Spin } from "antd";
 
 import "./Slider.scss";
-import {CardDeleteTextBook, CardHardTextBook, CardLearnTextBook} from "../card_textbook/CardTextBook";
+import {
+  CardDeleteTextBook,
+  CardHardTextBook,
+  CardLearnTextBook,
+} from "../card_textbook/CardTextBook";
 import { State } from "../../redux/reducer/rootReducer";
 import { useSelector } from "react-redux";
 import { Api } from "../../api/Api";
 
 export default function PositionCarouselDemo() {
   const { token, userId } = useSelector((state: State) => state.user);
-  const [deleteWords, setDeleteWords] = useState([]);
-  const [learnWords, setLearnWords] = useState([]);
-  const [hardWords, setHardWords] = useState([]);
+  const [deleteWords, setDeleteWords] = useState<null | []>(null);
+  const [learnWords, setLearnWords] = useState<null | []>(null);
+  const [hardWords, setHardWords] = useState<null | []>(null);
   const [pageDelete, setPageDelete] = useState(1);
   const [pageLearn, setPageLearn] = useState(1);
   const [pageHard, setPageHard] = useState(1);
@@ -55,20 +59,28 @@ export default function PositionCarouselDemo() {
             <h3>Изученные слова</h3>
           </div>
           <div style={{ padding: "10px" }}>
-            {learnWords.length > 0 ? (
+            {learnWords ? (
               <>
-                {learnWords
-                  .slice((pageLearn - 1) * 20, pageLearn * 20)
-                  .map((word: any) => {
-                    return <CardLearnTextBook key={word._id} word={word} />;
-                  })}
-                <Pagination
-                  onChange={learnOnChange}
-                  total={learnWords.length}
-                  defaultPageSize={20}
-                  defaultCurrent={1}
-                  showSizeChanger={false}
-                />
+                {learnWords.length > 0 ? (
+                  <>
+                    {learnWords
+                      .slice((pageLearn - 1) * 20, pageLearn * 20)
+                      .map((word: any) => {
+                        return <CardLearnTextBook key={word._id} word={word} />;
+                      })}
+                    <Pagination
+                      onChange={learnOnChange}
+                      total={learnWords.length}
+                      defaultPageSize={20}
+                      defaultCurrent={1}
+                      showSizeChanger={false}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <h2>У вас пока нет изученных слов</h2>
+                  </>
+                )}
               </>
             ) : (
               <Spin size="large" />
@@ -80,20 +92,28 @@ export default function PositionCarouselDemo() {
             <h3>Сложные слова</h3>
           </div>
           <div style={{ padding: "10px" }}>
-            {hardWords.length > 0 ? (
+            {hardWords ? (
               <>
-                {hardWords
-                  .slice((pageHard - 1) * 20, pageHard * 20)
-                  .map((word: any) => {
-                    return <CardHardTextBook key={word._id} word={word} />;
-                  })}
-                <Pagination
-                  onChange={hardOnChange}
-                  total={hardWords.length}
-                  defaultPageSize={20}
-                  defaultCurrent={1}
-                  showSizeChanger={false}
-                />
+                {hardWords.length > 0 ? (
+                  <>
+                    {hardWords
+                      .slice((pageLearn - 1) * 20, pageLearn * 20)
+                      .map((word: any) => {
+                        return <CardHardTextBook key={word._id} word={word} />;
+                      })}
+                    <Pagination
+                      onChange={learnOnChange}
+                      total={hardWords.length}
+                      defaultPageSize={20}
+                      defaultCurrent={1}
+                      showSizeChanger={false}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <h2>У вас пока нет сложных слов</h2>
+                  </>
+                )}
               </>
             ) : (
               <Spin size="large" />
@@ -105,20 +125,28 @@ export default function PositionCarouselDemo() {
             <h3>Удаленные слова</h3>
           </div>
           <div style={{ padding: "10px" }}>
-            {deleteWords.length > 0 ? (
+            {deleteWords ? (
               <>
-                {deleteWords
-                  .slice((pageDelete - 1) * 20, pageDelete * 20)
-                  .map((word: any) => {
-                    return <CardDeleteTextBook key={word._id} word={word} />;
-                  })}
-                <Pagination
-                  onChange={deleteOnChange}
-                  total={deleteWords.length}
-                  defaultPageSize={20}
-                  defaultCurrent={1}
-                  showSizeChanger={false}
-                />
+                {deleteWords.length > 0 ? (
+                  <>
+                    {deleteWords
+                      .slice((pageLearn - 1) * 20, pageLearn * 20)
+                      .map((word: any) => {
+                        return <CardDeleteTextBook key={word._id} word={word} />;
+                      })}
+                    <Pagination
+                      onChange={learnOnChange}
+                      total={deleteWords.length}
+                      defaultPageSize={20}
+                      defaultCurrent={1}
+                      showSizeChanger={false}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <h2>У вас пока нет удалленых слов</h2>
+                  </>
+                )}
               </>
             ) : (
               <Spin size="large" />
