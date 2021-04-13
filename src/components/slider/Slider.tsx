@@ -48,15 +48,11 @@ export default function PositionCarouselDemo() {
     Api.getAllDeleteUserWord(userId, token).then((res) =>
       setDeleteWords(res.data)
     );
-  }, [updateDelete]);
-  useEffect(() => {
     Api.getAllLearnUserWord(userId, token).then((res) =>
       setLearnWords(res.data)
     );
-  }, [updateLearn]);
-  useEffect(() => {
     Api.getAllHardUserWord(userId, token).then((res) => setHardWords(res.data));
-  }, [updateHard]);
+  }, [updateDelete, updateLearn, updateHard]);
 
   return (
     <>
