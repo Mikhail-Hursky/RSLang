@@ -16,6 +16,8 @@ export default function Category() {
   const [words, setWords] = useState<any | null>([]);
   const [gameWords, setGameWords] = useState<any>([]);
   const group = useSelector((state: State) => state.setting.group);
+  const { settingWords } = useSelector((state: State) => state.setting);
+  const [page, setPage] = useState(1);
   const { token, userId } = useSelector((state: State) => state.user);
   const categories = CATEGORIES_WORDS;
   let indexCategory = group;
@@ -62,7 +64,10 @@ export default function Category() {
           to={{
             pathname: "/games",
             //@ts-ignore
-            words: gameWords,
+            words: gameWords.slice(
+              (page - 1) * 20 !== 0 ? (page - 5) * 20 : (page - 1) * 20,
+              settingWords + 4
+            ),
           }}
         >
           <Button type="primary" style={btnGameStyle}>
@@ -71,7 +76,12 @@ export default function Category() {
         </Link>
       </h2>
       {words.length > 0 ? (
-        <PginationBlock bgStyle={bgStyle} words={words} />
+        <PginationBlock
+          bgStyle={bgStyle}
+          words={words}
+          page={page}
+          setPage={setPage}
+        />
       ) : (
         <Spin size="large" />
       )}

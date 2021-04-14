@@ -66,8 +66,9 @@ export default function OurgameGame({ words, setStart }: Props) {
       return;
     }
     if (words) {
+      const wordCount = state.word["id"] || state.word["_id"];
       if (target["image"] === state.word["image"]) {
-        GameCountWords(userWords, state.word["id"], true, token, userId);
+        GameCountWords(userWords, wordCount, true, token, userId);
 
         setStreak(streak + 1);
         if (soundState) {
@@ -79,7 +80,7 @@ export default function OurgameGame({ words, setStart }: Props) {
           click: true,
         });
       } else {
-        GameCountWords(userWords, state.word["id"], false, token, userId);
+        GameCountWords(userWords, wordCount, false, token, userId);
         if (streak > streakStat) {
           setStreakStat(streak);
         }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, Pagination, Spin } from "antd";
+import { Button, Carousel, Pagination, Spin } from "antd";
 
 import "./Slider.scss";
 import {
@@ -10,6 +10,7 @@ import {
 import { State } from "../../redux/reducer/rootReducer";
 import { useSelector } from "react-redux";
 import { Api } from "../../api/Api";
+import { Link } from "react-router-dom";
 
 export default function PositionCarouselDemo() {
   const { token, userId } = useSelector((state: State) => state.user);
@@ -60,6 +61,15 @@ export default function PositionCarouselDemo() {
         <div>
           <div className="slide" style={contentStyle}>
             <h3>Изученные слова</h3>
+            <Link
+              to={{
+                pathname: "/games",
+                //@ts-ignore
+                words: learnWords,
+              }}
+            >
+              <Button type="primary">играть!</Button>
+            </Link>
           </div>
           <div style={{ padding: "10px" }}>
             {learnWords ? (
@@ -99,6 +109,15 @@ export default function PositionCarouselDemo() {
         <div>
           <div className="slide" style={contentStyle}>
             <h3>Сложные слова</h3>
+            <Link
+              to={{
+                pathname: "/games",
+                //@ts-ignore
+                words: hardWords,
+              }}
+            >
+              <Button type="primary">играть!</Button>
+            </Link>
           </div>
           <div style={{ padding: "10px" }}>
             {hardWords ? (
@@ -138,6 +157,17 @@ export default function PositionCarouselDemo() {
         <div>
           <div className="slide" style={contentStyle}>
             <h3>Удаленные слова</h3>
+            <Link
+              to={{
+                pathname: "/games",
+                //@ts-ignore
+                words: deleteWords,
+              }}
+            >
+              <Button type="primary" style={{ alignSelf: "center" }}>
+                играть!
+              </Button>
+            </Link>
           </div>
           <div style={{ padding: "10px" }}>
             {deleteWords ? (

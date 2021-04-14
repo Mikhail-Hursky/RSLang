@@ -62,8 +62,9 @@ export default function SprintGame({ words, setStart }: Props) {
     }
     const condition = state.wordsBtns["word"] === state.word["word"];
     if (words) {
+      const wordCount = state.word["id"] || state.word["_id"];
       if (condition === arg) {
-        GameCountWords(userWords, state.word["id"], true, token, userId);
+        GameCountWords(userWords, wordCount, true, token, userId);
         setStreak(streak + 1);
         if (soundState) {
           soundSuccess();
@@ -74,7 +75,7 @@ export default function SprintGame({ words, setStart }: Props) {
           click: true,
         });
       } else {
-        GameCountWords(userWords, state.word["id"], false, token, userId);
+        GameCountWords(userWords, wordCount, false, token, userId);
         if (streak > streakStat) {
           setStreakStat(streak);
         }

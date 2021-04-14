@@ -17,10 +17,17 @@
   opacity: 1;
 }
 
-.slide h3{
+.slide {
+  display: flex;
+justify-content: center;
+    h3{
   font-family: 'Poiret One', cursive;
   font-size: 30px;
   font-weight: bold;
   color: #df168b;
   text-align: center;
+}
+    a {
+      margin-left: 10px;
+    }
 }

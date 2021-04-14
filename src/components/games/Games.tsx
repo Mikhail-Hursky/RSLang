@@ -86,6 +86,8 @@ export default function Games(props: any) {
     }
   }, [group]);
 
+  console.log(allWords.length);
+
   return (
     <>
       {!props.location.words ? (
@@ -130,7 +132,7 @@ export default function Games(props: any) {
             to={{
               pathname: "/games/sprint",
               //@ts-ignore
-              words: allWords,
+              words: allWords.length === 600 ? allWords : allWords.slice(3),
             }}
           >
             <Card

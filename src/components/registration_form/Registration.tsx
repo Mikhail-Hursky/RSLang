@@ -43,7 +43,7 @@ export default function Registration() {
     <Form form={form} name="horizontal_login" onFinish={onFinish}>
       <Form.Item
         name="name"
-        rules={[{ required: true, message: "Пожалуйста введите ваше имя!" }]}
+        rules={[{ required: true, message: "Пожалуйста, введите ваше имя!" }]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
@@ -57,7 +57,7 @@ export default function Registration() {
           {
             type: "email",
             required: true,
-            message: "Пожалуйста введите ваш email!",
+            message: "Пожалуйста, введите ваш email!",
           },
         ]}
       >
@@ -68,12 +68,12 @@ export default function Registration() {
       </Form.Item>
       <Form.Item
         name="password"
-        rules={[{ required: true, message: "Пожалуйста введите ваш пароль!" }]}
+        rules={[{ required: true, message: "Пожалуйста, введите ваш пароль!" }]}
       >
         <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
-          placeholder="Пороль"
+          placeholder="Пароль"
         />
       </Form.Item>
       <Form.Item name="avatar" valuePropName="filedata">

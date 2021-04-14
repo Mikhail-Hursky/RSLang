@@ -23,6 +23,7 @@ export default function GameCountWords(
     .map((e: any) => e["wordId"])
     .includes(wordId);
 
+
   if (wordIsLearn) {
     let word = userWords.filter((e: any) => e["wordId"] === wordId)[0];
     difficulty = word["difficulty"];

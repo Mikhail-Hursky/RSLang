@@ -63,8 +63,9 @@ export default function SavannahGame({ words, setStart }: Props) {
 
   function handlerClick(target: any) {
     if (words) {
+      const wordCount = state.word["id"] || state.word["_id"];
       if (target === state.word["wordTranslate"]) {
-        GameCountWords(userWords, state.word["id"], true, token, userId);
+        GameCountWords(userWords, wordCount, true, token, userId);
         setStreak(streak + 1);
         if (soundState) {
           soundSuccess();
@@ -76,7 +77,7 @@ export default function SavannahGame({ words, setStart }: Props) {
         });
         dispatch(topBg(+100 / words.length));
       } else {
-        GameCountWords(userWords, state.word["id"], false, token, userId);
+        GameCountWords(userWords, wordCount, false, token, userId);
         if (streak > streakStat) {
           setStreakStat(streak);
         }

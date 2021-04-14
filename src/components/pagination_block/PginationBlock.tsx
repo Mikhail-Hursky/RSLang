@@ -9,13 +9,14 @@ import "./PginationBlock.scss";
 interface Props {
   words: Word[];
   bgStyle: React.CSSProperties;
+  page: any;
+  setPage: any;
 }
 
 export default function PginationBlock(props: Props) {
   const { userWords } = useSelector((state: State) => state.user);
   const { settingCards } = useSelector((state: State) => state.setting);
   const delete_word = userWords.filter((e: any) => e.difficulty === "DELETED");
-  const [page, setPage] = useState(1);
   const [idWordDelete, setIdWord] = useState("");
   const [words, setWords] = useState(
     props.words.filter((res: any) => {
@@ -35,7 +36,7 @@ export default function PginationBlock(props: Props) {
 
   const onChange = (e: any) => {
     window.scrollTo(0, 0);
-    setPage(e);
+    props.setPage(e);
   };
 
   const itemRender = (current: any, type: any, originalElement: any): any => {
@@ -49,7 +50,7 @@ export default function PginationBlock(props: Props) {
     <>
       <div className="wrap-list-word">
         {words
-          .slice((page - 1) * settingCards, page * settingCards)
+          .slice((props.page - 1) * settingCards, props.page * settingCards)
           .map((item) => (
             <CardWords
               key={item.id}

@@ -42,9 +42,11 @@ export default function AnswerBtn({
   );
   const dispatch = useDispatch();
 
+  const wordCount = word["id"] || word["_id"];
+
   const handlerClickFail = (e: any) => {
     if (!isReplied) {
-      GameCountWords(userWords, word["id"], true, token, userId);
+      GameCountWords(userWords, wordCount, true, token, userId);
       if (streak > streakStat) {
         setStreakStat(streak);
       }
@@ -58,9 +60,10 @@ export default function AnswerBtn({
     }
   };
 
+
   const handlerClickSuccess = (e: any) => {
     if (!isReplied) {
-      GameCountWords(userWords, word["id"], false, token, userId);
+      GameCountWords(userWords, wordCount, false, token, userId);
       setStreak(streak + 1);
       setStat({ ...stat, successWords: [...stat.successWords, word] });
       setIsReplied(true);
