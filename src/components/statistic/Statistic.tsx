@@ -185,7 +185,7 @@ export default function Statistic() {
               options={chartState.options}
               series={chartState.series}
               type="bar"
-              width="500"
+              width="400"
             />
           </div>
           <div>
@@ -194,7 +194,7 @@ export default function Statistic() {
               options={chartState.options}
               series={chartState.series2}
               type="line"
-              width="500"
+              width="400"
             />
           </div>
         </div>

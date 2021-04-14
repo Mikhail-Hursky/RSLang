@@ -1,5 +1,7 @@
 import React from "react";
 
+import promo from "../../assets/img/promo-description-2.jpg";
+
 import "./Promo-description.scss";
 
 export default function PromoDescription() {
@@ -10,6 +12,7 @@ export default function PromoDescription() {
       <h3>Хотите выучить английский?</h3>
       <h3>С приложением RS Lang это будет не только возможно, но еще легко и увлекательно!</h3>
     </div>
+    <img src={promo} alt="" />
     <p className="description-prev">Вам доступно:</p>
     <ul className="list-description">
       <li>
@@ -34,6 +37,7 @@ export default function PromoDescription() {
         <p>Отслеживать свои успехи</p>
       </li>
     </ul>
+
    </div>
   )
 }

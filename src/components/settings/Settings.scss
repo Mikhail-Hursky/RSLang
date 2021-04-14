@@ -6,7 +6,6 @@ $green: #06842c;
 
 .settings {
   margin-top: 1rem;
-    background: #fff;
     width: 100%;
     padding: 5rem 3rem;
     display: flex;
@@ -23,6 +22,10 @@ $green: #06842c;
       border-left: 2px rgba(0, 0, 0, 0.2) solid;
        width:50%;
        height: 100%;
+      }
+
+      .words_set {
+        padding-right: 10px;
       }
 }
 
@@ -54,26 +57,22 @@ $green: #06842c;
 
  button {
       padding: 0 12px;
-      background-color: #FFF;
-      background-color: #333470;
+      background-color: #1890ff;
       border: none;
-      border: 1px solid #333470;
+      border: 1px solid #1890ff;
       border-radius: 30%;
       font-size: 24px;
-      color: #333470;
       color: #FFF;
       letter-spacing: 2px;
       transition: background-color .3s;
       cursor: pointer;
 
-      button:hover {
-       background-color: #333470;
+      &:hover {
        background-color: #FFF;
-       color: #FFF;
-       color: #333470;
+       color: #1890ff;
      }
-     
-     button:focus {
+
+     &:focus {
        outline: none;
      }
  }
@@ -104,5 +103,26 @@ flex-direction: column;
       label {
         margin: 0;
       }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .settings {
+    padding: 20px;
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .settings {
+    flex-direction: column;
+
+    .settings_main,
+    .settings_words {
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 40px;
+      border-left: none;
+    }
   }
 }

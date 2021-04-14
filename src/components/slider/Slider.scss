@@ -13,7 +13,7 @@
 }
 
 .ant-carousel .slick-dots li.slick-active button {
-  background: #df168b;
+  background: #932a2f;
   opacity: 1;
 }
 
@@ -22,10 +22,18 @@
 justify-content: center;
     h3{
   font-family: 'Poiret One', cursive;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
-  color: #df168b;
+  color: #932a2f;
   text-align: center;
+  text-transform: uppercase;
+}
+
+.slide-one,
+.slide-two,
+.slide-three {
+  height: calc(100vh - 245px);
+  overflow-y: scroll;
 }
     a {
       margin-left: 10px;

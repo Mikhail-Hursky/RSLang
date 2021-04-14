@@ -39,9 +39,9 @@ export default function PositionCarouselDemo() {
   };
 
   const contentStyle = {
-    height: "160px",
+
     color: "#fff",
-    lineHeight: "160px",
+    padding: '30px 0 10px',
     backgroundColor: "#DDD",
   };
 
@@ -71,7 +71,7 @@ export default function PositionCarouselDemo() {
               <Button type="primary">играть!</Button>
             </Link>
           </div>
-          <div style={{ padding: "10px" }}>
+          <div className="slide-one" style={{ padding: "10px" }}>
             {learnWords ? (
               <>
                 {learnWords.length > 0 ? (
@@ -119,7 +119,7 @@ export default function PositionCarouselDemo() {
               <Button type="primary">играть!</Button>
             </Link>
           </div>
-          <div style={{ padding: "10px" }}>
+          <div className="slide-two" style={{ padding: "10px" }}>
             {hardWords ? (
               <>
                 {hardWords.length > 0 ? (
@@ -169,7 +169,7 @@ export default function PositionCarouselDemo() {
               </Button>
             </Link>
           </div>
-          <div style={{ padding: "10px" }}>
+          <div className="slide-three" style={{ padding: "10px" }}>
             {deleteWords ? (
               <>
                 {deleteWords.length > 0 ? (
