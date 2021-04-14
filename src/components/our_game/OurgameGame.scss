@@ -2,7 +2,9 @@
  // position: absolute;
  //    top: 26%;
  //    left: calc((100% - 370px) / 2);
-  width: 450px;
+  // width: 450px;
+  width: 80%;
+  margin: 0 auto;
   padding-top: 50px;
   text-align: center;
    p {
@@ -53,7 +55,7 @@
 
 .ourgame_sound_switch {
       position: absolute;
-      top: 5rem;
+      top: 6rem;
       left: 12rem;
       display: flex;
             button {
@@ -64,7 +66,7 @@
 
 .ourgame_lifes {
 position: absolute;
-top: 5rem;
+top: 6rem;
 right: 2rem;
       img {
             width:32px;
@@ -80,5 +82,7 @@ right: 2rem;
 @media screen and (max-width: 550px) {
   .ourgame_word_contain {
     padding-top: 100px;
+    width: 80%;
+    margin: 0 auto;
   }
 }

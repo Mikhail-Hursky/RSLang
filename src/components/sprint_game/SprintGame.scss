@@ -78,7 +78,7 @@
 
 .sprint_sound_switch {
       position: absolute;
-      top: 5rem;
+      top: 6rem;
       left: 12rem;
       display: flex;
             button {
@@ -89,7 +89,7 @@
 
 .sprint_lifes {
 position: absolute;
-top: 5rem;
+top: 6rem;
 right: 2rem;
       img {
             width:32px;
@@ -104,7 +104,7 @@ right: 2rem;
 
 @media screen and (max-width: 550px) {
   .sprint_lifes {
-    top: 9rem;
+    top: 10rem;
     left: 6rem;
     right: auto;
   }

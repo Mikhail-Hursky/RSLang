@@ -91,7 +91,7 @@ export default function Games(props: any) {
       {!props.location.words ? (
         <Select
           defaultValue="0"
-          style={{ width: 400, margin: "2rem 4.5rem" }}
+          style={{ width: 200, margin: "2rem 0 2rem 4.5rem" }}
           onChange={handleChange}
         >
           <Option value="0">Слова 1 раздела</Option>

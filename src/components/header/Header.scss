@@ -13,7 +13,6 @@ h1.ant-typography {
   display: block;
   padding: 5px;
   border-radius: 50%;
-  // background-color: #f4af4a;
   background-color: #932a2f;
   display: flex;
   justify-content: center;
@@ -23,6 +22,17 @@ h1.ant-typography {
 .logo {
   display: flex;
   align-items: center;
+}
+
+header .ant-space.ant-space-horizontal.ant-space-align-center {
+  cursor: pointer;
+  transition: letter-spacing .3s;
+
+  &:hover {
+    background-color: #001529;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+  }
 }
 
 @media screen and (max-width: 450px) {

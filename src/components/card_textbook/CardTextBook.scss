@@ -1,17 +1,7 @@
 .CardDeleteTextBook {
-  margin: 10px;
-  padding: 5px;
-  height: 200px;
-  background-color: rgba(223, 79, 79, 0.5);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  img {
-    height: 50%;
-    border-radius: 15px;
-  }
+  // background-color: rgba(195, 141, 150, 0.5);
+  background-color: #DDD;
+
   .aboutWord {
     padding: 0 10px;
     width: 60%;
@@ -19,6 +9,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: left;
+
     .group {
       margin: 0;
       padding: 0;
@@ -27,28 +18,10 @@
       border-radius: 15px;
     }
   }
-  .btnGroup {
-    height: 80%;
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
 }
 .CardHardTextBook {
-  margin: 10px;
-  padding: 5px;
-  height: 200px;
-  background-color: rgba(216, 230, 22, 0.5);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  img {
-    height: 50%;
-    border-radius: 15px;
-  }
+  background-color: rgba(188, 184, 224, 0.5);
+
   .aboutWord {
     padding: 0 10px;
     width: 60%;
@@ -67,12 +40,13 @@
         text-align: center;
         border-radius: 15px;
         background-color: rgb(0, 87, 12);
+        background-color: #001529;
       }
       .unsuccessfully {
         width: 40%;
         text-align: center;
         border-radius: 15px;
-        background-color: rgb(219, 0, 0);
+        background-color: #932a2f;
       }
     }
     .group {
@@ -82,30 +56,12 @@
       text-align: center;
       border-radius: 15px;
     }
-  }
-  .btnGroup {
-    height: 80%;
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 }
 
 .CardLearnTextBook {
-  margin: 10px;
-  padding: 5px;
-  height: 200px;
-  background-color: rgba(0, 253, 76, 0.5);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  img {
-    height: 50%;
-    border-radius: 15px;
-  }
+  background-color: rgba(150, 197, 164, 0.5);
+
   .aboutWord {
     padding: 0 10px;
     width: 60%;
@@ -124,12 +80,13 @@
         text-align: center;
         border-radius: 15px;
         background-color: rgb(0, 87, 12);
+        background-color: #001529;
       }
       .unsuccessfully {
         width: 40%;
         text-align: center;
         border-radius: 15px;
-        background-color: rgb(219, 0, 0);
+        background-color: #932a2f;
       }
     }
     .group {
@@ -140,11 +97,104 @@
       border-radius: 15px;
     }
   }
-  .btnGroup {
+
+}
+
+.btnGroup {
+  height: 80%;
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  button.ant-btn.ant-btn-primary.ant-btn-circle.ant-btn-lg.ant-btn-icon-only.ant-btn-dangerous {
+    background-color: #932a2f;
+    border-color: #932a2f;
+    transition: background-color .2s;
+  }
+
+  button.ant-btn.ant-btn-primary.ant-btn-circle.ant-btn-lg.ant-btn-icon-only {
+    background-color: #001529;
+    border-color: #001529;
+  }
+}
+
+.CardLearnTextBook,
+.CardHardTextBook,
+.CardDeleteTextBook {
+  margin: 10px;
+  padding: 5px;
+  padding-left: 15px;
+  height: 250px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  img {
     height: 80%;
-    width: 10%;
-    display: flex;
-    flex-direction: column;
+    border-radius: 15px;
+  }
+
+  .aboutWord .ant-space-item button{
+    background-color: #366b82;
+    border-color: #366b82;
+  }
+
+  .aboutWord h2 {
+    text-transform: uppercase;
+  }
+
+  .aboutWord p {
+    font-size: 18px;
+  }
+
+  h5.ant-typography.group {
+    padding: 5px 0;
+    margin-bottom: 10px;
+    color: #FFF;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .CardLearnTextBook,
+  .CardHardTextBook,
+  .CardDeleteTextBook {
+    padding: 20px 10px;
+    height: auto;
     justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+
+    img {
+      width: 40%;
+      margin-bottom: 20px;
+    }
+
+    .aboutWord {
+      width: 90%;
+      margin: auto;
+    }
+
+    .btnGroup {
+      position: absolute;
+      top: 20px;
+      right: 10px;
+      height: 100px;
+    }
+  }
+}
+
+
+@media screen and (max-width: 650px) {
+  .CardLearnTextBook,
+  .CardHardTextBook,
+  .CardDeleteTextBook {
+
+    img {
+      width: 60%;
+    }
   }
 }

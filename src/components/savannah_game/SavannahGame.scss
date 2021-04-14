@@ -1,9 +1,9 @@
 .savannah_word {
  position: absolute;
- width: 100%;
+ width: 95%;
  text-align: center;
  // left: 48%;
- left: 2rem;
+ left: 3rem;
  transition: 12s ease all;
  color: #fff;
  font-size: 2.5rem;
@@ -37,7 +37,7 @@
 }
 .savannah_sound_switch {
       position: absolute;
-      top: 5rem;
+      top: 6rem;
       left: 12rem;
       display: flex;
             button {
@@ -48,7 +48,7 @@
 
 .savannah_lifes {
 position: absolute;
-top: 5rem;
+top: 6rem;
 right: 2rem;
       img {
             width:32px;
