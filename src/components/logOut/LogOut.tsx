@@ -20,7 +20,7 @@ export default function LogOut({ name }: Props) {
       okText="Да"
       cancelText="Нет"
     >
-      <Layout className="LogOut" onClick={() => console.log("CLICK")}>
+      <Layout className="LogOut">
         <Space>
           <Avatar>icon={<AntDesignOutlined />}</Avatar>
           {name}

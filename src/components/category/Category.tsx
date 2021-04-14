@@ -26,7 +26,6 @@ export default function Category() {
   const bgStyle: React.CSSProperties = {
     backgroundColor: `${colorPageValue}`,
   };
-  console.log(bgStyle);
 
   const btnGameStyle: React.CSSProperties = {
     float: "right",

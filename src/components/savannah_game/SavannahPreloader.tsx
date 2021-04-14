@@ -13,9 +13,8 @@ export default function SavannahPreload({ setStart, wordsArr }: Props) {
   const [words, setWords] = useState<any>(null);
 
   useEffect(() => {
-    console.log(wordsArr);
     setWords(wordsArr);
-}, [words]);
+  }, [words]);
 
   return (
     <>

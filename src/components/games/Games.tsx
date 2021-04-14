@@ -74,7 +74,6 @@ export default function Games(props: any) {
       });
     } else {
       const groupWords = props.location.words;
-      console.log(groupWords);
       let arrayWords: any = setRandomIndexWords(
         0,
         groupWords.length - 1,
@@ -85,8 +84,6 @@ export default function Games(props: any) {
       setGo(true);
     }
   }, [group]);
-
-  console.log(allWords.length);
 
   return (
     <>

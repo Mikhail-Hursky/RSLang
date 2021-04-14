@@ -13,8 +13,12 @@
   justify-content: space-evenly;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .chart_container {
+    width: 290px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
     h3 {
       text-align: center;
     }

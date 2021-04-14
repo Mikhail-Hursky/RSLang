@@ -46,8 +46,6 @@ function StatisticModal({ words, setStart, game, streak }: any) {
         });
         allWords[game] = { ...newWords };
         newWordObj = { ...allWords };
-        console.log(newWordObj);
-        console.log(words[0]);
         if (response.data.optional.percent[game].percent !== 0) {
           percent = +(
             (response.data.optional.percent[game].percent + percent) /
@@ -57,11 +55,9 @@ function StatisticModal({ words, setStart, game, streak }: any) {
         let streakStat = streak[0] > streak[1] ? streak[0] : streak[1];
         const allStreak = response.data.optional.streak;
         let newStreakObj = allStreak;
-        console.log(response.data.optional.streak);
         if (response.data.optional.streak[game] < streakStat) {
           newStreakObj = { ...allStreak, [game]: streakStat };
         }
-        console.log(streakStat);
         const allPercent = response.data.optional.percent;
         const newPercentObj = { ...allPercent, [game]: { percent } };
         const allLearned = response.data.optional.allLearnedWords;

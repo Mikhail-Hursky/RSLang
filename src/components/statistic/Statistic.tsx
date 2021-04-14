@@ -16,8 +16,6 @@ function Spoiler({ games, data, percent, streak }: any) {
     "Серия правильных ответов - ",
   ];
 
-  console.log(games);
-
   return (
     <Collapse accordion>
       {games.map((game: string, index: number) => (
@@ -68,9 +66,7 @@ export default function Statistic() {
 
   useEffect(() => {
     Api.getUserStat(userId, token).then((response) => {
-      console.log(response);
       if (response.status === 200) {
-        console.log(response);
         const obj = {};
         const objGames = games.map((e: any) => {
           let game = response.data.optional.words[e];
@@ -122,8 +118,6 @@ export default function Statistic() {
     );
     newWords = [...newWords, ...newWordsFiltred];
   }
-
-  console.log(chartStat);
 
   const dataText = [
     `Слов изучено сегодня - ${chartStat[1].reduce((a: any, e: any) => a + e)}`,

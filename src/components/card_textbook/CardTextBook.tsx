@@ -180,7 +180,6 @@ export function CardHardTextBook({ word, setUpdate }: Props) {
             type="primary"
             onClick={() => {
               setLoading(true);
-              console.log(word);
               const body = JSON.parse(JSON.stringify(word.userWord));
               body.difficulty = "LEARNED";
               Api.updateUserWord(token, userId, word._id, body).then((res) => {
@@ -276,7 +275,6 @@ export function CardLearnTextBook({ word, setUpdate }: Props) {
             type="primary"
             onClick={() => {
               setLoading(true);
-              console.log(word);
               const body = JSON.parse(JSON.stringify(word.userWord));
               body.difficulty = "HARD";
               Api.updateUserWord(token, userId, word._id, body).then((res) => {

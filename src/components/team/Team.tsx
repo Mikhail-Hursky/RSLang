@@ -3,8 +3,8 @@ import React from "react";
 import { GithubFilled } from "@ant-design/icons";
 
 import teamlead from "../../assets/img/Mikhail2.jpg";
-import developer1 from "../../assets/img/Pavel2.jpg";
-import developer2 from "../../assets/img/Marina2.jpg";
+import developer2 from "../../assets/img/Pavel2.jpg";
+import developer1 from "../../assets/img/Marina2.jpg";
 
 import { DATA_TEAM } from "../../mock-data/dataTeam";
 

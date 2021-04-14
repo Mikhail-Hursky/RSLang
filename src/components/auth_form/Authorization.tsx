@@ -90,7 +90,6 @@ export default function Authorization({ setVisible }: Props) {
             }
           );
         }
-        console.log(stat);
       }
       const words: any = await Api.getAllUserWord(token, userId);
       if (words.status === 200) {

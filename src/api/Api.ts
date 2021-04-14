@@ -19,8 +19,6 @@ export const Api = {
     const res = axios
       .post(URL + "signin", { email, password })
       .then((response: any) => {
-        console.log(response.data);
-
         return { ...response.data, status: 200 };
       })
       .catch(() => {
@@ -197,7 +195,6 @@ export const Api = {
         },
       })
       .then((response: any) => {
-        console.log(response);
         return { data: response.data[0].paginatedResults, status: 200 };
       });
     return res;
@@ -212,7 +209,6 @@ export const Api = {
         },
       })
       .then((response: any) => {
-        console.log(response);
         return { data: response.data[0].paginatedResults, status: 200 };
       });
     return res;
@@ -228,7 +224,6 @@ export const Api = {
         },
       })
       .then((response: any) => {
-        console.log(response);
         return { data: response.data[0].paginatedResults, status: 200 };
       });
     return res;
