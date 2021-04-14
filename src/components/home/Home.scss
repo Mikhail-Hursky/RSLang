@@ -1,0 +1,125 @@
+.wrap-home {
+ display: flex;
+ height: 75vh;
+ font-family: 'Poiret One', cursive;
+ font-size: 20px;
+ background: url(../../assets/img/promo.jpg) no-repeat left center #EDEDED;
+
+.col-right {
+ width: 100%;
+ padding-right: 50px;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ align-items: flex-end;
+
+ .description {
+   width: 60%;
+   padding: 50px 0;
+   font-size: 30px;
+   line-height: 1.3;
+   text-align: right;
+ }
+
+ .button {
+   display: flex;
+   justify-content: flex-end;
+ }
+
+ button {
+   display: block;
+   padding: 10px 20px;
+   margin-left: 20px;
+   background-color: #001529;
+   border: none;
+   border: 1px solid #001529;
+   border-radius: 10px;
+   font-size: 24px;
+   color: #FFF;
+   letter-spacing: 2px;
+   transition: background-color .3s;
+   cursor: pointer;
+ }
+
+ button:hover {
+   background-color: #FFF;
+   color: #001529;
+ }
+
+ button:focus {
+   outline: none;
+ }
+}}
+
+@media screen and (max-width: 1000px) {
+  .wrap-home {
+    .col-right {
+      .description {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .wrap-home {
+    height: auto;
+    padding-bottom: 400px;
+    background: url(../../assets/img/promo.jpg) no-repeat left bottom #EDEDED;
+
+    .col-right .description {
+      width: 90%;
+      margin: 0 auto;
+      padding-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .wrap-home {
+    padding-bottom: 400px;
+    background: url(../../assets/img/promo.jpg) no-repeat center bottom #EDEDED;
+    background-size: 65%;
+
+    .col-right {
+
+      .description {
+        padding: 30px 0;
+        font-size: 26px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrap-home {
+    padding-bottom: 250px;
+    background-size: 45%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrap-home {
+    padding-bottom: 200px;
+    background-size: 40%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .wrap-home {
+
+    .col-right {
+
+      .description {
+        padding: 20px 0;
+        font-size: 20px;
+      }
+
+      button {
+        margin-bottom: 20px;
+        font-size: 20px;
+        text-align: right;
+      }
+    }
+  }
+}

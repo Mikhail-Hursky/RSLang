@@ -1,0 +1,57 @@
+header .ant-col {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+h1.ant-typography {
+  margin-bottom: 0;
+  font-size: 30px;
+}
+
+.item-logo {
+  display: block;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #932a2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+header .ant-space.ant-space-horizontal.ant-space-align-center {
+  cursor: pointer;
+  transition: letter-spacing .3s;
+
+  &:hover {
+    background-color: #001529;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  header.ant-layout-header {
+    padding: 0;
+    padding-left: 10px;
+  }
+
+  header .ant-col button {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  header.ant-layout-header {
+    padding-left: 0;
+  }
+
+  header .ant-col button {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,27 @@
+.words {
+  padding: 0 50px;
+
+  h3 {
+    padding: 0 30px 10px;
+    text-align: center;
+    color: #001529;
+    text-transform: uppercase;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .words {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .words {
+    padding: 0;
+
+    h3 {
+      padding: 0;
+      font-size: 16px;
+    }
+  }
+}

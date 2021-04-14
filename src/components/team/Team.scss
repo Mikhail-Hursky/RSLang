@@ -1,0 +1,113 @@
+.team {
+  padding: 1rem 2rem;
+  background: url(../../assets/img/team.jpg) no-repeat center bottom #FFF;
+  background-size: 400px;
+  padding-bottom: 300px;
+
+  h2 {
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+
+.list-team {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 20px;
+
+  .item {
+    width: 33%;
+  }
+
+  .avatar {
+    width: 100px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .name {
+    font-family: 'Poiret One', cursive;
+    font-size: 24px;
+    font-weight: bold;
+    color: #df168b;
+    text-align: center;
+
+    span {
+      position: relative;
+
+      a {
+        position: absolute;
+        top: -50%;
+        right: -20px;
+        font-size: 20px;
+        color: #001529;
+
+        &:hover {
+          color: #df168b;
+        }
+      }
+    }
+  }
+
+  .position {
+    font-family: 'Poiret One', cursive;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    color: #001529;
+  }
+
+  .description {
+    padding: 0 20px;
+    font-size: 18px;
+    color: #314963;
+    text-align: center;
+  }
+
+  .title-description-work {
+    font-family: 'Poiret One', cursive;
+    font-size: 20px;
+    padding: 0 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+
+    span {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #DDD;
+    }
+  }
+
+  .description-work {
+    padding: 0 20px;
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .list-team {
+    justify-content: center;
+
+    .item {
+      width: 50%;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .list-team {
+    .item {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .team {
+    background-size: 250px;
+    padding-bottom: 200px;
+  }
+}

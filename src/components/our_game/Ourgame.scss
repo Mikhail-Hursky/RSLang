@@ -1,0 +1,66 @@
+.Ourgame {
+ width: 100%;
+ height: 100%;
+ background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+   url(../../assets/img/ourgame.jpg);
+ background-size: cover;
+ background-repeat: no-repeat;
+ padding: 20px;
+ display:flex;
+ flex-direction: column;
+ justify-content:center;
+ align-items:center;
+
+ h2.ant-typography {
+   font-family: 'Poiret One', cursive;
+   font-size: 30px;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+ }
+
+ h3.ant-typography {
+   text-align: center;
+ }
+
+ div.ant-typography {
+   font-size: 16px;
+   text-align: center;
+ }
+}
+
+.OurgameGame {
+ width: 100%;
+ height: 100%;
+ background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+   url(../../assets/img/ourgame.jpg);
+ background-size: cover;
+ background-repeat: no-repeat;
+ padding: 20px;
+ display:flex;
+ flex-direction: column;
+ // justify-content:center;
+ align-items:center;
+ transition: 1s all;
+ user-select: none;
+}
+
+.OurgameGame > div:first-child {
+  min-height: 161px;
+}
+
+@media screen and (max-width: 550px) {
+  .OurgameGame > div:first-child {
+    min-height: 211px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Ourgame {
+    h2.ant-typography {
+      font-size: 24px;
+    }
+    h3.ant-typography {
+      font-size: 20px;
+    }
+  }
+}

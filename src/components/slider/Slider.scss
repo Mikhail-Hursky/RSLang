@@ -1,0 +1,41 @@
+.ant-carousel .slick-dots li,
+.ant-carousel .slick-dots li button {
+  width: 100px;
+  height: 10px;
+}
+
+.ant-carousel .slick-dots li button {
+  display: block;
+  width: 95%;
+  margin: auto;
+  background: #001529;
+  opacity: 1;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  background: #932a2f;
+  opacity: 1;
+}
+
+.slide {
+  display: flex;
+justify-content: center;
+    h3{
+  font-family: 'Poiret One', cursive;
+  font-size: 24px;
+  font-weight: bold;
+  color: #932a2f;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.slide-one,
+.slide-two,
+.slide-three {
+  height: calc(100vh - 245px);
+  overflow-y: scroll;
+}
+    a {
+      margin-left: 10px;
+    }
+}
