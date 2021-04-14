@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/RSLang/static/css/main.a7c2fcec.chunk.css",
+    "main.js": "/RSLang/static/js/main.c55a702f.chunk.js",
+    "main.js.map": "/RSLang/static/js/main.c55a702f.chunk.js.map",
+    "runtime-main.js": "/RSLang/static/js/runtime-main.1be5161f.js",
+    "runtime-main.js.map": "/RSLang/static/js/runtime-main.1be5161f.js.map",
+    "static/css/2.defbd138.chunk.css": "/RSLang/static/css/2.defbd138.chunk.css",
+    "static/js/2.c3c0e660.chunk.js": "/RSLang/static/js/2.c3c0e660.chunk.js",
+    "static/js/2.c3c0e660.chunk.js.map": "/RSLang/static/js/2.c3c0e660.chunk.js.map",
+    "index.html": "/RSLang/index.html",
+    "static/css/2.defbd138.chunk.css.map": "/RSLang/static/css/2.defbd138.chunk.css.map",
+    "static/css/main.a7c2fcec.chunk.css.map": "/RSLang/static/css/main.a7c2fcec.chunk.css.map",
+    "static/js/2.c3c0e660.chunk.js.LICENSE.txt": "/RSLang/static/js/2.c3c0e660.chunk.js.LICENSE.txt",
+    "static/media/Marina2.e4bfd813.jpg": "/RSLang/static/media/Marina2.e4bfd813.jpg",
+    "static/media/Mikhail2.e9a4f6d6.jpg": "/RSLang/static/media/Mikhail2.e9a4f6d6.jpg",
+    "static/media/Pavel2.380b440e.jpg": "/RSLang/static/media/Pavel2.380b440e.jpg",
+    "static/media/AudioCall.scss": "/RSLang/static/media/bg_audiocall.d5c1bdbc.jpg",
+    "static/media/game-audio.5eda8d4e.jpg": "/RSLang/static/media/game-audio.5eda8d4e.jpg",
+    "static/media/game-our.babca0db.jpg": "/RSLang/static/media/game-our.babca0db.jpg",
+    "static/media/game-savanna.b3d39201.jpg": "/RSLang/static/media/game-savanna.b3d39201.jpg",
+    "static/media/game-sprint.258456b2.jpg": "/RSLang/static/media/game-sprint.258456b2.jpg",
+    "static/media/logo.ad178c0d.svg": "/RSLang/static/media/logo.ad178c0d.svg",
+    "static/media/Ourgame.scss": "/RSLang/static/media/ourgame.593e2fc2.jpg",
+    "static/media/promo-description-2.7aaec419.jpg": "/RSLang/static/media/promo-description-2.7aaec419.jpg",
+    "static/media/Home.scss": "/RSLang/static/media/promo.b08c5e12.jpg",
+    "static/media/Savannah.scss": "/RSLang/static/media/savannah_bg.22bfb1b4.jpg",
+    "static/media/Sprint.scss": "/RSLang/static/media/sprint.4f40c361.jpg",
+    "static/media/Team.scss": "/RSLang/static/media/team.e54a526e.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1be5161f.js",
+    "static/css/2.defbd138.chunk.css",
+    "static/js/2.c3c0e660.chunk.js",
+    "static/css/main.a7c2fcec.chunk.css",
+    "static/js/main.c55a702f.chunk.js"
+  ]
+}
