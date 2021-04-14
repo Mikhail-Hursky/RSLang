@@ -2,7 +2,7 @@
   "name": "rs-lang",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Mikhail-Hursky.github.io/",
+  "homepage": "https://mikhail-hursky.github.io/RSLang/",
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
     "@ant-design/icons": "^4.6.2",
