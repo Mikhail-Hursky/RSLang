@@ -25,9 +25,9 @@ export default function Content() {
     <>
       <Layout.Content id="game_fullscreen">
         <Switch>
+          <Route exact path="/" component={Home} />
           <Route path="/team" component={Team} />
           <Route path="/info" component={Promo} />
-          <Route exact path="/" component={Home} />
 
           {message === "Authenticated" ? (
             <>
@@ -45,21 +45,24 @@ export default function Content() {
           ) : (
             <></>
           )}
-          <Route path="*">
-            <Result
-              status="404"
-              title="404"
-              subTitle="Извините, страница, которую вы посетили, не существует."
-              extra={
-                <Link to="/">
-                  <Button type="primary">Вернуться домой</Button>
-                </Link>
-              }
-            />
-            ,
-          </Route>
+          <Route path="*" component={NoMatch} />
         </Switch>
       </Layout.Content>
     </>
+  );
+}
+
+function NoMatch() {
+  return (
+    <Result
+      status="404"
+      title="404"
+      subTitle="Извините, страница, которую вы посетили, не существует."
+      extra={
+        <Link to="/">
+          <Button type="primary">Вернуться домой</Button>
+        </Link>
+      }
+    />
   );
 }

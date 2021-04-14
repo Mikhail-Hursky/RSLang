@@ -83,7 +83,14 @@ function StatisticModal({ words, setStart, game, streak }: any) {
   };
 
   function onClick(event: any, i: number, words: any) {
-    Api.setUserWord(token, userId, words[0]["id"], "DELETED");
+    const body = {
+      difficulty: "DELETED",
+      optional: {
+        rightCount: 0,
+        notRightCount: 0,
+      },
+    };
+    Api.updateUserWord(token, userId, words[0]["id"], body);
     event.target.remove();
     successMessage();
   }
